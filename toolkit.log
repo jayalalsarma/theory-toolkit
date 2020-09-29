@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.7) (preloaded format=pdflatex 2020.9.18)  29 SEP 2020 16:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.7) (preloaded format=pdflatex 2020.9.18)  29 SEP 2020 17:52
 entering extended mode
 **./toolkit.tex
 (toolkit.tex
@@ -1726,17 +1726,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 357--358
 
 
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 373--375
-
- []
-
-[53]
-Underfull \hbox (badness 10000) in paragraph at lines 410--411
-
- []
-
-
+] [53]
 Underfull \hbox (badness 10000) in paragraph at lines 414--415
 
  []
@@ -1761,9 +1751,6 @@ File: images/Spreg1.png Graphic file (type png)
 <use images/Spreg1.png>
 Package pdftex.def Info: images/Spreg1.png  used on input line 441.
 (pdftex.def)             Requested size: 138.01527pt x 93.34851pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 <images/Spreg2.png, id=850, 295.1025pt x 184.69pt>
 File: images/Spreg2.png Graphic file (type png)
 <use images/Spreg2.png>
@@ -1777,12 +1764,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 451--454
 
  []
 
-[55]
+[55 <./images/Spreg1.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 463--465
 
  []
 
-[56 <./images/Spreg1.png> <./images/Spreg2.png>]
+[56 <./images/Spreg2.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 470--478
 
  []
@@ -1812,7 +1799,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 144.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 144.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 144.
 Package rerunfilecheck Info: File `toolkit.out' has not changed.
-(rerunfilecheck)             Checksum: 0CC48A8C2E88F6F58F2FFAF91D585723;4572.
+(rerunfilecheck)             Checksum: F5E55D5DC4BB049E2722546068D89836;4563.
 
 
 LaTeX Font Warning: Size substitutions with differences
@@ -1826,7 +1813,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 144.
 Here is how much of TeX's memory you used:
  26496 strings out of 481199
  483994 string characters out of 2907002
- 800079 words of memory out of 3000000
+ 800043 words of memory out of 3000000
  41186 multiletter control sequences out of 15000+200000
  580878 words of font info for 158 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1864,7 +1851,7 @@ b8a.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/upl
 bi8a.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/up
 lr8a.pfb><C:/Users/HP/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/up
 lri8a.pfb>
-Output written on toolkit.pdf (66 pages, 818560 bytes).
+Output written on toolkit.pdf (66 pages, 818479 bytes).
 PDF statistics:
  1024 PDF objects out of 1200 (max. 8388607)
  262 named destinations out of 1000 (max. 500000)

@@ -51,7 +51,7 @@
 \contentsline {chapter}{Lecture \numberline {09}($\alpha $) {Surjections and Stirling numbers}}{46}{section*.42}%
 \contentsline {section}{\numberline {9.1}Introduction}{46}{section.9.1}%
 \contentsline {section}{\numberline {9.2}Applications of PIE}{46}{section.9.2}%
-\contentsline {subsection}{\numberline {9.2.1}Number of surjections from $[m]$ to $[n]$ elements}{46}{subsection.9.2.1}%
+\contentsline {subsection}{\numberline {9.2.1}Number of surjections from $[m]$ to $[n]$}{46}{subsection.9.2.1}%
 \contentsline {section}{\numberline {9.3}Stirling numbers of the second kind}{47}{section.9.3}%
 \contentsline {section}{\numberline {9.4}Instances of Stirling numbers of the second kind}{49}{section.9.4}%
 \contentsline {subsection}{\numberline {9.4.1}$n^{th}$ derivative of $e^{e^x}$}{49}{subsection.9.4.1}%

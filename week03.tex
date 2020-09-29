@@ -192,7 +192,7 @@ Mobius function $\mu(d)$ is given by
 \[
   \mu(d) = 
   \begin{cases}
-    0 &\mbox{if } p^2 \hspace{0.1cm}divides \hspace{0.1cm} d, \hspace{0.1cm} p  \hspace{0.1cm} is \hspace{0.1cm} prime\\
+    0 &\mbox{if } p^2 \hspace{0.1cm} \text{divides} \hspace{0.1cm} d, \hspace{0.1cm} p  \hspace{0.1cm} \text{is prime}\\
     1 &\mbox{if } d = 1\\
     (-1)^k &\mbox{if } d \text{ is a product of }k \text{ distinct primes} 
   \end{cases}
@@ -205,7 +205,7 @@ Now estimating $|G|$; since all of $S$ can be either in $G$ or $B$ but not both 
 &= n^2 + \sum_{2 \le d \le n}\mu(d) ((\lfloor \frac{n}{d} \rfloor)^2)\nonumber \\
 &= \sum_{1 \le d \le n}\mu(d) ((\lfloor \frac{n}{d} \rfloor)^2) \label{eq:good_set_1}
 \end{align}
-Note that $\mu(1) = 1$ is the convention in Mobius function.\\
+Last step uses the fact that $\mu(1) = 1$ in the Mobius function.\\
  Furthermore for any $x$,
 \begin{align*}
 (\lfloor x \rfloor )^2 - x^2 &= (x-\{x\})^2 - x^2\\
@@ -248,7 +248,7 @@ Thus, as $n\rightarrow \infty$, the probability that two randomly chosen numbers
 In this lecture, we will look at another application of Principle of Inclusion-Exclusion(PIE) - counting number of surjections. Later, we will look at a concept related to that application - Stirling numbers of the second kind.
 
 \section{Applications of PIE} \label{sec:Applications of PIE - lec2}
-\subsection{Number of surjections from $[m]$ to $[n]$ elements} \label{subsec:surjections application}
+\subsection{Number of surjections from $[m]$ to $[n]$} \label{subsec:surjections application}
 Consider $f : [m] \rightarrow [n]$. The total number of functions is $n^m$ - each element in $[m]$ has $n$ choices for its image. The number of injections is ${n \choose m}m!$ - the $m$ different images required can be chosen from $[n]$ in ${n \choose m}$ ways and then these images can assigned their pre-images from $[m]$ in $m!$ ways. The number of surjections is not that obvious and can be derived using PIE.\\
 \begin{theorem}
 The number of surjections from $[m]$ to $[n]$ is given by
@@ -366,12 +366,13 @@ For any undirected graph $G(V,E)$ with $n$ vertices, let us define a $n$x$n$ mat
   \end{cases}
 \]
 \end{definition}
+\noindent
 It can also be noted that for a graph $G(V,E)$ without any self edges (i.e. $\forall i, ~ (v_i,v_i) \notin E$), the Laplacian matrix can also be defined as $L(G) = D - A$ where $D$ is a diagonal matrix with $D_{ii} = ~deg(v_i)$ and $A$ is the adjacency matrix of $G$.
 \begin{theorem} Matrix Tree Theorem for undirected graphs by Kirchoff:\\
 For any undirected graph $G(V,E)$, the number of different spanning trees rooted at $v_i$ contained in $G$ is given by $det(L_G[i])$ where $L_G[i]$ refers to the matrix obtained by removing the $i^{\text{th}}$ row and the $i^{\text{th}}$ column from $L(G)$ (for any $i \in [n]$).
 \end{theorem}
 \noindent
-Note that the theorem has connected a combinatorial quantity to an algebraic one. It should also be noted that $det(L_G[i])$ is the same for every value of $i$ (since the number of undirected spanning trees does not change with the root $v_i$). The usual proof of this theorem is done using induction on the number of vertices. Instead we will use PIE to prove the generalised version and this theorem will follow as a consequence. Before doing the proof, let us cover few other concepts required for the proof.\\
+Note that the theorem has connected a combinatorial quantity to an algebraic one. It should also be noted that $det(L_G[i])$ is the same for every value of $i$ (since the number of undirected spanning trees does not change with the root $v_i$). The usual proof of this theorem is done using induction on the number of vertices. Instead we will use PIE to prove the generalised version and this theorem will follow as a consequence. Before doing the proof, let us cover few other concepts required for the proof.
 \section{Determinant of a Matrix}\label{sec:determinant of a matrix}
 From high school mathematics; we all know that for a 2x2 matrix $A$ and a 3x3 matrix $B$, the determinants are given by 
 \begin{align*}
@@ -407,8 +408,7 @@ Proving that the expression stated in the theorem satisfies the other three prop
 
 \section{Applications of PIE} \label{sec:Applications of PIE - lec3}
 \subsection{Tutte’s Matrix Tree Theorem} \label{subsec:tutte's application}
- Now, let us continue our journey towards stating and proving Tutte's Matrix Tree Theorem. Firstly, let us define Spanning Arborescences - the directed graphs equivalent for spanning trees and Laplacian matrix for directed graphs.\\
-
+ Now, let us continue our journey towards stating and proving Tutte's Matrix Tree Theorem. Firstly, let us define Spanning Arborescences - the directed graphs equivalent for spanning trees and Laplacian matrix for directed graphs.
 \begin{definition}\textbf{Spanning Arborescences:} An \textit{Arborescence} is a directed graph in which a vertex $u$ is called the root and for every other vertex $v$ in the graph, there is exactly one directed path from $u$ to $v$. In simpler terms, an arborescence is an directed tree in which all the edges are directed away from the root. A \textit{Spanning Arborescence} $S(V,E)$ of a directed graph $G(V',E')$ is an arborescence such that $V=V'$ and $E\subseteq E'$.
 \end{definition}
 \noindent\\
@@ -465,7 +465,7 @@ Therefore,  $indeg(v) = 0$ and for every other vertex $u$, $indeg(u) = 1$. In ot
 \begin{lemma} If $T(V,E)$ is a spreg with distinguished vertex $v$, then the spreg consists of an arborescence rooted at $v$ and zero or more weakly connected components (the underlying undirected component is connected). Each of these weakly connected components have exactly one directed cycle in them.
 \end{lemma}
 \begin{proof}
-The proof of this proposition is left as an exercise for the students to complete.
+The proof of this lemma is left as an exercise for the students to complete.
 \end{proof}
 \noindent Thus; (a spreg  with distinguished vertex $v$) = (an arborescence rooted at $v$) + $k$ (weakly connected components with one directed cycle each); where $k \geq 0$. \\
 \noindent\\
