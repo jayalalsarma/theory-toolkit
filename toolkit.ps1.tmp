@@ -1,5 +1,0 @@
-\item \label {mutual-friends} (See Exercise~\ref {prob:mutual-friends})
-\ifthenelse { \equal {\psetbackref }{1} } {\label {prob:mutual-friends}}{}
- A social network is said to be symmetric if the relation between users that is maintained as a part of the network, is symmetric. Consider a symmetric social network and let the symmetric relation maintained be that of ``user $A$ and $B$ are {\em friends}" (like in the case of facebook). A user $C$ is said to be a \textit {mutual friend} of users $A$ and $B$ if, $C$ is a friend of both $A$ and $B$. Prove that - for any user $A$ of the network who has at least two friends, there must exist two friends of $A$ who has the same number of mutual friends with $A$. \par Comment on whether symmetry is critical for your argument. Take the example of {\em instagram} where the symmetric relation of {\em friends} is replaced by {\em followers}. Generalize the definition of mutual friends to {\em mutual followers}. Comment on whether a similar statement for followers can be established in this case.
-
-
