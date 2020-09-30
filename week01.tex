@@ -97,7 +97,7 @@ n_i  \mod 2003 = n_j \mod 2003 \\
 2003 \textrm{ divides } (n_i - n_j) \\
 \end{eqnarray}
 
-That is good progress. We managed to show 2003 divides $(n_i - n_j)$. However, $n_i - n_j$ unfortunately, will not be in the sequence at all. How will this number look like? By the structure of the numbers, this difference will be a number of $7$s and then several zeros. More precisely computing these number, we have that:
+That is good progress. We managed to show 2003 divides $(n_i - n_j)$. However, $n_i - n_j$ unfortunately, will not be in the sequence at all. How will this number look like? By the structure of the numbers, subtracted, this difference will be a number of $7$s and then several zeros. More precisely computing these number, we have that:
 $$(n_i - n_j) = n_{j-i} 10^{j-i}$$
 So we have that $2003$ divides the product of $n_{j-1}$ and $10^{j-i}$. However, 2003 being an odd number which is not a multiple of $5$ will not have a common factor with any power of 10. Hence 2003 must necessarily divide $n_{j-i}$ which should be there in the sequence. This completes the proof.
 \end{proof}
@@ -130,3 +130,250 @@ Comment on whether symmetry is critical for your argument. Take the example of {
 \end{exercise-prob}
 
 \section{Discussion Session}
+
+Just to get started, we considered the following question - \textit{how many people do we need to choose so that we can be assured that two among the set of people we have chosen will have their birthday on the same day?} The answer to this question is given by Pigeon Hole Principle immediately by considering the people to be pigeons and the day of the year on which their birthday falls to be the pigeonhole. Hence to be guaranteed that out of the 366 holes, at least one contains two pigeons (people), and hence having the same birthday, we need to choose 367 people. Just to test our understanding, we asked "is the theorem tight?" in terms of number of people. It is indeed is, since there is a set of 366 people whom you can choose all of whom have different birthdays. That is, 367, is the smallest number for which the above statement can be proposed. Hence the theorem is tight.
+
+The first discussion point that was raised was a comparison with Birthday paradox. If we do not choose 367 people we are not given the guarantee that there are two people in the set with same birthday. What if we don't want this guarantee with certainty - but instead, we will need to get a probabilistic guarantee. To formalize this one has to imagine an experiment where the people are chosen uniformly at random. More rigorously, the property of the distribution is that for every date of the year, the probability that the chosen person has a birthday on that day is $\frac{1}{365}$. Let us say, we are talking about a non-leap-year. The questions is then of the form {\em what is the minimum number of people we need to choose, as per the above experiment, such that we are guaranteed at least 99.999\% chance of getting two people with the same birthday in the set?}. A natural number to choose is 364 which is slightly less than 365. But what is the minimum? The answer beats our usual intuition and is surprisingly low - we need to choose only 70 people to achieve this !!. The surprise goes even further if we ask for 50\% success, then the number is just 23 !! - and hence this is called \textit{the birthday paradox}.
+
+\subsection{Impossibility of Perfect Lossless Compression}
+
+PHP has a variety of applications. A first application outside discrete math course, that we usually encounter is in the automata theory where we use it to prove the pumping lemma. In fact, this one principle is pivotal in showing that there {\em cannot be} finite automaton accepting certain languages.
+
+We then turned into a practically related application of PHP, in the context of file compression. We all have used file compression programs - say like zip or tar. They compress our files into smaller sizes and they usually provide compression ratio too. Here is a question out of curiosity. Can we give compression algorithm that is guaranteed provide compression for all the files? This is a natural requirement. Interestingly, the actual situation is worse, any compression algorithm, not only cannot reduce the size of all files, but also has to increase the size of some file. The argument uses PHP. 
+
+Compression algorithms are nothing but programs which translates files (which are interpreted as strings) to strings. That is, they are functions of the form $C : \Sigma^* \to \Sigma^*$. A compression algorithm is said to {\em lossless} if this function is injective. That is, given a compressed strings (element in the RHS) we have a unique file that we can decompress it to. Indeed, compression algorithms that are not lossless are practically useless since there cannot exist decompression algorithms which can recover the compressed file.
+
+\begin{theorem}
+For any lossless data compression algorithm that makes at least one file smaller, there will be at least one file that it makes larger.
+\end{theorem}
+\begin{proof}
+Let $C$ be the compression function from $\Sigma^* \to \Sigma^*$. Let us fix $\Sigma = \{0,1\}$ without loss of generality.
+Suppose it makes at least one file smaller than its size as a result of the compression. In addition, for the sake of contradiction, suppose that the algorithm does not make any file larger than their respective sizes.  Let $w \in \Sigma^*$ be the shortest string (say, $|w| = \ell$) which the algorithm makes smaller. That is, by the assumption, for $w' \in \Sigma^*$ such that $|w'| < |w|$, $|C(w')| = |w'|$. Thus, consider the following set :
+$$ \Gamma = \left\{ w \in \Sigma^* \mid | C(w) |  < \ell \right\} $$
+From the above assumptions, we have that $|\Gamma| \ge 2^\ell+1$, but then by definition $\Gamma \subseteq \{0,1\}^{\ell-1}$. Hence by Pigeon Hole Principle, $\exists w,w' \in Gamma$ with $w \ne w'$, such that $C(w) = C(w')$. This contradicts the lossless property.
+\end{proof}
+%
+%\subsection*{Computation of $M$ - from discussion on Sep 28th}
+%
+%\paragraph{Harmonic Number Bound:}
+%
+%\begin{eqnarray*}
+%H_n & = & 1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4} \ldots +\frac{1}{n} \\
+%& = & \bigsum_{k=0}^{\lfloor \log n \rfloor} \sum_{j=0}^{2^k -1} \left( \frac{1}{2^k+j} \right) \\
+%& \le & \bigsum_{k=0}^{\lfloor \log n \rfloor} \sum_{j=0}^{2^k -1} \left( \frac{1}{2^k} \right) \textrm{ since the denominator decreased} \\
+%& = &  \sum_{k=0}^{\lfloor \log n \rfloor} (1) \le \log n 
+%\end{eqnarray*}
+%We wanted to compute :
+%
+%\[ M = \sum_{d=1}^\infty \frac{\mu(d)}{d^2} \]
+%
+%By using prime decomposition theorem, if $p_1,p_2, \ldots $ are list of primes:
+%
+%\[ M = \left( 1- \frac{1}{p_1^2} \right) \left( 1- \frac{1}{p_2^2} \right)  \left( 1- \frac{1}{p_3^2} \right)  \ldots \]
+%
+%The next idea is to compute $\frac{1}{M}$ as follows: since we have written above as the product -
+%
+%\begin{eqnarray*}
+%\frac{1}{M} & = & \frac{1}{\left( 1- \frac{1}{p_1^2} \right) }  \frac{1}{\left( 1- \frac{1}{p_2^2} \right) }  \frac{1}{\left( 1- \frac{1}{p_3^2} \right) } \ldots \\
+%\end{eqnarray*}
+%Using the infinite series expansion ... $\left(1-\frac{1}{x^2}\right() = 1+x^2+x^4+\ldots$
+%\begin{eqnarray*}
+%\frac{1}{M} & = & \left( 1+\frac{1}{p_1^2} + \frac{1}{p_1^4} \ldots \right)
+%\left( 1+\frac{1}{p_2^2} + \frac{1}{p_2^4} \ldots \right)
+%\left( 1+\frac{1}{p_3^2} + \frac{1}{p_3^4} \ldots \right) \\
+%& = & 1+\frac{1}{2^2}+\frac{1}{3^2}+ \ldots \\
+%& = & \frac{\pi^2}{6} \textrm{   {\tt By Euler sum that Gautam mentioned in the session}}
+%\end{eqnarray*}
+
+
+\Lecture{Jayalal Sarma}{Sep 9, 2020}{02}{More on PHP}{Jayalal Sarma}{$\alpha$}{JS}
+
+\section{Warm up and  Generlizations of PHP}
+
+We start with a usual application of PHP to numbers to warm up in the lecture.
+\begin{theorem}
+In any set of $n+1$ positive integers each at most $2n$, there must exist at least one number which divides the other. 
+\end{theorem}
+\begin{proof}
+Let $S = \{a_1, a_2, \ldots , a_{n+1}\}$ be the set of $n+1$ positive integers such that $a_i \le 2n$. Each number can be written in the form $a_i = 2^{k_i}q_i$ where $k_i$ is the maximum power of $2$ that divides $a_i$ and $q_i$ hence is an odd number.
+
+Now consider the numbers $q_1, q_2, \ldots q_{n+1}$. Can they be distinct? Since they all are in the range $1 \le q_i \le 2n$, where there are only $n$ odd numbers - By an application of PHP, we have that there must exist $i, j$ such that $1 \le i \ne j \le n+1$ with $q_i = q_j$.  Hence, we have that $k_i \ne k_j$. This gives the two exhaustive cases:
+
+\begin{description}
+\item{{\bf Case 1:} $k_i > k_j$:} Since $2^{k_j}$ divides $2^{k_i}$ and this gives $q_j2^{k_j}$ divides $q_i2^{k_i}$. Hence $a_j$ divides $a_i$.
+\item{{\bf Case 2:} $k_j > k_i$:} Same as previous case, just swapping the role of $i$ and $j$.
+\end{description}
+In either case, we have that there exists two numbers in the set where one divides the other. This concludes the proof.
+\end{proof}
+
+We now state a usual generalization of PHP as a recap.
+
+\begin{theorem}[{\bf Generalized of PHP}]
+Let $n,m ,r$ be positive integers and let $n > mr$. If we distribute $n$ balls into $m$ bins, then there must be a bin which has at least $r+1$ balls.
+\end{theorem}
+
+Indeed, the generalization comes handy when the combinatorial statement that we want to explore is not about a "conflict" but about multiple elements getting to same bag. A simple recap example to demonstrate this is the following question - {\em how many students do we need to be in the course, such at the end of the semester, no matter how the performance of the students is, that at least five students get the same letter grade (out of the five grades $S,A,B,C,D,E$)?} This is also an extremal question. Applying generalized PHP, with $r+1 = 5$ and $m=6$, it is sufficient to have 25 students in the class.  And with 24 we cannot guarantee this since there is way to distributed 4 students each to each grade so that there are not 5 students having each grade.
+
+\section{Example 2 : Erd\"os-Szekeres Theorem}
+
+This is about a pattern that appears in sequence of distinct numbers first proved by Erd\"os and Szekeres in 1939. The theorem its has a geometric interpretation too. The theorem itself is a creative use of Pigeon Hole Principle and is a case of extremal combinatorics.
+
+\begin{theorem}
+In any Sequence of $n^2+1$ distinct real numbers there must necessarily exist either a strictly increasing subsequence  of $n+1$ numbers  or a strict decreasing subsequence of $n+1$ numbers.
+\end{theorem}
+Before we begin to prove this, let us play around with an example.
+$8, 11, 9, 1, 4, 6, 12, 10, 5, 7$. Here $n=3$ and there are 10 numbers in the sequence. There must be at least one strictly increasing subsequence of length 4. Indeed, there is - the subsequence $1,4,6,12$. In fact, there are more, $1,4,6,10$ etc. But anyways there is at least one. In fact, in this case, it so happens that there is a strictly decreasing sequence also of length $4$. This is the subsequence, $11, 9, 6, 5$. There are more subsequences.
+
+\begin{proof}
+The proof is an elegant and intuitive one. A perfect example of how such proofs are discovered. Suppose $a_1, a_2, \ldots a_{n^2+1}$ forms the given sequence of numbers.
+
+Suppose we checked for the increasing subsequence of numbers of length $n+1$ and for decreasing subsequence of length $n+1$ but did not find it in the above sequence. How do we formally represent this data? Here is an idea, for each index $k$, let us associate a pair of numbers $(i_k,d_k)$, which are defined as : the length of longest increasing (for $i_k$ and respectively decreasing for $d_k$) subsequence of numbers starting from the number $a_k$ in the given sequence. The reason we failed to find the subsequence indicates that these pairs must satisfy, for every $k$, $1 \le i_k \le n$ and $1 \le d_k \le n$.
+
+Thus we have $n^2+1$ tuples in hand where value for each component can be only between $1$ and $n$. Hence there are only $n^2$ different distinct such pairs possible. But now we have a scenario for PHP, which gives that there must exist $s,t \in [n^2+1]$ such that $s \ne t$ (say without loss of generality that $s > t$) such that the tuples for both these indices are the same. That is $i_s = i_t = i$ (say) and $d_s = d_t = d$ (say).
+
+We know that the numbers are distinct in the sequence. Hence $a_s \ne a_t$. Thus we have the following two exhaustive cases:
+
+\begin{description}
+\item{{\sf Case 1:} $a_s > a_t$ :} Let $(t_1, t_2, \ldots t_d)$ be the decreasing sequence of length $i$ that starts from $a_t$ with $t_1 = a_t$. But then $(a_s, t_1, t_2, \ldots t_d)$ is also decreasing and it starts with $a_s$ and is of length $i+1$. This contradicts the fact that $d_s = d$.
+\item{{\sf Case 2:} $a_s < a_t$ :} Same as the above case, where we replace decreasing with increasing and the final contradiction is for the fact that $i_s=i$, because we can demonstrate a length $i+1$ increasing subsequence of length $i+1$ in the given sequence.
+\end{description}
+Hence the proof.
+\end{proof}
+
+\begin{remark}
+The above theorem can also be generalized, and in fact is the original form of the Erd\"os-Szekeres theorem. For given natural numbers $r$, $s$ they showed that any sequence of distinct real numbers with length at least $(r-1)(s-1)+1$ contains a monotonically increasing subsequence of length $r$ or a monotonically decreasing subsequence of length $s$. 
+\end{remark}
+
+\section{Example 3: People at Party}
+
+If $6$ people are invited to a party, something interesting happens. Let us say some pairs of them are friends and some pairs of them are strangers with each other. There will always be some set of three people who are pairwise strangers with each other or there will be a set of three people who are pairwise friends with each other. This phenomenon can be easily mistaken to be a sociological or behavioural psychological fact that humans seem to be behave this way. However, it turns out that it can be seen as a simple result of combinatorics and is a nice applciation of PHP in disguise. We demonstrate this now.
+
+\begin{theorem}
+If $6$ people are invited to a party, then there must exist three of them who are pairwise strangers each other, and there must be three of them who are pairwise  friends with each other. 
+\end{theorem}
+There are many equivalent ways of formulating this. One can talk about graphs to model the facts stated above. We defer these to a later point when we get to Ramsey numbers. We now get to the proof of the above in the same language as we discussed above.
+\begin{proof}
+Let $P$ be the set of people who joined the party. Let $\alpha \in P$ be one of the attendees. We do the following case analysis based on how many people does $\alpha$ are friends with in the party. We want to demonstrate a set $\Gamma \subseteq P$ such that $|\Gamma| = 3$ and the members of $\Gamma$ are either pairwise friends or pairwise strangers.
+\begin{description}
+\item{{\bf Case 1:} $\alpha$ has atleast three friends in $P$:} Let $\beta, \gamma, \delta$ be the three friends. We ask the question, are $\beta, \gamma, \delta$ friends amongst themselves? The answer to this will give the following exhaustive subcases.
+\begin{description}
+\item{{\bf Case 1a:} $\beta, \gamma, \delta$ are pairwise strangers among each other:} In this case  we can simply set $\Gamma = \{ \beta, \gamma, \delta \}$ which has the required property for $\Gamma$ as desired.
+\item{{\bf Case 1b:} there is a pair among $\beta, \gamma,$ and $\delta$ who are friends :} Without loss of generality let us say $\beta$ and $\gamma$ are friends (the other cases are similar). In this case, define $\Gamma = \{\alpha, \beta,\gamma\}$ and it has the desired properties.
+\end{description}
+\item{{\bf Case 2:} $\alpha$ has at most two friends in $P$}. In this case, there are three strangers for $\alpha$ in $P$, and let us name them $\beta, \gamma, and \delta$. We ask the question, are $\beta, \gamma, \delta$ friends amongst themselves? The answer to this will give the following exhaustive subcases.
+\begin{description}
+\item{{\bf Case 2a:} $\beta, \gamma, \delta$ are pairwise friends among each other:} In this case  we can simply set $\Gamma = \{ \beta, \gamma, \delta \}$ which has the required property for $\Gamma$ as desired.
+\item{{\bf Case 2b:} there is a pair among $\beta, \gamma,$ and $\delta$ who are strangers :} Without loss of generality let us say $\beta$ and $\gamma$ are the strangers (the other cases are similar). In this case, define $\Gamma = \{\alpha, \beta,\gamma\}$ and it has the desired properties.
+\end{description}
+\end{description}
+Since we argued in both the cases, this completes the proof of the theorem.
+\end{proof}
+\begin{remark}
+A more elegant way to handle case 2 is to reduce it to case 1 itself. Consider the complement of the friends/stranger relation. Note that the result required for the theorem does not change since we just need $\Gamma$ to be either pairwise strangers or pairwise friends and they just get complemented. Now, if $\alpha$ has at most two friends in $P$, it has at least three friends in $P$ in the complementary relation and hence we can reuse Case 1 in this case.
+\end{remark}
+
+\begin{exercise}
+Is the above theorem tight? Indeed, one can construct 5 people going to a party and associate a friends/stranger relation among them such that there does not exist three people who are friends with each other and  there does not exist three people who are strangers with each other. The exercise is to explicitly write down this counter example relation.
+\end{exercise}
+
+\begin{exercise-prob}[See Problem Set 1~(Problem \ref{php-square})]
+\begin{show-ps1}{php-square}
+The set $M$ consists of nine positive integers, none of which has a
+prime divisor larger than six. Prove that $M$ has two elements whose
+product is the square of an integer. Is the bound $9$ in the above statement tight?
+\end{show-ps1}
+\end{exercise-prob}
+
+\Lecture{Jayalal Sarma}{Sep 10, 2020}{03}{PHP for Dirichlet's Approximation Principle}{Jayalal Sarma}{$\alpha$}{JS}
+
+We now discuss a very old and different application of PHP which predates the name PHP itself. This is to show the approximation principle of irrational numbers. This application got this principle the name as {\em Dirichlet Box Principle}.
+
+\section{Approximation of irrationals by rationals}
+The task we have at hand is about approximating irrational numbers using rationals to a given accuracy. As a concrete example, suppose we want to approximate $\sqrt{2}$ by $\frac{p}{q}$ up to a given accuracy $\epsilon$ such that
+$$ \left| \sqrt{2} - \frac{p}{q} \right| \le \epsilon $$
+the driving question for us, is how large should $p$ and $q$ be? In fact they are related and hence, we need to ask how large the denominator $q$ should be? The larger the $q$ is, the more the granularity of the representation is, and the larger the storage cost is for the number to be represented. Hence, for a fixed irrational number and a given $\epsilon$ we want the value of $q$ to be as small as possible.
+
+Indeed, if we want to do this for an arbitrary irrational number, here is a simple idea: let $q \in \N$ (which we will choose later). Divide the number line into intervals of length $\frac{1}{q}$ each. Consider the number $\alpha$ and see which interval it belongs to. Choose the nearest multiple of $q$ to be the $\frac{p}{q}$ to be the approximation of $\alpha$. A quick thought will convince you that the error introduced by this method is at most half of the interval size which is $\frac{1}{2q}$. That is, for any $q$ that we choose, if we choose $p$ also accordingly as above,
+$$ \left| \alpha - \frac{p}{q} \right| \le \frac{1}{2q} $$
+Thus, for a given $\epsilon$, we should choose $\frac{1}{2q} < \epsilon$ to get the required accuracy. In other words, $q$ linearly changes with $\frac{1}{\epsilon}$. Just to get a sense of this growth, if $\epsilon$ is given to be $0.0001$, then we should choose $q$ to be roughly 5000. 
+
+\section{Dirichlet's Approximation Principle}
+
+Indeed, we would have probably preferred a smaller $q$, due to the above mentioned representation cost. Dirichlet approximation principle, exactly improves the above and is a nice application of the pigeon hole principle.
+
+\begin{theorem}[{\bf Dirichlet's Approximation Principle}]
+For every irrational number $\alpha$, there is a $p, q \in \Z$ such that:
+$$\left| \alpha - \frac{p}{q} \right| < \frac{1}{q^2}$$
+\end{theorem}
+
+A few remarks about the improvement  is due. Indeed, now $q$ changes quadratically with $\epsilon$. To check the numbers, suppose $\epsilon$ is given to e $0.0001$, then we can afford to choose $q$ to be just 100, as opposed to 5000.  We will now prove the above theorem:
+
+\begin{proof}
+Let $\alpha$ be the irrational number that we are interested in approximating.
+First observation is that it is sufficient to prove that $\exists p,q \in \Z$,
+$$\left| q\alpha - p \right| < \frac{1}{q}$$
+In other words, we need to understand the nearest integer to the quantity $q\alpha$. Intuitively, the fractional part of $q \alpha$ plays a roles in this and which we will study now.
+
+Fix a positive integer $N$ (we will choose this later) and consider the numbers $0, \alpha, 2\alpha, \ldots N\alpha$. Ideally we will choose $q$ to be less than $N$, hence one of these numbers is $q \alpha$. However, since we are interested in the fractional parts, let us distribute them into intervals as we did in the naive case.
+
+Consider the interval from $[0,1)$ divided into subintervals of the form:
+$$ \left[\left.0,\frac{1}{N}\right.\right),\left[\left.\frac{1}{N},\frac{2}{N}\right.\right) \ldots ,\left[\left.\frac{N-1}{N},1\right.\right) $$
+
+There are $N$ intervals in this list. If we distribute the fractional part of $N+1$ numbers $0, \alpha, 2\alpha, \ldots N\alpha$ to this list, by PHP, we have that there must be two of the multiples of $\alpha$ which falls within the same interval. In other words, there exists $a,b \in \{0,1, \ldots N\}$ such that:
+$$ \{a\alpha\} - \{b \alpha\} < \frac{1}{N}$$
+Just to fast forward, the idea is to demonstrate that the choice of $q = a-b$ actually works for our purpose. To do this, we will show that the nearest integer to $a \alpha  - b \alpha$ is at most $\frac{1}{a-b}$ away from it and that integer will be our $p$. Since $a-b$ is at most $N$, it is sufficient to show that there is an integer close to $a \alpha  - b \alpha$ is at most $\{a \alpha \} - \{b \alpha\}$ away. By the above, we have that this is at most $\frac{1}{N}$ which in turn is at most $\frac{1}{a-b}$. This is in fact a general statement which we can prove as follows:
+
+\begin{lemma}
+\label{lem:a-b}
+Let $A$ and $B$ be two real numbers, there is  an integer $p$ close to $|A-B|$ such that:
+$$d(p,|A-B|) \le \{A\} - \{B\} $$
+where $d(s,t)$ denotes $|s-t|$.
+\end{lemma}
+\begin{proof}
+The idea is very simple, let us write:
+$A = A_1+A_2 \textrm{  and } B = B_1+B_2$
+where $A_1$ and $A_2$ are integral and fractional part respectively. If $A_2 > B_2$, then the distance to the integer $|A_1 -B_1|$ is at most $A_2-B_2$. The other case works in a similar way.
+\end{proof}
+
+Applying Lemma~\ref{lem:a-b} to the case when $A = a\alpha$ and $B = b \alpha$, gives us that there is an integer $p$ such that 
+$$d(p,|a\alpha - b\alpha|) \le |\{a\alpha\} - \{b\alpha\}| < \frac{1}{N} \le \frac{1}{a-b} = \frac{1}{q}$$
+Thus, there is $p$ (as claimed by Lemma~\ref{lem:a-b}) and $q$ (which is equal to $a-b$ which exists as per PHP application), such that:
+$$|q\alpha - p| \le \frac{1}{q}$$
+This completes the proof of the theorem.
+\end{proof}
+
+
+\begin{exercise-prob}[See Problem Set 1~(Problem \ref{simultaneous-approx})]
+\begin{show-ps1}{simultaneous-approx}
+Let $\alpha_1, \alpha_2, \ldots \alpha_k$ be $k$ rational numbers. Generalizing the Dirichlet's approximation principle argument that we did in class, using PHP again, prove that there must exist integers $p_1, p_2, \ldots p_k$ and $q$ such that:
+$$\forall i,~\left| \alpha_i - \frac{p_i}{q} \right| < \frac{1}{q^{1+\frac{1}{k}}}$$
+\end{show-ps1}
+\end{exercise-prob}
+
+\begin{remark}
+The proof of the theorem proves something stronger. That is, it actually can give a way to get many $q$'s which acheive the error bound. Notice that the choice of $N$ was free in the proof and $q$ that we end up choosing is $a-b$ which is at most $N$. Hence suppose that we already have a $p$ and $q$ in hand, if we run the proof by choosing $N$ to be large enough such that:
+$$\frac{1}{N} < |q\alpha - p|$$
+then necessrily the new $p$ and $q$ that the proof gives will have to be different (and $q$ needs to be larger). By repeating this, we can produce a new $p$ and $q$ and so on and so forth. This gives us a way to produce infinitely many $p$ and $q$ such that:
+$$\left| \alpha - \frac{p}{q} \right| < \frac{1}{q^2} $$
+\end{remark}
+
+We were clearly motivated to improve the denominator of $2q$ in the naive attempt to $q^2$ in the denominator in the rational approximation principle. Can this be improved further? The following curiosity remark says otherwise.
+
+\begin{curiosity}[{\bf Tightness of Dirichlet's Approximation Principle - Roth's Theorem}]
+Let $\alpha$ be any algebraic number (which can be expressed as the root of a polynomial with coefficients from $\mathbb{Q}$. For every $\epsilon$ the inequality,
+$$\left| \alpha - \frac{p}{q} \right| < \frac{1}{q^{2+\epsilon}}$$
+can hold true only for finitely many co-prime pairs $(p,q)$. This says that the Dirichlet's approximation principle cannot be improved (for infinitely many $p$ and $q$) with a larger order denominator.
+\end{curiosity}
+
+The above remark says that we cannot improve in the exponent for Dirichlet's approximation principle. Can we improve by having a large multiplier for the $q^2$ in the denominator? Even this has a limit, and leads to classifying irrational numbers using what is called the \textit{Lagrange measure} of the number.
+
+\begin{curiosity}[{\bf Hurwitz Theorem and Irrationality Measures}]
+This is an improvement of the above principle. For every irrational number $\alpha$, there are infinitely many relatively prime integers $p$ and $q$ such that:
+$$\left| \alpha - \frac{p}{q} \right| \le \frac{1}{\sqrt{5}q^2}$$
+The $\sqrt{5}$ in the denominator is the best possible. If we let it greater than $\sqrt{5}$, then there is a counter example - consider the irrational number $\frac{1+\sqrt{5}}{2}$ (the golden ratio). It can be shown that this can have only finitely many relatively prime integers $p$ and $q$ with the above formula holding (this is done through arguments about continued fraction representations). For example, if we avoid \textit{golden ratio} and some similar irrational numbers, then we can improve the denominator to $\sqrt{8}$. If we avoid \textit{silver ratio} ($1+\sqrt{2}$) and associated irrational numbers, then we can improve this to $\frac{\sqrt{221}}{5}$. In general, the bound is of the form:
+$$\left| \alpha - \frac{p}{q} \right| \le \frac{1}{L_nq^2}$$
+where $L_n$ (called the \textit{Lagrange numbers}) steadily increases if some bad irrational numbers are included. These also are viewed as measures of "how much irrational the number is". 
+\end{curiosity}
+
+\Lecture{Jayalal Sarma}{Sept 14, 2020}{04}{Proof by Bijections and Double Counting Principle}{Jayalal Sarma}{$\alpha$}{JS}
+
