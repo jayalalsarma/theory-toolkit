@@ -375,5 +375,153 @@ $$\left| \alpha - \frac{p}{q} \right| \le \frac{1}{L_nq^2}$$
 where $L_n$ (called the \textit{Lagrange numbers}) steadily increases if some bad irrational numbers are included. These also are viewed as measures of "how much irrational the number is". 
 \end{curiosity}
 
-\Lecture{Jayalal Sarma}{Sept 14, 2020}{04}{Proof by Bijections and Double Counting Principle}{Jayalal Sarma}{$\alpha$}{JS}
+\Lecture{Jayalal Sarma}{Sept 14, 2020}{04}{Counting by Bijections and Double Counting Principle}{Jayalal Sarma}{$\alpha$}{JS}
 
+We now quickly review the basic tools from counting. Permutations and combinations forms the basics from discrete mathematics that we rely upon. We will stress on the aspects that are critical for the rest of the course. The first tool that we will demonstrate in detail is the power of counting by using bijections.
+
+\section{Basic Examples of Counting by Bijections}
+
+The cardinality of two sets is said to be the same if there is a bijection between the two. Indeed, for finite sets the notion of cardinality matches with that of size while it can be deceiving for infinite sets\footnote{For infinte sets, there are notions of countability and uncountability of sets which we will not discuss here.}. We will concentrate on finite sets for this part and use bijections to establish combinatorial counting.
+
+We start with something that we are all familiar with, in order to bring out the nuances involved with proof by bijections. Notice that we know how to count this object even otherwise, by other means, but this is just as a starting example.
+
+\begin{proposition}
+The number of subsets of a set is of $n$ elements is exactly $2^n$.
+\end{proposition}
+\begin{proof}
+Let $S$ be the given set of $n$ elements. Without loss of generality let us assume that $S = \{1,2,\ldots, n\}$. The bijection is nothing but the well-known idea of characteristic vector of a set,
+
+We establish a bijection between the following two sets.
+$$ \phi : \left\{ A : \begin{array}{c} A \textrm{ is a subset of } \\ \textrm{ the set $S$ } \end{array} : \right\} \to \left\{ x : \begin{array}{c} x \textrm{ is a string of length $n$} \\ \textrm{ over alphabet $\{0,1\}$ } \end{array} : \right\}$$
+We first define the function as follows. Let $A$ be any subset of $S$, define the string $w = \phi(x)$ as the $n$-bit string where for every $1 \le i \le n$:
+\[
+w_i = 
+\begin{cases}
+0 & \textrm{ if $i \notin A$ }\\
+1 & \textrm{ if $i \in A$ }
+\end{cases}
+\]
+
+Notice that the function $\phi$ is well-defined (this may have to be checked explicitly in certain bijections when we define) since we are defining the bit $w_i$ for every $i \in [n]$. 
+
+We now argue that it is an injection. Suppose that two sets $A, B \subseteq S$, but $A \ne B$. That is there is an $i \in S$ for which $i \in A$, but $i \notin B$. By the above definition, the $i$-th but of $\phi(A)$ will be $1$ while the $i$-th bit of $\phi(B)$ will be $0$. This implies $\phi(A) \ne \phi(B)$.
+
+We also show that $\phi$ is a surjection. Given any $w \in \{0,1\}^n$, we can define a pre-image $A \subseteq S$ as $A = \{ i \mid w_i = 1 \}$. By definition, $\phi(A) = w$ and hence $w$ has a pre-image. This shows $\phi$ is a surjection.
+
+\end{proof}
+
+Let us argue a slight variant of the above example now. While there are other ways to establish this, we insist on using the method of counting by bijections.
+
+\begin{proposition}
+The number of even sized subsets of $[n]$ is equal to the number of odd sized subsets, and both are equal to $2^{n-1}$.
+\end{proposition}
+\begin{proof}
+by observing that the bijection that we defined in the previous proof has the additional feature that the number of $1$s in $\phi(A)$ is exactly the cardinality of $A$, we can conclude that it is sufficient to establish a bijection between the following two sets:
+$$ \psi : \left\{ x : \begin{array}{c} x \in \{0,1\}^n \textrm{ having } \\ \textrm{even no. of 1s in it}  \end{array} \right\} \to \left\{ w : \begin{array}{c}  \textrm{ $w \in \{0,1\}^n$ having} \\ \textrm{odd no. of 1s in it}  \end{array} \right\}$$
+Fix any $i \in [n]$, we define a bijection with respect $i$ (this says there are actually $n$ bijections between the two sets above, not just one !). Technically, we should be writing $\psi_i$ but we drop the subscript since it is not critical for the representation. 
+\begin{description}
+\item{\bf Definition:} We define the bijection as follows : let $e_i$ denote the string which has $1$ in the $i$-th position and $0$ elsewhere.
+$$\psi(x) = x \oplus e_i $$
+where $\oplus$ denotes bitwise xor to produce an $n$ bit string.
+\item{\bf well-defined:} We explicitly check whether the function is well-defined. Indeed, consider any $x \in \{0,1\}^n$ which has even number of $1$s in it. By the operation $x \oplus e_i$ produces a string in $w \in \{0,1\}^n$. Since the $i$-th bit is flipped, $w$ must necessarily have odd number of 1s in it.
+\item{\bf injection:} 
+We show that $\psi$ is an injection. Consider $x, x' \in \{0,1\}^n$ such that $x \ne x'$.  There must exist an index $j$ in which they differ. We have two cases:
+\begin{description}
+\item{{\bf Case 1:} $j = i$ :} Indeed, since the $i$-th bit is flipped by the mapping, the images $w = \phi(x)$ and $w' = \phi(x')$ must also have their $j$-th bit to  be different. Hence $\phi(x) \ne \phi(x')$.
+\item{{\bf Case 2:} $j \ne i$ :} Since the operation does not change any other bit. The images $w = \phi(x)$ and $w' = \phi(x')$ must also have their $j$-th bit to  be different. Hence $\phi(x) \ne \phi(x')$.
+\end{description}
+Hence, we conclude that $\phi$ is injective.
+\item{\bf surjection:} Given any $w \in \{0,1\}^n$ which has odd weight, we show $x \in \{0,1\}^n$ such that $\phi(x) = w$. Indeed, defining $x = w \oplus e_i$ will meet the requirement. Hence $\phi$ is surjective.
+\end{description}
+Hence we conclude that $\phi$ is a bijection and that the two sets must be of same cardinality. Since the two sets are disjoint and their union is of size $2^n$, it must be that both of them are of size $2^{n-1}$. This concludes the proof.
+\end{proof}
+
+Note that in the above proof, we wrote down the steps in proving the bijection explicitly. It is somewhat standard to skip over the one which are obvious from the definitions, but it is a good practice to write these down in a formal proof so that the argument is not prone to errors.
+
+\section{From Bijections to Double Counting}
+
+We will now introduce a new technique called {\em double counting} which has the method of bijections as its backbone. 
+
+\paragraph{Double Counting Method:} The method can be presented as follows. There is one combinatorial (mostly counting) question that we will design which we will answer in two distinct (but provably correct) ways. Since the two answers are for the same counting problem, it is logical to equate them and such an equality gives relations that are otherwise no apparent. 
+
+The whole idea can be viewed as a method of bijection itself. In many situations, the double counting may also reveal an implicit bijection between the two different ways of answering the question. While this is not necessary for the double counting method, it is revealing to think about the underlying bijection.
+
+This is a very elegant and powerful tool. The creativity in the proof is in designing the right question. Indeed, \textit{asking the right question is mostly more than half way thorugh into constructing mathematical proofs} !!.
+We demonstrate this by a simple example first.
+
+\begin{proposition}
+For any $k \le n$,
+$${n \choose k} = {n \choose n-k}$$
+\end{proposition}
+\begin{proof}
+The combinatorial counting question in this case can be the following:
+\begin{description}
+\item{\bf Q:} In how many ways can we form a committee of size $k$ from a set of $n$ people.
+\item{\bf A1:} Directly choose the $k$ committee members from $n$ people. By definition, there are ${n \choose k}$ ways of doing this.
+\item{\bf  A2:} Directly choose the $n-k$ non-members of the committee from $n$ people and declare the remaining to be the committee members. There are ${n \choose n-k}$ ways of doing this too.
+\end{description}
+This completes the argument. Although not required for the proof, for the curious mind, the underlying bijection revealed is the complementation of the set.
+\end{proof}
+
+Note that there is an easy algebraic way of arguing the above identity. But as the expressions get more complicated, this proof technique is more revealing and elegant.
+
+\begin{proposition}
+For any $n$ and $k$,
+$${n \choose k} = {n-1 \choose k} + {n-1 \choose k-1}$$
+\end{proposition}
+\begin{proof}
+We can reuse the question itself from the proof of the earlier proposition.
+\begin{description}
+\item{\bf Q:} In how many ways can we form a committee of size $k$ from a set of $n$ people.
+\item{\bf A1:} Directly choose the $k$ committee members from $n$ people. By definition, there are ${n \choose k}$ ways of doing this.
+\item{\bf  A2:} Let the potential members be $\{1,2, \ldots n\}$. Classify the ways of choose $k$ committee members into two. Ones that includes $n$ and the ones that does not include $n$. Since these two kinds of committees are never the same, we can count both types and add them. More formally, this is expressed as, \textit{condition on the fact whether $n$ is in the committee or not}. If $n$ is in the committee, then there are only $k-1$ remaining members of the committee needs to be chosen from the remaining $n-1$ members available to choose from - which gives ${n-1 \choose k-1}$ ways of doing it. On the other hand, if $n$ is not in the committee, then there are still $k$ members to be chosen from $n-1$ potential members to choose from - this gives ${n-1 \choose k}$ as the number of possible ways. Adding these two, gives the RHS as the second answer to the counting question.
+\end{description}
+This completes the argument.
+\end{proof}
+
+\begin{proposition}
+For $k \le n$,
+$$ k{n \choose k} = n {n-1 \choose k-1}$$
+\end{proposition}
+\begin{proof}
+We can almost reuse the question itself from the proof of the earlier proposition.
+\begin{description}
+\item{\bf Q:} In how many ways can we form a committee of size $k$ from a set of $n$ people, and then choose a chair of the committee (who is also  a part of the committee).
+\item{\bf A1:} Directly choose the $k$ committee members from $n$ people. By definition, there are ${n \choose k}$ ways of doing this. And then among the members chosen, choose a chair for the committee which can be done in $k$ different ways. This gives $k {n \choose k}$ ways of completing the task which is equal to the LHS.
+\item{\bf  A2:} First choose the chair from the potential members of the committee. This can be done in $n$ ways. And then choose the remaining $k-1$ members of the committee from the remaining potential members of the committee. This can eb done in ${n-1 \choose k-1}$ ways.
+\end{description}
+This completes the argument.
+\end{proof}
+
+\begin{exercise}
+Prove the following identities using double counting method:
+$$\sum_{k=0}^n k {n \choose k} = n 2^{n-1} \textrm{\hspace{15mm}} {m+n \choose k} = \sum_{i=0}^k {m \choose i}{n \choose k-i} \textrm{\hspace{15mm}} {n \choose k}{k \choose m} = {n \choose m}{n-m \choose k-m}$$
+\end{exercise}
+
+\begin{proposition}
+$$\sum_{m=k}^n {m \choose k} = {n+1 \choose k+1}$$
+\end{proposition}
+\begin{proof}
+We need to modify the question slightly here.
+\begin{description}
+\item{\bf Q:} In how many ways can we choose $k+1$ numbers from the set $\{1, 2, \ldots, n+1\}$?
+\item{\bf A2:} The RHS is immediate by definition.
+\item{\bf  A1:} Count conditioning on the largest element to be chosen in the set. Note that a subset cannot be counted against two largest elements since largest element of a given set is uniquely defined. Now, for a fixed largest element $m+1$, the numeber of ways of choosing remaining elements is given by the number of ways of choosing $k$ elements from the set $\{1, 2, \ldots m\}$ since $m+1$ is the largest. This gives ${m \choose k}$ ways of completing the task when the largest element is $m+1$. Since $m$ has to be atleast $k$ and can be at most $n$, this gives the number of ways of choosing a set of $k+1$ numbers from the set to be :
+$$\sum_{m=k}^n {m \choose k}$$
+which matches with the LHS.
+\end{description}
+This completes the argument.
+\end{proof}
+Use a similar argument to do the following:
+
+
+\begin{exercise-prob}[See Problem Set 1~(Problem \ref{double-counting})]
+\begin{show-ps1}{double-counting}
+Use a double counting argument to establish the following identity : \\
+$$ \sum_{m=k}^{n-k} {m \choose k} {n-m \choose k} = {n+1 \choose 2k+1} \textrm{ ~~~where~~ $0 \le k \le \frac{n}{2}$}
+$$
+Generalize the idea to prove :
+$$ \sum_{j=r}^{n+r-k} {j-1 \choose r-1} {n-j \choose k-r} = {n \choose k} \textrm{ ~~~where~~ $1 \le r \le k$}
+$$
+\end{show-ps1}
+\end{exercise-prob}
