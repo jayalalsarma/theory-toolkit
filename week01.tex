@@ -1,4 +1,4 @@
-\Lecture{Jayalal Sarma}{Sep 9, 2020}{01}{Pigeon Hole Principle and Basic Applications}{Jayalal Sarma}{$\alpha$}{JS}
+\Lecture{Jayalal Sarma}{Sep 9, 2020}{01}{Pigeon Hole Principle and Basic Applications}{Jayalal Sarma}{$\gamma$}{JS}
 
 We start course with the simplest but surprising powerful tool in combinatorial arugments which is the pigeon hole principle. Through this principle as an example, we will also quick review the methods of proof. 
 
@@ -186,7 +186,7 @@ From the above assumptions, we have that $|\Gamma| \ge 2^\ell+1$, but then by de
 %\end{eqnarray*}
 
 
-\Lecture{Jayalal Sarma}{Sep 9, 2020}{02}{More on PHP}{Jayalal Sarma}{$\alpha$}{JS}
+\Lecture{Jayalal Sarma}{Sep 9, 2020}{02}{More on PHP}{Jayalal Sarma}{$\gamma$}{JS}
 
 \section{Warm up and  Generlizations of PHP}
 
@@ -284,7 +284,7 @@ product is the square of an integer. Is the bound $9$ in the above statement tig
 \end{show-ps1}
 \end{exercise-prob}
 
-\Lecture{Jayalal Sarma}{Sep 10, 2020}{03}{PHP for Dirichlet's Approximation Principle}{Jayalal Sarma}{$\alpha$}{JS}
+\Lecture{Jayalal Sarma}{Sep 10, 2020}{03}{PHP for Dirichlet's Approximation Principle}{Jayalal Sarma}{$\gamma$}{JS}
 
 We now discuss a very old and different application of PHP which predates the name PHP itself. This is to show the approximation principle of irrational numbers. This application got this principle the name as {\em Dirichlet Box Principle}.
 
@@ -375,7 +375,7 @@ $$\left| \alpha - \frac{p}{q} \right| \le \frac{1}{L_nq^2}$$
 where $L_n$ (called the \textit{Lagrange numbers}) steadily increases if some bad irrational numbers are included. These also are viewed as measures of "how much irrational the number is". 
 \end{curiosity}
 
-\Lecture{Jayalal Sarma}{Sept 14, 2020}{04}{Counting by Bijections and Double Counting Principle}{Jayalal Sarma}{$\alpha$}{JS}
+\Lecture{Jayalal Sarma}{Sept 14, 2020}{04}{Counting by Bijections and Double Counting Principle}{Jayalal Sarma}{$\gamma$}{JS}
 
 We now quickly review the basic tools from counting. Permutations and combinations forms the basics from discrete mathematics that we rely upon. We will stress on the aspects that are critical for the rest of the course. The first tool that we will demonstrate in detail is the power of counting by using bijections.
 
@@ -437,6 +437,53 @@ Hence we conclude that $\phi$ is a bijection and that the two sets must be of sa
 \end{proof}
 
 Note that in the above proof, we wrote down the steps in proving the bijection explicitly. It is somewhat standard to skip over the one which are obvious from the definitions, but it is a good practice to write these down in a formal proof so that the argument is not prone to errors.
+
+\subsection{Discussion Session - Counting Cyclic Triplets}
+
+We considered the following counting question in the discussion session to demonstrate that simple bijection and the idea of associating combinatorial objects is a very powerful combinatorial technique.
+
+\begin{problem}
+Imagine there are $2n+1$ players in a round-robin tournament. That is, each player plays against every other player. Assume that there are no ties in any match. We say that players $\{a,b,c\}$ forms a cyclic triplet if $a$ beats $b$, $b$ beats $c$, and $c$ beats $a$ (note that the order does not matter). We want to count the maximum number of cyclic triplets that is possible in the tournament.
+\end{problem}
+\begin{proof}
+It is natural to model the above using graphs where each vertex is a player and two vertices $(i,j)$ is a directed edge if the player $i$ beats player $j$. This gives a directed graph with $2n+1$ vertices whose underlying undirected graph is a complete graph on $2n+1$ vertices. It is also called a tournament. Cyclic triplets can naturally be associated with triangles in these directed graphs. So the statement we are address is also equivalently stated as {\em in any tournament on $2n+1$ vertices, what is the number of triangles?}.
+
+The idea is to look at associated objects called "corners" of the triangles. There are ${2n+1 \choose 3}$ triangles, and hence there are $3 {2n+1 \choose 3}$ many corners. The corners can be classified into three types.
+\begin{description}
+\item{\bf Type 1:} A corner where both edges are incoming edges.
+\item{\bf Type 2:} A corner where both edges are outgoing edges.
+\item{\bf Type 3:} A corner where one edge is incoming and the other is outgoing.
+\end{description}
+
+What happens in a cyclic triplet? It forms a triangle, hence the three corners has to be of Type 3. A non-cyclic triplet will have one corner of each Type. This also establishes a bijection between the Type 1 and Type 2 corners as follows.
+
+$$ \psi : \left\{ \begin{array}{c} \textrm{Type 1} \\ \textrm{Corners}  \end{array} \right\} \to \left\{ \begin{array}{c} \textrm{Type 2} \\ \textrm{Corners}  \end{array} \right\} $$
+
+defined as follows: given any corner $c$ of type 1, define $\psi(c)$ as the type 2 corner that appears in the (undirected) triangle that this corner appears in. This is well defined because (1) $c$ cannot appear in a triangle corresponding to the cyclic triplet (2) exactly only type $2$ triplet can appear in a triangle corresponding to non-cyclic triplet. This uniquely assigns a type 2 corner with $c$ and makes the function, well-defined, injective and surjective (since the process can be reversed too). In fact, the same bijection also proves that the number of non-cyclic triplets is exactly the number of Type 1 corners and also exactly equalt to the number of Type 2 corners. Hence it sufficient to count the number of Type 1 corners. 
+
+So now the strategy is clearer. To obtain an upper bound on the number of cyclic triplets, we express it ${2n+1 \choose 3}$ minus the number of non-cyclic triplets. The it suffices to obtain a lower bound for the number of non-cyclic triplets. Hence it suffices to obtain a lower bound on the number of type 1 corners (or equivalently the number of type 2) corners.
+
+One natural attempt is to aim to count type 1 corners alone. If $d_i$ is the in-degree of the $i$-th vertex, then the number of type 1 corners can be estimated as :
+
+$$t_1 = \bigsum_{i=1}^{2n+1} {d_i \choose 3}$$
+
+However, it is unclear how to get a reasonably tight lower bound for this quantity. 
+Instead, the trick is to count the type 1 and type 2 simultaneously as :
+$$t = t_1 + t_2 = \bigsum_{i=1}^{2n+1} \left[ {d_i \choose 2}+ {2n-d_i \choose 2} \right] $$
+Since we know that $t_1 = t_2 = t$, we have the number of non-cyclic triplets is:
+
+$$\frac{1}{2}\bigsum_{i=1}^{2n+1} \left[ {d_i \choose 2}+{2n-d_i \choose 2} \right] $$
+Since we need a lower bound for this, we can use the fact that the summation is minimised when $d_i$ is equal in both the terms in the multiplication. Hence number of non-cyclic triplets is at least:
+\begin{eqnarray*}
+\frac{1}{2}\bigsum_{i=1}^{2n+1} \left[ {n \choose 2}+{n \choose 2} \right] & \ge & \frac{n(n-1)(2n+1)}{2} \\
+\textrm{\# of Cyclic Triplets} & \le & {2n+1 \choose 3}  - \frac{n(n-1)(2n+1)}{2} \\
+& \le & \frac{n(n+1)(2n+1)}{6}
+\end{eqnarray*}
+
+A natural question is whether this is tight? Or did we have any slackness in the counting? The count will be tight if the $d_i = n$ can be achieved for all vertices. This can be done by the following explicit graph for which the number of cyclic triplets will be hence exactly equal to $\frac{n(n+1)(2n+1)}{6}$ and shows that the above bound is tight.
+
+The construction is as follows. Consider the sequence $1, 2, \ldots ,2n+1$. Define $(i,j) \in E$ if $i-j \mod 2n+1$ is in $[n]$. This ensures that the in-degree and the out-degree of all the vertices is exactly $n$ and hence the graph will achieve the above bound.
+\end{proof}
 
 \section{From Bijections to Double Counting}
 
