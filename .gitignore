@@ -7,3 +7,5 @@
 *.out
 *.tdo
 *.scr
+*.fls
+*.fdb_latexmk

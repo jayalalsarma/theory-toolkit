@@ -1,0 +1,89 @@
+\Lecture{Jayalal Sarma}{Oct 10, 2020}{13}{From Principle of Inclusion-Exclusions to Mobius Inversion}{Sandip Saha}{$\alpha$}{JS}
+
+% \section{Introduction}
+The journey so far has been that we have started with pigeon hole principle and its applications then we used double counting and bijections to establish different identities then we moved to PIE and its different applications.
+% Then we came to Principle of Inclusion-Exclusion(PIE) as a consequence of a bijection argument. 
+In this lecture, we will look at a more generalized version of PIE and move gradually towards the Mobius Inversion.
+
+\subsection{PIE Revisited}
+Previously we have used PIE to compute $\left| \bigcup^n _{i=n} A_i \right|$ as follows,
+\[ \left| \bigcup^n _{i=n} A_i \right|=\sum_{\emptyset \neq I \subseteq [n]} (-1)^{|I|+1}\left|\bigcap_{i\in I} A_i\right|\]
+Now, we are interested to compute $\left|\bigcap_{i=1}^n  \overline{A_i}\right|$, which can be rewritten as,
+\begin{align}
+  \left|\bigcap_{i=1}^n  \overline{A_i}\right| & = \left|
+  \overline{\bigcup_{i=1}^n  A_i}
+  \right| \nonumber \tag{using De-morgan's law}                                                                                                                    \\
+                                               & = \left| X \right| - \left| \bigcup^n _{i=n} A_i \right| \nonumber                                                \\
+                                               & = \left| X \right| -\sum_{\emptyset \neq I \subseteq [n]} (-1)^{|I|+1}\left|\bigcap_{i\in I} A_i\right| \nonumber \\
+                                               & = \sum_{ I \subseteq [n]} (-1)^{|I|}\left|\bigcap_{i\in I} A_i\right|
+\end{align}
+
+Note that $\bigcap_{i\in \emptyset} A_i =X$. This thing can also be stated in the following way.
+
+\begin{theorem}
+  Let $X$ be a finite set and $P_1,\dots, P_m$ properties. Further define for $S \subseteq [m]$ the set $N(S) = \{x\in X \mid \forall i \in S: x \text{ has property } P_i\}$  then, number of elements in $X$ satisfying none of the properties $P_1,\dots, P_m$ is given by,
+  $$ \sum_{S \subseteq [m]} (-1)^{|S|} \left| N(S) \right|$$
+\end{theorem}
+
+\subsection{Stronger version of PIE}
+The Inclusion-Exclusion Principle has a stronger version which is as follows.
+
+\begin{theorem}[Stronger PIE]
+  \label{stronger PIE}
+  Let $f,g:2^{[n]}\longrightarrow \mathbb{R}$ are functions assigning real numbers to subsets of $[n]$ with the property that for any $A\subseteq [n]$
+
+  \[ g(A)=\sum_{S\subseteq A} f(S)\]
+
+  Then,
+  \[ f(A) = \sum_{S \subseteq A} (-1)^{|A|-|S|}g(S)\]
+
+\end{theorem}
+
+
+\begin{proof}
+  Let $f$ and $g$ are functions from the powerset of $[n]$ to real numbers and for all $A \subseteq [n]$
+  \[g(A)=\sum_{S\subseteq A}f(S)\]
+
+  \begin{align}
+    \sum _{s\subseteq A}( -1)^{|A|-|S|} g( S) & =\sum _{s\subseteq A}( -1)^{|A|-|S|}\left(\sum _{T\subseteq A} f( T)\right) \nonumber \\
+                                              & =\sum _{T\subseteq A} C_{T} f( T)
+  \end{align}
+  Where $C_T$ is appropriate signed number. Our aim is now to find $C_T$ for different $T$
+
+  \begin{description}
+    \item{\textbf{Case 1: }($T=A$)} $C_T=1$, since $f(A)$ is only encountered for $T=S=A$.
+
+    \item{\textbf{Case 2: }($T \neq A$)} choosing a set between $T$ and $A$ is equivalent of choosing a set from $A\setminus T$
+          \[C_T=\sum _{T \subseteq S\subseteq A}( -1)^{|A|-|S|}=\sum^k_{i=0}(-1)^{k-1} {k \choose i} =0 \]
+  \end{description}
+  This proves the claim.
+  \[\boxed{\therefore f(A) =  \sum_{S \subseteq A} (-1)^{|A|-|S|}g(S)}\]
+\end{proof}
+
+\textbf{Why it is strong version?} it implies PIE.
+Assume the strong version, we can derive PIE.
+\begin{proof}
+  Properties $P_1,\dots, P_m$ of elements of $X$ . $X_1,\dots, X_m$ are the subsets of $X$ satisfying the respective property i.e. $X_i=\{ x\in X \mid x \text{ satisfy } P_i\}$.
+  then for $S \subseteq [m]$  we define $f(S)$ to be the number of elements in $X$ having all properties $P_i$ such that $i \notin S$ and none of the properties $P_j$ such that $ j \in S$ i.e.
+  \[ f(S) = \left| \bigcap_{i\in [m] \setminus S} X_i \setminus \bigcup_{i\in S} X_i \right| \]
+  We are interested in counting the number of elements in $X$ which does not satisfy any property in $P_1,\dots, P_m$ i.e. $f([m])$. We define,
+
+  \begin{align*}
+    g(A) & = \sum_{S\subseteq A} f(S)                         \\
+         & = \left| \bigcap_{i \in [m] \setminus A}X_i\right| \\
+         & = N([m]\setminus A)
+  \end{align*}
+  $g(A)$ counts $x\in X$ if the property that $x$ does not satisfy forms a subset of $A$. By \ref{stronger PIE}
+  \begin{align*}
+    f([m]) & = \sum_{S\subseteq [m]}(-1)^{m-|S|} g(S) \\
+           & = \sum_{\substack{
+    S'\subseteq [m]\setminus S                        \\
+        S\subseteq [m]}}
+    (-1)^{|S'|} N(S')                                 \\
+           & = \sum_{S \subseteq [m]} (-1)^{|S|} N(S)
+  \end{align*}
+  This concludes the proof.
+\end{proof}
+
+
+
