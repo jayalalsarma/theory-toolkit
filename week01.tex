@@ -62,7 +62,7 @@ Since $n > k$, there cannot be an injection, and hence the negation of the conju
 Suppose we ask, starting from these clauses as axioms, and applying rules of inferences (say the resolution principle) alone, how many steps of proof does one need to do to derive the contradiction ($r \land \lnot r$ for some $r$). \footnote{Notice that this sounds exactly like computation, how many steps of computation is required in order to certain tasks in terms of input parameters}. We measure this in terms of $n$ and $k$ which determines the number of variables in the system. The area which studies the complexity of proofs in the above is called {\em proof complexity theory}. It turns out the the basic PHP itself is one of the tautologies for which one requires exponentially long proofs if we are restricting ourselves to resolution? What if we relax this? The area has several interesting open questions related to this and they have close connections to computational complexity theory too.
 \end{curiosity}
 
-\subsection{A Quick Example: }
+\section{Three Examples}
 
 We will now demonstrate the application of the principle itself by a quick example. This is meant to be a revision of the topic from the previous courses and hence it is very much possible that you have seen the application earlier.
 
@@ -80,7 +80,7 @@ Is the above theorem tight? Can it be improved? Improvement can be in terms of t
 The above example theorem, while is a classical application of Pigeon Hole Principle, it also demonstrates a curious phenomenon. In spirit it says that \textit{if there are large number of objects in a collection, then there must be some structure}. Question is how large? And what is structure? The answers to these vary and forms the foundations of this area. We will see more of this when we see Ramsey Theory.
 \end{remark}
 
-\section{Numbers and Remainders}
+\paragraph{Numbers and Remainders:}
 
 It is customary to do an example of PHP from numbers and division under remainders. We will do a slightly unusual example. 
 
@@ -102,7 +102,7 @@ $$(n_i - n_j) = n_{j-i} 10^{j-i}$$
 So we have that $2003$ divides the product of $n_{j-1}$ and $10^{j-i}$. However, 2003 being an odd number which is not a multiple of $5$ will not have a common factor with any power of 10. Hence 2003 must necessarily divide $n_{j-i}$ which should be there in the sequence. This completes the proof.
 \end{proof}
 
-\section{Graphs}
+\paragraph{Graphs:}
 
 Our third application is related to problems that can be modelled as graphs.
 
@@ -152,38 +152,6 @@ Suppose it makes at least one file smaller than its size as a result of the comp
 $$ \Gamma = \left\{ w \in \Sigma^* \mid | C(w) |  < \ell \right\} $$
 From the above assumptions, we have that $|\Gamma| \ge 2^\ell+1$, but then by definition $\Gamma \subseteq \{0,1\}^{\ell-1}$. Hence by Pigeon Hole Principle, $\exists w,w' \in Gamma$ with $w \ne w'$, such that $C(w) = C(w')$. This contradicts the lossless property.
 \end{proof}
-%
-%\subsection*{Computation of $M$ - from discussion on Sep 28th}
-%
-%\paragraph{Harmonic Number Bound:}
-%
-%\begin{eqnarray*}
-%H_n & = & 1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4} \ldots +\frac{1}{n} \\
-%& = & \bigsum_{k=0}^{\lfloor \log n \rfloor} \sum_{j=0}^{2^k -1} \left( \frac{1}{2^k+j} \right) \\
-%& \le & \bigsum_{k=0}^{\lfloor \log n \rfloor} \sum_{j=0}^{2^k -1} \left( \frac{1}{2^k} \right) \textrm{ since the denominator decreased} \\
-%& = &  \sum_{k=0}^{\lfloor \log n \rfloor} (1) \le \log n 
-%\end{eqnarray*}
-%We wanted to compute :
-%
-%\[ M = \sum_{d=1}^\infty \frac{\mu(d)}{d^2} \]
-%
-%By using prime decomposition theorem, if $p_1,p_2, \ldots $ are list of primes:
-%
-%\[ M = \left( 1- \frac{1}{p_1^2} \right) \left( 1- \frac{1}{p_2^2} \right)  \left( 1- \frac{1}{p_3^2} \right)  \ldots \]
-%
-%The next idea is to compute $\frac{1}{M}$ as follows: since we have written above as the product -
-%
-%\begin{eqnarray*}
-%\frac{1}{M} & = & \frac{1}{\left( 1- \frac{1}{p_1^2} \right) }  \frac{1}{\left( 1- \frac{1}{p_2^2} \right) }  \frac{1}{\left( 1- \frac{1}{p_3^2} \right) } \ldots \\
-%\end{eqnarray*}
-%Using the infinite series expansion ... $\left(1-\frac{1}{x^2}\right() = 1+x^2+x^4+\ldots$
-%\begin{eqnarray*}
-%\frac{1}{M} & = & \left( 1+\frac{1}{p_1^2} + \frac{1}{p_1^4} \ldots \right)
-%\left( 1+\frac{1}{p_2^2} + \frac{1}{p_2^4} \ldots \right)
-%\left( 1+\frac{1}{p_3^2} + \frac{1}{p_3^4} \ldots \right) \\
-%& = & 1+\frac{1}{2^2}+\frac{1}{3^2}+ \ldots \\
-%& = & \frac{\pi^2}{6} \textrm{   {\tt By Euler sum that Gautam mentioned in the session}}
-%\end{eqnarray*}
 
 
 \Lecture{Jayalal Sarma}{Sep 9, 2020}{02}{More on PHP}{Jayalal Sarma}{$\gamma$}{JS}
@@ -213,6 +181,10 @@ Let $n,m ,r$ be positive integers and let $n > mr$. If we distribute $n$ balls i
 \end{theorem}
 
 Indeed, the generalization comes handy when the combinatorial statement that we want to explore is not about a "conflict" but about multiple elements getting to same bag. A simple recap example to demonstrate this is the following question - {\em how many students do we need to be in the course, such at the end of the semester, no matter how the performance of the students is, that at least five students get the same letter grade (out of the five grades $S,A,B,C,D,E$)?} This is also an extremal question. Applying generalized PHP, with $r+1 = 5$ and $m=6$, it is sufficient to have 25 students in the class.  And with 24 we cannot guarantee this since there is way to distributed 4 students each to each grade so that there are not 5 students having each grade.
+
+\begin{curiosity}[\textbf{Averaging Principle}]
+The generalized PHP can also be viewed as the following statement.
+\end{curiosity}
 
 \section{Example 2 : Erd\"os-Szekeres Theorem}
 

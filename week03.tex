@@ -223,12 +223,21 @@ Estimating the second term in (\ref{eq:good_set_2}):
 n \sum_{1 \le d \le n}(\frac{\mu(d)}{d}) &\le n (\sum_{1 \le d \le n}\frac{1}{d})\nonumber \\
 &\le n \log{n} \label{eq:term_2_in_good_set}
 \end{align}
-Last step is derived by the asymptotic estimate of the sequence of Harmonic series. \\ \\
+Last step is derived by the asymptotic estimate of the sequence of Harmonic series
+which can be esimated as follows
+\begin{eqnarray*}
+H_n & = & 1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4} \ldots +\frac{1}{n} \\
+& = & \bigsum_{k=0}^{\lfloor \log n \rfloor} \sum_{j=0}^{2^k -1} \left( \frac{1}{2^k+j} \right) \\
+& \le & \bigsum_{k=0}^{\lfloor \log n \rfloor} \sum_{j=0}^{2^k -1} \left( \frac{1}{2^k} \right) \textrm{ since the denominator decreased} \\
+& = &  \sum_{k=0}^{\lfloor \log n \rfloor} (1) \le \log n 
+\end{eqnarray*}
+
 Estimating the first term in (\ref{eq:good_set_2}):\\
 Using Euler's series, the following approximation can be done.
 \begin{align}
 M = \sum_{d=1}^{\infty} \frac{\mu(d)}{d^2} \sim \frac{6}{\pi^2} \label{eq:approx_M}
-\end{align} \\
+\end{align} 
+
 It can also be proven that
 \begin{align}
 |M-\sum_{1 \le d \le n} \frac{\mu(d)}{d^2}| \le \frac{1}{n}\label{eq:term_1_in_good_set}
@@ -241,6 +250,29 @@ Using (\ref{eq:good_set_2}), (\ref{eq:term_2_in_good_set}), (\ref{eq:approx_M}) 
 \end{align*}
 Thus, as $n\rightarrow \infty$, the probability that two randomly chosen numbers do not have a common factor converges to $\frac{6}{\pi^2}$ $\sim$ $60\%$.
 \end{proof}
+
+\paragraph{Computation of $M$: Proof of Equation~\ref{eq:approx_M}}
+We wanted to compute :
+
+\[ M = \sum_{d=1}^\infty \frac{\mu(d)}{d^2} \]
+
+By using prime decomposition theorem, if $p_1,p_2, \ldots $ are list of primes:
+
+\[ M = \left( 1- \frac{1}{p_1^2} \right) \left( 1- \frac{1}{p_2^2} \right)  \left( 1- \frac{1}{p_3^2} \right)  \ldots \]
+
+The next idea is to compute $\frac{1}{M}$ as follows: since we have written above as the product -
+
+\begin{eqnarray*}
+\frac{1}{M} & = & \frac{1}{\left( 1- \frac{1}{p_1^2} \right) }  \frac{1}{\left( 1- \frac{1}{p_2^2} \right) }  \frac{1}{\left( 1- \frac{1}{p_3^2} \right) } \ldots \\
+\end{eqnarray*}
+Using the infinite series expansion ... $\left(1-\frac{1}{x^2}\right() = 1+x^2+x^4+\ldots$
+\begin{eqnarray*}
+\frac{1}{M} & = & \left( 1+\frac{1}{p_1^2} + \frac{1}{p_1^4} \ldots \right)
+\left( 1+\frac{1}{p_2^2} + \frac{1}{p_2^4} \ldots \right)
+\left( 1+\frac{1}{p_3^2} + \frac{1}{p_3^4} \ldots \right) \\
+& = & 1+\frac{1}{2^2}+\frac{1}{3^2}+ \ldots \\
+& = & \frac{\pi^2}{6} \textrm{   {\tt By Euler sum that Gautam mentioned in the session}}
+\end{eqnarray*}
 
 \Lecture{Jayalal Sarma}{Sept 29, 2020}{09}{Surjections and Stirling numbers}{Raghul}{$\alpha$}{JS}
 
@@ -405,6 +437,18 @@ Though not done as part of the lecture, it can be proven that there is only one 
 Let us now prove the first property : Let all the elements in row $k$ be 0 i.e. $\forall_{j\in[n]}~ a_{kj} = 0$. It can clearly be seen that each term in the determinant expression stated in the theorem has some $a_{k\sigma(k)}$ in it. So each term will be 0 and hence $det(A)=0$. \\
 Proving that the expression stated in the theorem satisfies the other three properties is left as an exercise for the students.
 \end{proof}
+
+\begin{exercise-prob}[See Problem Set 2~(Problem \ref{even-permutations})]
+\begin{show-ps2}{even-permutations}
+Recall that the set of permutations of $[n]$ are bijections $\pi : [n] \to [n]$. 
+Use method of bijections to do the following:
+\begin{enumerate}[(a)]
+\item Prove that exactly half of the $n!$ permutation on $[n]$ are even permutations. Establish a bijection between the set of even permutations and set of odd permutations.
+\item A sequence of $n$ positive integers (not necessarily distinct) is called an
+\textit{interesting sequence} if it satisfies the following condition: for each positive integer $m \ge 2$, if the number $m$ appears in the sequence then so does the number $m-1$, and moreover the first occurrence of $m-1$ comes before the last occurrence of $m$. For example, $(2,1,2,3)$ is an interesting sequence of length 4. $(3,1,3,1,2)$ is not interesting because $2$ does not occur before the last occurrence of $3$. Count the number of interesting sequences of length $n$.
+\end{enumerate}
+\end{show-ps2}
+\end{exercise-prob}
 
 \section{Applications of PIE} \label{sec:Applications of PIE - lec3}
 \subsection{Tutte’s Matrix Tree Theorem} \label{subsec:tutte's application}

@@ -3,13 +3,13 @@
 %\section{Introduction}
 Consider the definition of \emph{set}. We know that it's a well defined collection of \emph{distinct} objects. From a collection of $n$ distinct symbols, the number of ways to form a \emph{set} of length $k$ is given by $\binom{n}{k}$. Now let's consider the definition of \emph{multi-set}. It's similar to that of a \emph{set}, except that it allows repetition of objects. Now it's natural ask the following question: From a collection of $n$ distinct symbols, what is the number of ways to form a \emph{multi-set} of length $k$. Multichoosing exactly answers this questions. In this lecture, we explore multichoosing in detail. We discuss several equivalent bijections to this problem and come-up with an algebraic expression for \mulnom{n}{k} (spelled out as $n$ \emph{multi-choose} $k$).
 
-\section{Equivalent Counting Problems - via Bijections} \label{sec:equi-bij}
-\subsection{Non-negative solutions}\label{non-neq-sol-prob}
+\section{Four Equivalent Counting Problems - via Bijections} \label{sec:equi-bij}
+\subsection*{Non-negative solutions}\label{non-neq-sol-prob}
 Formally, \mulnom{n}{k} is the number of ways of choosing $k$ objects from a set of $n$ objects where the order is not important but repetitions are allowed. For all $i=1,2,\cdots,n$, if we denote by $x_i$ the number of copies of $i^{th}$ object we choose, then we have the equation \begin{equation}\label{eqn1}
     x_1+x_2+\cdots+x_n=k
 \end{equation} where each $x_i \geq 0$. Therefore, number of \emph{non-negative} integral solutions to this equation gives us the required number of ways of choosing $k$ objects from $n$ objects with given conditions. Let's look at an equivalent problem and establish a bijection between these two.
 
-\subsection{Voting problem}\label{voting-prob} If $n$ candidates are contesting in an election and there are $k$ voters, how many ways can votes of those $k$ voters be distributed among $n$ candidates? 
+\subsection*{Voting problem}\label{voting-prob} If $n$ candidates are contesting in an election and there are $k$ voters, how many ways can votes of those $k$ voters be distributed among $n$ candidates? 
 
 If we denote by $x_i$, the number of votes received by $i^{th}$ candidate and there are $k$ voters, we have $x_1+x_2+\cdots+x_n=k$ and thus, the number of ways of dividing votes among candidates is the number of non-negative solutions to the equation \ref{eqn1}. Formally, we can define a bijection $f$ from set of solutions to the equation \ref{eqn1} to set of ways of dividing the votes among $n$ candidates. 
 \begin{description}
@@ -20,7 +20,7 @@ If we denote by $x_i$, the number of votes received by $i^{th}$ candidate and th
 \item\underline{Surjective:} $f$ is surjective because for every way of dividing $k$ votes among $n$ candidates, there is a pre-image $\vecx=(x_1,\cdots,x_n)$ which is a valid solution to the equation \ref{eqn1} (as there are a total of $k$ voters, sum of number of votes received by each voter must sum up to $k$). 
 \end{description}
 Thus $f$ is a bijection from the set of non-negative solutions to $x_1+\cdots+x_n=k$ to the set of ways of dividing $k$ votes among $n$ candidates.
-\subsection{Non-decreasing subsequences}\label{non-dec-subseq-prob} Number of non-decreasing sequences of integers between $1$ and $n$ of length $k$. A non-decreasing sequence is of the form $\{a_1,a_2,\cdots,a_k\}$ where $1\leq a_1\leq a_2\cdots\leq a_k\leq n$. Lets define a bijection $f$ from set of non-negative integral solutions to Eqn. \ref{eqn1} to set of non-decreasing sequences between $1$ and $n$ of length $k$. 
+\subsection*{Non-decreasing subsequences}\label{non-dec-subseq-prob} Number of non-decreasing sequences of integers between $1$ and $n$ of length $k$. A non-decreasing sequence is of the form $\{a_1,a_2,\cdots,a_k\}$ where $1\leq a_1\leq a_2\cdots\leq a_k\leq n$. Lets define a bijection $f$ from set of non-negative integral solutions to Eqn. \ref{eqn1} to set of non-decreasing sequences between $1$ and $n$ of length $k$. 
 \begin{description}
 \item\underline{Definition:} $f$ takes $\vecx=(x_1,\cdots,x_n)$ as input and writes the number $i$ $x_i$ times for all $i=1,2,\cdots,n$ to obtain a sequence of length $k$.
 \item\underline{Well defined:} As $f$ constructs the sequence in increasing order from $1$ to $n$ by writing $i$ $x_i$ times, the resulting sequence will be non-decreasing. Therefore, $f$ is well defined.
@@ -28,13 +28,13 @@ Thus $f$ is a bijection from the set of non-negative solutions to $x_1+\cdots+x_
 \item\underline{Surjective:} Every non-decreasing sequence of integers between $1$ and $n$ of length $k$ has a pre-image $\vecx=(x_1,\cdots,x_n)$  which is a valid solution to equation \ref{eqn1} (where $x_i$ is the number of times the number $i$ is present in the sequence and as length of sequence is $k$, all $x_i$'s where $i=1,2,\cdots,n$ sum up to $k$).
 \end{description}
 Thus $f$ is a bijection.
-\subsection{Stars and bars problem}\label{star-bar-prob} There are $k$ stars placed horizontally. Find the number of ways to place $n-1$ bars in between those $k$ stars. Lets define a bijection $f$ from set of non-negative integral solutions to Eqn. \ref{eqn1} to set of ways of placing $n-1$ bars among $k$ stars.
+\subsection*{Stars and bars problem}\label{star-bar-prob} There are $k$ stars placed horizontally. Find the number of ways to place $n-1$ bars in between those $k$ stars. Lets define a bijection $f$ from set of non-negative integral solutions to Eqn. \ref{eqn1} to set of ways of placing $n-1$ bars among $k$ stars.
 \begin{description}
 \item\underline{Definition:} $f$ takes $\vecx=(x_1,\cdots,x_n)$ as input and place $x_i$ number of stars between $(i-1)^{th}$ bar and $i^{th}$ bar. We leave it as an exercise to prove that $f$ is well-defined, injective and surjective.
 \end{description}
 \jsay{Prove that $f$ is a bijection}
 
-\section{Algebraic expression}\label{alg-expr}
+\section{The Algebraic Expression for Multichoosing}\label{alg-expr}
 So far in Sec. \ref{sec:equi-bij}, we have established bijections between \emph{non-negatives integral} solutions of Eq. \ref{eqn1} and various other problems and argued that number of ways of solving any particular problem is equal to the number of non-negative integral solutions to Eq. \ref{eqn1}. In this section, we are interested in coming up with a concrete expression for \mulnom{n}{k} by solving it's equivalent bijection.
 
 \paragraph{Method 1} Let's solve the \emph{stars and bars} problem defined in Sec. \ref{star-bar-prob}. Let's use the fact that any placement of $n-1$ bars among $k$ stars can be equivalently thought of as a string of length $n+k-1$ over the alphabet $\{\star,|\}$ with $k$ $\star$'s. Therefore, \begin{align*}
@@ -68,15 +68,18 @@ Therefore, $f$ is a bijection. The number of ways of choosing a strictly increas
 \end{enumerate}
 Hence, we have to choose $n-1$ gaps among the $m-1$ gaps (because we have $m+1$ gaps and by cond. \ref{cond1} we remove two) to place $n-1~|$ s without repetitions (because repeating violates cond. \ref{cond2}). Therefore, there are $\binom{m-1}{n-1}$ ways of doing it. Thus \mulnom{n}{m-n}=$\binom{m-1}{n-1}$ and by substituting $m=n+k$, we have $$\textrm{\mulnom{n}{k}}=\binom{n+k-1}{n-1}=\binom{n+k-1}{k}$$
 \end{description}
-\section{Identities}
+
+\section{A few Identities Involving Multichoosing}
 In this section, we discuss some identities on \mulnom{n}{k} and argue their proofs using the idea of either double counting or bijections.
-\paragraph{Identity 1} $$\textrm{\mulnom{n}{k}}=\textrm{\mulnom{k+1}{n-1}}$$
+\begin{proposition}[{\bf Identity 1}] For $n,k \in \N$:
+$$\textrm{\mulnom{n}{k}}=\textrm{\mulnom{k+1}{n-1}}$$
+\end{proposition}
 \begin{proof}
 Let's use the bijection method to prove this. Formally, lets define sets $S_1$ and $S_2$ and count their cardinalities independently and then establish a bijection from $S_1$ to $S_2$ proving that $|S_1|=|S_2|$.
 \begin{description}
 \item \underline{$S_1$:} Configuration of $k~\star$ s and $n-1~|$ s as described in Sec. \ref{star-bar-prob}. By the bijection defined in it, $|S_1|=$ \mulnom{n}{k}
 \item \underline{$S_2$:} Configuration of $n-1~\star$ s and $k~|$ s as described in Sec. \ref{star-bar-prob}. Again, by the bijection defined in it, $|S_2|=$\mulnom{k+1}{n-1}
-\item \underline{Bijection:} Let's define a bijection $f$ from $S_1$ to $S_2$. $f$ takes a configuration from $S_1$ as input and interpret $\star$ s as $|$ s and $|$ s as $\star$ s. Therefore it ends up with a configuration with $n-1~\star$ s and $k~|$ s which is a configuration is $S_2$. It's easy to observe that $f$ is a bijection.
+\item \underline{Bijection:} Define a bijection $f$ from $S_1$ to $S_2$ as follows. Given a configuration $\sigma$ from $S_1$, interpret $\star$ s as $|$ s and $|$ s as $\star$ s. Define $f(\sigma)$ to be this new configuration. Clearly, $f(\sigma)$ is well-defined as the image will always be a configuration with $n-1~\star$ s and $k~|$ s which is a configuration is $S_2$, as per the above definition. Indeed, if we start with $\sigma \ne \sigma'$, by construction $f(\sigma) \ne f(\sigma')$. Since the construction of flipping $*$s and $|$s are interchanged, the definition itself gives a way to construct a pre-image for every $\tau \in S_2$. Thus $f$ is a bijection.
 \end{description}
 As $f$ is a bijection from $S_1$ to $S_2$, we have $|S_1|=|S_2|$. This completes the proof 
 \end{proof}
@@ -84,7 +87,7 @@ As $f$ is a bijection from $S_1$ to $S_2$, we have $|S_1|=|S_2|$. This completes
 \paragraph{Identity 2}
 $$k~\textrm{\mulnom{n}{k}}=n~\textrm{\mulnom{n+1}{k-1}}$$
 \begin{proof}
-Let's use the method of double counting to prove this.
+We will use the method of double counting to prove this.
 \begin{description}
 \item \underline{Question:} In how many ways can we construct a non-decreasing sequence $1\leq a_1\leq a_2\cdots\leq a_k\leq n$ and mark one element?
 \item \underline{Asnwer 1:} By the bijection established in Sec. \ref{non-dec-subseq-prob} we have \mulnom{n}{k} number of non-decreasing subsequences and for every such subsequence, we can mark any one of the $k$ elements choose. Thus the answer is $k$ \mulnom{n}{k} 
@@ -97,25 +100,28 @@ Let $(b_1,b_2,\cdots,b_{k-1})$ with $1\leq b_1\leq b_2\leq\cdots\leq b_{k-1}\leq
 \end{itemize}
 Therefore, number of required sequences 
 \begin{align*}
-    &= \textrm{ number of ways to choose }r \times \substack{\textrm{ number of non-decreasing sequences of length }\\ k-1 \textrm{ between } 1 \textrm{ and } n+1}\\
+    &= \textrm{ number of ways to choose }r \times \left( \substack{\textrm{ number of non-decreasing sequences of length }\\ k-1 \textrm{ between } 1 \textrm{ and } n+1} \right)\\
     &= n\times \textrm{\mulnom{n+1}{k-1}}
 \end{align*}
 \end{description}
 This completes the proof
 \end{proof}
 
-\begin{ex}
-    \item Prove the following by combinatorial arguments $$\textrm{\mulnom{n}{k}}=\sum\limits_{m=1}^{n}\textrm{\mulnom{m}{k-1}}$$ \emph{Hint: Look for bijection to number of non-decreasing subsequences}
-    \item Prove the following by combinatorial arguments $$\sum\limits_{k=0}^{m}\textrm{\mulnom{n}{k}}=\textrm{\mulnom{n+1}{m}}$$ \emph{Hint: Look for bijection to Voting problem}
-    \item Prove the following by combinatorial arguments $$\textrm{\mulnom{n}{k}}=\sum\limits_{m=0}^{n}\binom{n}{m}\textrm{\mulnom{m}{k-m}}$$
-\end{ex}
+\begin{exercise}
+Prove the following by combinatorial arguments:
+\begin{enumerate}[(a)]
+    \item $\textrm{\mulnom{n}{k}}=\sum\limits_{m=1}^{n}\textrm{\mulnom{m}{k-1}}$ \emph{Hint: Look for bijection to number of non-decreasing subsequences}
+    \item $\sum\limits_{k=0}^{m}\textrm{\mulnom{n}{k}}=\textrm{\mulnom{n+1}{m}}$ \emph{Hint: Look for bijection to Voting problem}
+    \item $\textrm{\mulnom{n}{k}}=\sum\limits_{m=0}^{n}\binom{n}{m}\textrm{\mulnom{m}{k-m}}$
+\end{enumerate}
+\end{exercise}
 
-\Lecture{Jayalal Sarma}{Sept 19, 2020}{06}{Catlan Bijections}{Anshu and Narasimha Sai}{$\beta$}{JS}
+\Lecture{Jayalal Sarma}{Sept 19, 2020}{06}{Catalan Bijections}{Anshu and Narasimha Sai}{$\beta$}{JS}
 
 %\section{Introduction}
-One of the classic examples to demonstrate the power of bijections is \emph{Catlan numbers}. The Catlan numbers form a sequence of natural numbers that occur in various counting problems and occurs in several seemingly different contexts. Historically, \emph{Euler} is the first person to study them. He was interested in counting the number of ways of dividing a polygon into triangles by drawing non-overlapping diagonals. Catlan numbers got their name from \emph{Eugene Catlan} when he used them to answer the \emph{Parenthesisation problem} which is the following: Consider a sequence $(a_1,a_2,\cdots,a_{n+1})$ of $n+1$ numbers, If we have to perform a binary operations $\odot$ $n$ times among them, how many number of ways are there to parenthesise (or bracket) them using $n$ parenthesis of single type (say $'()'$). In this lecture, we will see a few equivalent problems to this and then arrive at an explicit expression of Catlan numbers.
+One of the classic examples to demonstrate the power of bijections is \emph{Catlan numbers}. The Catalan numbers form a sequence of natural numbers that occur in various counting problems and occurs in several seemingly different contexts. Historically, \emph{Euler} is the first person to study them. He was interested in counting the number of ways of dividing a polygon into triangles by drawing non-overlapping diagonals. Catalan numbers got their name from \emph{Eugene Catalan} when he used them to answer the \emph{Parenthesisation problem} which is the following: Consider a sequence $(a_1,a_2,\cdots,a_{n+1})$ of $n+1$ numbers, If we have to perform a binary operations $\odot$ $n$ times among them, how many number of ways are there to parenthesise (or bracket) them using $n$ parenthesis of single type (say $'()'$). In this lecture, we will see a few equivalent problems to this and then arrive at an explicit expression of Catalan numbers.
 \section{Equivalent Bijections}
-In this section, we see a few equivalent problems of the \emph{parenthesisation} problem and argue that answer to each of them is also the \emph{catlan number}
+In this section, we see a few equivalent problems of the \emph{parenthesisation} problem and argue that answer to each of them is also the \emph{Catalan number}
 \paragraph{Full binary trees} If we observe the Parenthesisation problem carefully, we notice that every valid parentesisation of those $n+1$ numbers form a \emph{full binary tree} (a binary tree in which every node have either two children or no children) of $n+1$ leaves and $n$ internal nodes where leaves represents the numbers $a_1,\cdots,a_{n+1}$ and each internal node corresponds to one operation. Therefore, there's an implicit bijection between the set of valid parenthesisations and full binary trees with $n$ internal nodes. Therefore, 
 \begin{equation}
     \substack{\textrm{number of valid parenthesisations of }\\ n+1 \textrm{ elements }}  = \substack{\textrm{number of full binary trees with }\\ n \textrm{ internal nodes}}
@@ -129,7 +135,7 @@ In this section, we see a few equivalent problems of the \emph{parenthesisation}
 \jsay{Establish bijections from \emph{Euler's} problem to \emph{Full binary tree} problem and \emph{handshaking} problem to \emph{balanced parenthesised strings} problem}
 
 \section{Algebraic Expression}
-In this section, we are interested in arriving at a concrete expression of the $n^{th}$ \emph{catlan number} (denoted by $c_n$). Let's solve another problem and then, by establishing a bijection to one of the above problems, we can arrive at an expression for $c_n$.
+In this section, we are interested in arriving at a concrete expression of the $n^{th}$ \emph{Catalan number} (denoted by $c_n$). Let's solve another problem and then, by establishing a bijection to one of the above problems, we can arrive at an expression for $c_n$.
 
 \subsection{Monotone walk on $n\times n$ grid} Suppose we have a grid of size $n\times n$. How many ways are there to go from $(0,0)$ to $(n,n)$ by using only downward edges or right edges. A sample path is represented in Fig. \ref{fig:sample-path}. We observe that each step can increment the value of exactly one of the co-ordinates by $1$. Since we have to move from $(0,0)$ to $(n,n)$, we have to increase the value of both the co-ordinates by $n$ and $n$ and thus irrespective of the path you take, the length of a path from $(0,0)$ to $(n,n)$ must be of length $n+n=2n$.
 
@@ -156,7 +162,7 @@ Lets ask a slightly question. How many ways are there to go from $(0,0)$ to $(n+
 
 %\Lecture{Jayalal Sharma}{Sept 19, 2020}{07}{Catalan Bijections}{Anshu Yadav}{$\alpha$}{JS}
 
-\subsection{Diagonal avoiding paths and Catlan numbers}
+\subsection{Diagonal avoiding paths and Catalan numbers}
 %Path coordinate Notation: 
 In this section we explore the connection  between the above paths that we discussed and the Catalan number. 
 Let us ask this question:
@@ -603,7 +609,7 @@ This completes this lecture. In the next lecture we will look at some applicatio
 
 \section{Discussions}
 
-\paragraph{Bijection from Euler's problem to Binary Trees} As we have already established a bijection from set of balanced parenthesisations to set of full binary trees and established that number of full binary trees with $n$ internal nodes is the catlan number $C_n$, in this section, let's establish a bijection from the \emph{Euler's Problem} to set of full binary trees to establish that the solution to \emph{Euler's problem} is also catlan number $C_n$.
+\paragraph{Bijection from Euler's problem to Binary Trees} As we have already established a bijection from set of balanced parenthesisations to set of full binary trees and established that number of full binary trees with $n$ internal nodes is the Catalan number $C_n$, in this section, let's establish a bijection from the \emph{Euler's Problem} to set of full binary trees to establish that the solution to \emph{Euler's problem} is also Catalan number $C_n$.
 
 Lets recall \emph{Euler's problem} first. Consider a convex polygon with $n+2$ edges. Euler's problem is the number of ways of triangulating it (partition the polygon into triangles) by drawing non-crossing diagonals. (Refer fig. \ref{fig:Euler's-polygon}). We know that number of non-crossing diagonals in a polygon of $n+2$ edges is $n-1$ (proof follows from a simple induction) and from those $n-1$ non-crossing diagonals, we have our polygon partitioned into $n$ triangles. Let's associate each of the triangles with a vertex (green dots in the fig. \ref{fig:Euler's-polygon}). Observe that if two triangles share an edge, it must be one of the diagonals (no two triangles can share an edge because of non-crossing diagonals). Now, let's connect the vertices whose corresponding triangles share an edge. Any edge connecting two of these vertices crosses a diagonal. 
 \begin{figure}[h!]
