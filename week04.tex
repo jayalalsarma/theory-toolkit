@@ -1,8 +1,10 @@
-\Lecture{Jayalal Sarma }{ 2 october, 2020}{More on PIE, PIE -Tuttes-Matrix-Tree-Theorem-Part2}{Shrinidhi Bajpayee}{$\alpha$}{JS}
+\Lecture{Jayalal Sarma }{ 2 october, 2020}{11}{More on PIE, PIE -Tuttes-Matrix-Tree-Theorem-Part2}{Shrinidhi Bajpayee}{$\alpha$}{JS}
+
+
 
 \section{Introduction}
-We finished Tutte's Matrix Tree Theorem in non trivial way.Let's just recall Tutte's Theorem.We have directed graph G(V,E).We have V={v1,v2,....vn}.\\
-A $n$x$n$ matrix $L(G)$ called the \textit{Laplacian matrix} of $G$ as follows.
+We finished Tutte's Matrix Tree Theorem in non trivial way.Let's just recall Tutte's Theorem.We have directed graph $G(V,E)$.We have $V={v_1,v_2,....v_n}$.\\
+A $n \times n$ matrix $L(G)$ called the \textit{Laplacian matrix} of $G$ as follows.
 \[
   L(G)_{ij} =
   \begin{cases}
@@ -22,7 +24,7 @@ One take away is as following:\\
   Sign(\sigma)~\prod_{i=1}^{n-1}L_{i\sigma(i)}
   \label{eq:to_prove:Tutte}
 \end{align} \\
-$S_(n-1)$ is notation for permutation of $n-1$.\\
+$S(n-1)$ is notation for permutation of $n-1$.\\
 This is expression of determinant that we have seen in last lecture.\\
 So we want to show it is equal to spanning arborescence we introduce concept called Spreg.So what is Spreg $?$.\\
 We quickly define Spreg.\\
@@ -42,8 +44,8 @@ In order to define Inclusion Exclusion formulation we need to define the \\ \\
 1.Universe (Called as X).\\
 2.Component $A_i$.\\
 To define that Let's consider,notice that we want to count spregs without any cycle.\\
-We need to be set of all spregs with distinguished vertex Vn.\\
-Let $C_1$,$c_2$,$C_3$,.....$C_n$ be the set of cycles in graph G.We looking at simple cycle.\\
+We need to be set of all spregs with distinguished vertex $V_n$.\\
+Let $C_1,C_2,C_3, \dots , C_n$ be the set of cycles in graph G.We looking at simple cycle.\\
 $A_i$ define as spregs which contain the cycle $C_1$.The number of spregs which does not contain any cycle.This what we want to count.So,\\
 
 $|X|$ $-$ $|\bigcup_{i=1}^{n} A_i|$\\
@@ -241,33 +243,33 @@ $$\forall_{$i\leq j \leq k}j\sum_{i \in u}Si \leq B$   $$\\
   \textbf{Algorithm:}\\
   \textbf{Trivial Algorithm:}Run through partition.\\
 $$ n \choose k$$\\
-  O(nB2^{n}) time space.\\
-  A partition of [n] into u1....uk is said to be feasible if the sum of the sizes of item $\leq$ B in uj.\\
-  \textbf{Relax:}Items can appear more than once.\\
-  \textbf{observation:}A feasible solution with relaxation will remain feasible without relaxation.\\
-  \textbf{Relaxed Solution:}ordered set of K lists of items from {1...n}.\\
-  1.Each of the elements in {1...n}appears atleast in one list.\\
-  2.For each list a1,a2....ap
+O(nB2^{n}) time space.\\
+A partition of [n] into u1....uk is said to be feasible if the sum of the sizes of item $\leq$ B in uj.\\
+\textbf{Relax:}Items can appear more than once.\\
+\textbf{observation:}A feasible solution with relaxation will remain feasible without relaxation.\\
+\textbf{Relaxed Solution:}ordered set of K lists of items from {1...n}.\\
+1.Each of the elements in {1...n}appears atleast in one list.\\
+2.For each list a1,a2....ap
 $$\sum_{h=1}{p}S_ak \leq B $$\\
-  To apply PIE,we need to define objects Q1....\\
-  \textbf{Objects:}Ordered sets of K list of elements from {1...n} such that for each list (a1...ap) $$\sum_{h=1}{p}S_an \leq B $$\\
-  Q(1):=The ordered list of k lists contain 1 in atleast one list in it.\\
-  .\\
-  .\\
-  .\\
-  Q(W):=W  is contained in atleast one of the lists in the ordered set of list.\\
-  .\\
-  .\\
-  .\\
-  Q(n)\\
-  X=Set of objects which satisfy all of the properties Q(1)....Q(n)\\
+To apply PIE,we need to define objects Q1....\\
+\textbf{Objects:}Ordered sets of K list of elements from {1...n} such that for each list (a1...ap) $$\sum_{h=1}{p}S_an \leq B $$\\
+Q(1):=The ordered list of k lists contain 1 in atleast one list in it.\\
+.\\
+.\\
+.\\
+Q(W):=W  is contained in atleast one of the lists in the ordered set of list.\\
+.\\
+.\\
+.\\
+Q(n)\\
+X=Set of objects which satisfy all of the properties Q(1)....Q(n)\\
 $$X=\sum_{w \subseteq [n]}(-1)^{|w|} N(W) $$\\
-  \textbf{Aim:}To compute N(W)\\
-  A(W):=Number of list a1....ap of elements list in W.\\
+\textbf{Aim:}To compute N(W)\\
+A(W):=Number of list a1....ap of elements list in W.\\
 $$ \sum_{h=1}{p}S(an) \leq B $$\\
 $$N(W)=(A(W))^{k}  $$\\
-  \textbf{Aim:}Compute A(W)\\
-  $P_w(j)$ =number of list a1....ap of which element not in w such that
+\textbf{Aim:}Compute A(W)\\
+$P_w(j)$ =number of list a1....ap of which element not in w such that
 $$\sum_{h=1}{p}S(ak)=j  $$\\
 $$A(w)=\sum_{j=0}{B}P_w(j)$$\\
 $$P_w(j)=\sum_{i \notin w}P_W(j-s(w)) $$\\
