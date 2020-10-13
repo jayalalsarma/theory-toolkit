@@ -1,0 +1,605 @@
+\Lecture{Jayalal Sarma}{Oct 5, 2020}{14}{Mobius Inversion and applications}{K Sampreeth Prem}{$\alpha$}{JS}
+
+\section{Introduction}
+The focus on this lecture will be if we have two funtions $f$ and $g$ such that g can be expressed as a function of $f$ by a peculiar relation then how can we express $f$ in terms of $g$. We have already seen one such inversion during the discussion of stronger version of PIE where we have two fuctions mapping from sets to numbers. In this lecture we will look at a different setup where we have two functions $f:\{\mathbb{N} \} \to \{\mathbb{N}\}$ and $g:\{\mathbb{N} \} \to \{\mathbb{N} \}$ and if $g$ can be expressed in a peculiar way w.r.t $f$ then we want to invert to express $f$ in terms of $g$.This is called \textbf{Möbius Inversion}.
+Before we formally state the theorem and prove it, we will look at two functions namely Euler's function and Möbius function and derive some of their properties.We will then establish a relation between these two functions to prove the Möbius Inversion and then look at an application of the theorem. 
+
+\section{Euler's Function} \label{sec:Euler's Function}
+Euler's function, also known as phi-function $\Phi(n)$, counts the number of integers between 1 and n inclusive, which are coprime to n. 
+$$
+\Phi(n) = |\{k \in \mathbb{N} | 1\leq k \leq n, gcd(n,k)=1\}| \label{fun:euler's}
+$$ 
+We have already derived the formula for $\Phi(n)$ in \ref{subsec:euler's function application} which is 
+\begin{align}
+\Phi(n) = n\prod_{i=1}^{k}(1-\frac{1}{p_i}) \textrm{ ~~~where~~  $n = \prod_{i=1}^{k}(p_i)^{a_i} $}\label{for:Euler's formula} 
+\end{align}
+\subsection{Properties of $\Phi(n)$} \label{subsec:Properties of Euler function}
+
+\begin{property} 
+If $gcd(n1,n2)=1 \implies \Phi(n_1)\Phi(n_2) = \Phi(n_1n_2) $  
+\end{property} 
+
+\begin{proof}
+We have derived this in \ref{subsec:euler's function application}
+\end{proof}
+                
+\begin{property}
+$ \sum_{d|n}^{} \Phi(d) = n $
+\end{property}
+
+\begin{proof}
+Fix $d$ as a divisor of $n$. Consider the following sets $ A = \{x\in\{1,2,..n\} | gcd(x,n)=d\}$ and $B = \{y\in [\frac{n}{d}] | gcd(y,\frac{n}{d})=1\}$. Now we will establish a bijection between these two sets. The cardinality of the second set is $\Phi(\frac{n}{d})$ (by definition of $\Phi$) but instead of counting explicitly we will establish a bijection between A and B. Consider the mapping $x \mapsto \frac{x}{d}$ ,this mapping is well defined because $gcd(x,n) = d$ so $d|x$ and $\frac{x}{d}$ is an integer whose value is at most $\frac{n}{d}$ so it is in the range of B.The mapping is injective because division is injective. Now take any element from $1$ to $\frac{n}{d}$, multiply it with $d$ then we will get a number $p$ such that $gcd(p,n) = d$ because $d$ is the divisor of both $n$ and $p$. So the mapping is also surjective and hence a bijection. 
+Observe that the property can be rewritten as, 
+$$
+\sum_{k = \frac{n}{d}}\Phi(\frac{n}{k})
+$$ 
+From the bijection established,$$
+\sum_{d}|\{x\in\{1,2,..n\}|gcd(x,n)=d\}| = \sum_{k}\Phi(\frac{n}{k})
+$$
+Notice that the summation on L.H.S will be equal to $n$ that's because every number $l \in [1,n]$ will be counted exactly once in the summation when the variable of summation $d=gcd(x,n)$.\\
+So, 
+\begin{align*}
+n =  \sum_{k}\Phi(\frac{n}{k})\\
+\sum_{k}\Phi(\frac{n}{k}) = n
+\end{align*}
+Hence, the proof.
+\end{proof} 
+
+\section{Möbius Function} \label{sec:Möbius Function}
+For any positive integer $n$, Möbius Function $\mu(n)$ is defined as, 
+53
+ 
+	\[
+	\mu(n) = \begin{cases} 
+	+1 , & ~if~ ~n~ ~is~ ~a~ ~\href{https://en.wikipedia.org/wiki/Square-free_integer}{square-free} ~positive~ ~integer~ ~with~ ~an~ ~even~ ~number~ ~of~ ~prime~ ~factors~~\\
+ 	-1 , & ~if~ ~n~ ~is~ ~a~ ~square-free~ ~positive~ ~integer~ ~with~ ~an~ ~odd~ ~number~ ~of~ ~prime~ ~factors~~\\
+	0 , & otherwise
+	\end{cases}
+	\]
+\noindent
+For example,$15=3*5$ has even number of prime factors which are square-free, hence $\mu(15)=1$. Similarly, $30=2*3*5$ and $20={2^2}*5$ has $\mu$ values equal to $-1$ and $0$. \\
+Now, consider the factors of $30$ and their $\mu$ values
+\begin{center}
+\begin{tabular}{c c c c c c c c c }
+ Factors & 30 & 15 & 10 & 6 & 5 & 3 & 2 & 1 \\ 
+ $\mu$ & -1 & 1 & 1 & 1 & -1 & -1 & -1 & 1 \\  
+\end{tabular}
+\end{center}
+\noindent
+We Observe the sum of $\mu$ values of the factors of $30$ are equal to $0$. This isn't a coincidence and we will formally define this property and prove it.\\
+
+\begin{property} \label{prp:2}
+$\sum_{d|n}\mu(d) = \begin{cases} \label{subsec: Properties of Möbius Function }
+	1 , & ~if~ n=1\\
+	0 , & otherwise
+	\end{cases}
+	$
+\end{property}
+
+\begin{proof}
+
+$$\mu(1) = 1 ~~(~by~ ~definition~)$$
+Take $n= \prod_{i=1}^{k}(p_i)^{a_i}$, we will consider only those factors of $n$ whose prime factors have multiplicity $1$ other factors of $n$ which have prime factors multiplicity greater than 1 have $\mu$ value $0$ and does not contribute to the sum.     
+\begin{align}
+\sum_{d|n}\mu(d) &= \sum_{d|p_1p_2...p_k}\mu(d) \label{pf:pt1} \\
+&= \sum_{I\subseteq[k]}{(-1)}^I \label{pf:pt2} \\ 
+&= \sum_{i=0}^{k} {k \choose i}{(-1)}^i\nonumber\\
+&= 0 \nonumber
+\end{align}
+Notice that in $\ref{pf:pt1}$ the $\mu$ value depends only on whether we are picking odd number of primes or an even number and not on actual primes themselves so we could rewrite the summation to
+$\ref{pf:pt2}$.
+\end{proof}
+\noindent
+Now, we will see a corollary of the above propery that connects the two functions $\mu$ and $\Phi$. \\ 
+\begin{corollary} \label{subsec:relation between euler function and mobius function}
+$\frac{\Phi(n)}{n} = \sum_{d|n}\frac{\mu(d)}{d} $
+\begin{proof}
+From \ref{subsec:euler's function application}
+\begin{align}
+    \Phi(n) &= n\prod_{i=1}^{k}(1-\frac{1}{p_i}) \label{cor:pt1}\\
+    &= n\sum_{I \subseteq [k]} (-1)^{|I|}\frac{1}{(\prod_{i \in I}p_i)}\label{cor:pt2}\\
+    &= n\sum_{d|p_1...p_k}\frac{\mu(d)}{d} \label{cor:pt3} \\
+    &= n\sum_{d|n}\frac{\mu(d)}{d} \label{cor:pt4}
+\end{align}
+In step \ref{cor:pt2}, $I\subseteq[k]$ can be thought of as those prime indices that are picked which contribute to $d$ so the ${(\prod_{i \in I}p_i)}$ becomes equal to $d$  and the numerator $(-1)^{|I|}$ is exactly $\mu(d)$. The generalisation of step \ref{cor:pt3} to \ref{cor:pt4} is done following the observation that if $d|n$ but $d\nmid\prod p_1..p_k$  then $d$ must have a prime factor whose multiplicity is greater than 1. Therefore, $\mu(d)$ becomes $0$ for such $d$'s.
+\end{proof}
+\end{corollary}
+
+\section{Möbius Inversion} \label{sec:Möbius Inversion}
+$f,g:\mathbb{N} \to \mathbb{R} ~satisfying,$ $\forall n ~g(n) = \sum_{d|n} f(d)  ~~then,$  
+$$\forall n ~f(n) = \sum_{d|n} \mu(d)d(\frac{n}{d})$$
+
+\begin{proof}
+Consider,
+\begin{align}
+    \sum_{d|n}\mu(d)g(\frac{n}{d}) &= \sum_{k=\frac{n}{d}}\mu(\frac{n}{d})g(d)  \label{pf:pt1}\\
+    &= \sum_{d|n}\mu(\frac{n}{d})g(d) \label{pf:pt2} \\
+    &=\sum_{d|n}\mu(\frac{n}{d})(\sum_{d'|d}f(d')\label{pf:pt5} \\
+    &=\sum_{d'|n}C_{d'}f(d')  \label{pf:pt3}\\
+    &=f(n) \label{pf:pt4}
+\end{align}
+At \ref{pf:pt3} $C_{d'}$ represents the constant that tells us how many times $f(d')$ is going to appear in the summation. Note that, if $d|n$ then $(\frac{n}{d})|n$ so using a change of variable we were able to reach \ref{pf:pt2} from \ref{pf:pt2}. \\
+Now, we have two tasks, first calculate the value of $C_{d'}$ and next to show the summation value of \ref{pf:pt3} is $f(n)$.\\
+\item {\textbf{Plan:} Evaluate $(C_{d'})$ for differnet $d'$}
+\item \underline{\textbf{Case1:} }\text{~~If $d'=n$ then, $f(n)$ occurs only once in the summation \ref{pf:pt5}}. So, $C_n=1.$ \\
+
+\item \underline{\textbf{Case2:}} $~~d'<n ~~and~~ d'|n.$
+\begin{align} 
+    C_{d'} &= \sum_{d'|d|n} \mu(\frac{n}{d}) &\label{cs2:p1}\\
+    &= \sum_{d|n}\mu(\frac{n}{d}) &\label{cs2:p2}\\
+    &= \sum_{d|n}\mu(d) &\label{cs2:p3}\\
+    &= 0 \nonumber
+\end{align}
+In step  $d \neq 1$ so by Property 14.3.1 (\ref{prp:2}) we get the value 0.
+Observe that in step \ref{cs2:p1} the summation value doesn't depend on $d'$ so by change of variable we reach step \ref{cs2:p2}.Similarly, we reached step \ref{cs2:p3}  from \ref{cs2:p2} using change of variable that we have seen earlier.\\
+Since we have calculated the value of $C_{d'}$ for different $d'$s  we will now show the value of summation in \ref{pf:pt3} is $f(n)$.
+\begin{align}
+\sum_{d'|n}C_{d'}f(d') &= C_nf(n)~~+~~\sum_{(d'~<~n)|n}C_{d'}f(d')\nonumber\\
+&= 1*f(n) + 0 \nonumber\\
+&= f(n) \nonumber
+\end{align}
+Hence, proved. 
+\end{proof}
+\subsection{Application of Möbius Inversion} \label{Application of Möbius Inversion}
+\textbf{Problem Statement:} Count the number of circular sequences/strings of $0$'s and $1$'s of length $n$.\\
+\textbf{Solution:} We know that there are $2^n$ possible strings of $0$'s and $1$'s but some of them are clockwise rotations of each other and we consider them equal.So the circular sequences which are clockwise rotations of one another are equivalent. \\
+Consider the following example of circular sequences of $0$'s and $1$'s of length 9. In order to represent a circular string in a normal form we fix a starting point and iterate it until it's length.    \\
+A = 001011010\\
+B = 110100010\\
+C = 100100100\\
+By our definition of equivalence $A \equiv B \not\equiv C$. \\
+Observe that sequence C is periodic, it has a repeating subsequence 100 whereas sequences A and B do not contain any such repeating sub sequence.We call them aperiodic. In general a sequence is said to be aperiodic if it cannot be written as several times of a shorter sequence. \\
+For every circular sequence there is a unique aperiodic circular sequence that we can associate with.\\
+Instead of proving this claim we will write it as an example \\
+For $n=6$,\\
+$
+000000  \Rightarrow  0 \\
+001001  \Rightarrow 001 \\
+111111  \Rightarrow  1 \\
+010010  \Rightarrow 010 \\
+001001  \Rightarrow 001 \\
+$
+Observe that the last two examples are equivalent and their circular subsequences are also equivalent. So their is an unique association (bijection) of circular sequences and their circular subsequences. \\
+Another obvious observation is that the length of the circular subsequence must divide the original sequence. \\
+Let, 
+\begin{align}
+M(d) ~=~ ~no.~ ~of~ ~periodic~ ~circular~ ~sequences~ ~of~ ~length~ ~d~ \nonumber
+\end{align}  
+Denote, $N_n$ as the number of circular sequences of length n, then \\ 
+\begin{equation} \label{eq:circular seq}
+    N_n = \sum_{d|n}M(d) 
+\end{equation}
+Since we don't know the values of $d$ we are summing up over all values of $d$ that divides $n$. \\
+Now we need to compute $M(d)$ as a function of $d$.
+\textbf{Aim:} Compute $M(d)$ as a function of $d$.
+\textbf{Solution:} Consider,the query how many aperiodic sequences of length d. Observe, that we have removed circular so equivalent ones are counted different. So, for every aperiodic circular sequence of length $d$, every shift of it is counted different hence, there are $dM(d)$ aperiodic sequences of length d. \\
+We know that there are $2^n$ sequences(not circular) of length $n$ each one uniquely corresponds to an aperiodic sequence.\\
+Hence, 
+\begin{align}
+    2^n &= \sum_{d|n}dM(d) 
+\end{align}
+
+Now, this is of the form $g(x) = \sum_{d|n}f(d)$ where, $g(x) = 2^n$ and $f(d)=d.M(d)$. \\
+Using Möbius Inversion, 
+
+\begin{align}
+    f(n) &= nM(n) \nonumber \\
+    &= \sum_{d|n}\mu(d)g(\frac{n}{d}) \nonumber\\
+    &= \sum_{d|n}\mu(d)2^{\frac{n}{d}}  \nonumber\\
+From~ \ref{eq:circular seq},  \nonumber\\
+    N_n &= \sum_{d|n}M(d)  \nonumber\\
+    &= \sum_{d|n} \frac{1}{d}(\sum_{l|d}\mu(l)~2^{\frac{d}{l}}) \nonumber\\
+    &= \sum_{d|n} \frac{1}{d}~\sum_{l|d}\mu(\frac{d}{l})~2^l \nonumber\\
+    &= \sum_{l|n}(\sum_{l|d|n}\frac{1}{d}\mu(\frac{d}{l})2^l \nonumber\\
+     &= \sum_{l|n}\sum_{1|{\frac{d}{l}}|{\frac{n}{l}}}\frac{1}{d}~\mu(\frac{d}{l})~2^l\nonumber \nonumber\\
+    Substituting ~d~=~k~l, \nonumber \\
+     &= \sum_{l|n}\sum_{k|{\frac{n}{l}}}\frac{2^l}{kl}~\mu(k)\nonumber\\
+    &= \sum_{l|n}\frac{2^l}{l}\sum_{k|{\frac{n}{l}}}\frac{\mu(k)}{k} \nonumber\\
+    &= \sum_{l|n}\frac{2^l}{l}~\frac{\Phi(\frac{n}{l})}{\frac{n}{l}}\nonumber\\
+    &= \sum_{l|n}\frac{2^l~\Phi(\frac{n}{l})}{n} \nonumber\\
+    N_n &= \frac{1}{n}\sum_{l|n}2^l~\Phi(\frac{n}{l}) \nonumber
+\end{align}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\Lecture{Jayalal Sarma}{Oct 5, 2020}{15}{Generating Functions}{Simran}{$\alpha$}{JS}
+\section{Introduction}
+In this lecture, we will see a new tool for solving counting problems, namely generating functions method. To get an intuition of this method, let's think about a counting problem with parameter $n$ and say, we are interested in counting the number of objects of size $n$, denoted  by $a_n$. We can view $a_n$ as an infinite sequence of integers $(a_0,a_1,a_2,\dots)$, where we write down  the first few terms of sequence explicitly . Next we try to match it up with some known integer sequence, say Maclaurin sequence or fabonacci sequence . \\
+If we find some initial matching, say first 4 or 5 terms, then we try for a bijection between matching sequence and the corresponding problem to our setting.\\
+The overall idea of this method is to view the counting problem as infinite sequences and then encode these sequences using the algebraic expression (namely power series) and then do some power series manipulation to recover some meaningful things corresponding to the counting problem we are interested in .
+\section{Generating Functions}
+\begin{definition}\textbf{Generating Functions}
+The generating function for a sequence of non-negative integers $(a_n)_{n\in \mathrm{N}}=(a_0,a_1,a_2,\dots)$ is given by $$F(x)=\sum_{n=0}^{\infty}a_nx^n$$
+\end{definition}
+\textbf{Remarks:}
+\begin{itemize}
+    \item[1] We are not going to evaluate the power series for any random value of $x$, say $F(100)$, as the series may not even be convergent . 
+\item[2] We think of $x$ in the expression $F(x)$ as a formal variable
+\end{itemize}
+We will indirectly use these expression in order to achieve our combinatorial goals without actually worrying about the convergence of the expression.
+
+\noindent Let's look at an example to get more flavour of the idea introduced.
+
+Consider a sequence with the first few terms as $a_0=1,a_1=42,a_2=23,\dots$.
+The series corresponding to it is given by $A(x)=1+42x+23x^2+\dots$.
+\\The advantage with this translation is that we can manipulate sequences in useful ways with simple algebra. 
+ 
+\noindent For the given $A(x)$, let's look at what happens when we multiply it by $x$.
+
+We have $xA(x)=x+42x^2+23x^3+\dots$.
+So we get, $a_0=0, a_2=42, a_3=23, \dots$ as the coefficient of the series $xA(x)$.
+Hence we see that multiplying by $x$ corresponds to shifting the sequence to the right by 1. 
+
+\subsection{Operations on Generating Functions}
+\noindent Let us look at other algebraic operations that can be easily and more naturally performed on the given generating functions, $F(x)=\sum_{n=0}^{\infty}a_nx^n$ and $G(x)=\sum_{n=0}^{\infty}b_nx^n$ 
+\begin{itemize}
+    \item[1] \textbf{Addition:} $$F(x)+G(x)=\sum_{n=0}^{\infty}(a_n+b_n)x^n$$
+    \item[2] \textbf{Multiplication by a scalar $\lambda \in \mathbb{R}$} $$\lambda F(x)=\sum_{n=0}^{\infty}\lambda a_nx^n$$
+    \item[3] \textbf{Differentiation } $$\frac{d}{d(x)}(F(x))= F'(x)=\sum_{n=1}^{\infty}(nx^{n-1})a_n$$
+    Substituting $n$ with $n+1$, we get $$F'(x)=\sum_{n=0}^{\infty}(n+1)a_{n+1}x^n$$
+   Suppose the sequence corresponding to  $F(x)$ is $(a_0,a_1,a_2,\dots)$ , then the sequence corresponding to  $F'(x)$ is clearly $(a_1,2a_2,3a_3,\dots)$
+   \item[4] \textbf{Multiplication}
+   $$F(x)G(x)=\sum_{n=0}^{\infty}(\sum_{k=0}^n a_nb_{n-k})x^n$$
+\end{itemize}
+\paragraph{Remark:} Note that the coefficients resulting after applying differentiation or multiplication to the generating function may sometimes not always be meaningful, but as we proceed we will look at few examples where the coefficients from multiplication will help us in countings.
+\subsection{A Quick Example: Maclaurin Series}
+The Maclaurin series is given by  $1+x+x^2+\dots$ which corresponds to the sequence $(1,1,1,\dots)$. The shorthand algebraic expression corresponding to this series is given by  $$F(x)=\frac{1}{1-x}$$  To see this note that 
+ $$(1-x)F(x)=F(x)-xF(x)=(1+x+x^2+\dots)-(x+x^2+x^3+\dots)=1$$
+  Hence we have a neat shorthand algebraic expression for the Maclaurin Series . We will always think of this expression  as a formal power series and never going to substitute the value for $x$.
+Now, let us demonstrate few of the discussed algebraic operations on the generating function of Maclaurin Series and use it or manipulate it to reach some new generating functions and the corresponding sequence
+\begin{itemize}
+    \item Differentiating $F(x)=\frac{1}{1-x}$ with respect to $x$,
+    $$F'(x)=\sum_{n=0}^{\infty}(n+1)a_{n+1}x^n=\frac{1}{(1-x)^2}$$
+    So, we can say that $F'(x)$ is the generating function for the sequence $b_n=(n+1)=(1,2,3,\dots)$
+    \item Substituting $x=-y$ in the generating function $F(x)$ gives us a new generating function $G(y)$ corresponding to the alternating sequence $(1,-1,1,-1,\dots)$.\\ Formally, we have $G(y)=F(-y)=\frac{1}{1+y}$.
+\end{itemize}
+\section{Applying Generating Functions To Counting Problems}
+In this section we will look at  the ways to use generating functions to solve the counting problems.
+
+\paragraph{Example 1:} Consider the situation where we need to distribute $n$ votes to $k$ candidates such that every candidate gets atleast one vote. 
+
+\noindent \textbf{Note:}  In this example, we will see the correspondence of the multiplication of two generating functions to our counting problem.
+
+\noindent Let $a_n^{(k)}$ denote the number of ways of distributing $n$ votes to $k$ candidates with each candidate getting atleast one vote and Let $B^{(k)}=\sum_{n=0}^{\infty}a_n^{(k)}x^n$, be the generating function corresponding to $a_n^{(k)}$.\\
+Let us look at the case where we have only candidate, i.e $k=1$, we have:
+\[
+  a_n^{(1)} = 
+  \begin{cases}
+   0, & \text{for } n=0 \\
+    1, & \text{for }n\ge 1
+  \end{cases}
+\]
+So, $a_n^{(1)}=(0,1,1,\dots)$, which is shifted version of Maclaurin Series. So the corresponding generating function is given by $B^{(1)}(x)=x\frac{1}{1-x}$
+
+\noindent \textbf{Observation:} Let there be $s$ male candidates and $t$ female candidates. So $a_n^{(s+t)}$ can be thought as distributing $n$ votes to $s+t$ candidates. Suppose male candidates got $l$ votes and female candidates got $n-l$ votes. Also, each candidate gets 1 vote. So,
+$$a_n^{(s+t)}=\sum_{l=0}^n a_l^{(s)}a_{n-l}^{(t)}$$
+
+Using the observation, we get $$B^{(s+t)}(x)= B^{(s)}B^{(t)}$$
+Note that $$a_n^{(s+t)}x^{s+t}=\left(\sum_{l=0}^n a_l^{(s)}a_{n-l}^{(t)}\right)x^{s+t}$$
+So, the product of two generating function has a meaning in this context, hence we can use it. We are interested in $B^{(k)}(x)$ and we have $B^{(1)}(x)$. Hence, $$B^{(k)}(x)=\left(B^{(1)}(x)\right)^k=\left(\frac{x}{1-x}\right)^k$$
+Now, we have a generating function for the count we wanted. Our next step is to recover the count from this generating function.\\
+
+\noindent \textbf{Aim:} To write down the Generating Function in the form of individual coefficient and then read off $a_n^{(k)}$\\
+We have $B^{(k)}(x)=\frac{x^k}{(1-x)^k}$
+Observe that, $$\frac{d^{k-1}}{dx^{k-1}}\left(\frac{1}{1-x}\right)=(k-1)!\left(\frac{1}{(1-x)^k}\right)$$
+Using the observation, we have 
+
+\begin{align*}
+    B^{(k)}(x) & = \frac{x^k}{(k-1)!}\left(\frac{d^{k-1}}{dx^{k-1}}\left(\frac{1}{1-x}\right)\right)\\
+    & = \frac{x^k}{(k-1)!}\left(\frac{d^{k-1}}{dx^{k-1}}(1+x+x^2+\dots)\right)\\
+    &= \frac{x^k}{(k-1)!}\left(\sum_{n=k-1}^\infty n(n-1)\dots (n=k+2)x^{n-k+1}\right) \\
+    & =\sum_{n=k-1}^\infty \frac{n(n-1)\dots (n=k+2)}{(k-1)!} x^{n+1}
+\end{align*}
+Using the expansion of ${n \choose k-1}$, we get
+\begin{align*}
+     B^{(k)}(x) & =\sum_{n=k-1}^\infty {n \choose k-1} x^{n+1}\\
+     & =\sum_{n=k}^\infty {n-1 \choose k-1} x^{n}\\
+     &= \sum_{n=0}^\infty {n-1 \choose k-1} x^{n}
+\end{align*}
+Hence by reading off the coefficient of $x^n$, we have $a_n^{(k)}={n-1 \choose k-1}$.
+
+\paragraph{} To summarise the above example,
+ we had a Counting problem, from the counting world we went to generating functions world and then manipulated it to get the power series of the required count and then we recovered $a_n^{(k)}$.
+
+\paragraph{Example 2:} Suppose  Count the number of non negative solutions to $a+b+c=n$, such that, \begin{itemize}
+    \item $a$ is an even integer
+\item $b$ is a non negative integer
+\item $c\in \{0,1,2\}$
+\end{itemize}
+Intuitively, we can think of this as having  $n$ votes and 3 candidates where the first candidate, $a$, should receive an even number of votes and $b,c$ receives at 
+most 2 votes.\\
+The idea here is to use generating functions to split the problem nicely.\\
+Let us consider three simpler settings ,
+\begin{itemize}
+    \item[1] Suppose we have only one candidate $a$.\\ So, our equation reduces to $a=n$ and $a$ should get even votes. So we have, \begin{itemize}
+        \item if $n$ is odd, there is no solution
+        \item if $n$ is even, there is exactly one solution
+    \end{itemize}
+    Hence the corresponding sequence for this case looks like $(1,0,1,\dots)$ and the generating function is given by
+    $$A(x)=\sum_{n=0}^\infty x^{2n}=\sum_{n=0}^\infty (x^2)^n=\frac{1}{1-x^2}$$
+    \item[2] Suppose we have $b$ as the only candidate.\\ So, our equation reduces to $b=n$ and $b$ should get non-negative number of votes. So, whatever the value of $n$ is there exists a unique solution for the equation $b=n$.\\  Hence the corresponding sequence for this case looks like $(1,1,1,\dots)$ and the generating function is given by
+    $$B(x)=\sum_{n=0}^\infty x^n=\frac{1}{1-x}$$
+    \item[3] Suppose we have $c$ as the only candidate.\\ So, our equation reduces to $c=n$ and $c\in \{0,1,2\}$. Clearly,
+    \begin{itemize}
+        \item the number of solution is unique for $n \in \{0,1,2\}$
+        \item the number of solutions is 0 for $n>2$.
+    \end{itemize} Hence, the generating function for this function is given by $$C(x)=1+x+x^2$$
+\end{itemize}
+\textbf{Observation :} We are looking for non negative solutions of $a+b+c=n$, satisfying the three conditions discussed above.The coefficient of $x^n=x^{a+b+c}$  gives us the required number of solutions in the cases, where the coefficient of $x^a,x^b$ and $x^c$ will give us the number of solutions where $a$ is even, $b$ is non-negative integer and $c\in \{0,1,2\}$ respectively. 
+
+\noindent Using these the generating function of the count we are interested in  is given by multiplying the generating functions of the cases discussed. Hence we have, $$F(x)=A(x)B(x)C(x)=\frac{1+x+x^2}{(1-x^2)(1-x)}$$
+Now we want to write $F(x)$ as sum of terms where we will have the well known Maclaurin Series equation, to simplify our work \\
+Using the method of partial fraction we have
+\begin{align}
+    F(x) &= \frac{R}{1+x}+\frac{S}{1-x}+\frac{T}{(1-x)^2} \nonumber\\
+    & \implies \frac{1+x+x^2}{(1-x^2)(1-x)}=\frac{R}{1+x}+\frac{S}{1-x}+\frac{T}{(1-x)^2}
+\end{align}
+Multiplying both sides by $(1-x^2)(1-x)$, we get
+\begin{align*}
+    1+x+x^2 &=R(1-x)^2+S(1-x)(1+x)+T(1+x)\\
+    &= (R+S+T)+(T-2R)x+(R-S)x^2
+\end{align*}
+Equating the coefficients and solving we get,
+$$R=1/4,S=-3/4,T=3/2$$
+Finally substituting the values of $R,S$ and $T$ we have 
+
+$$F(x)=\frac{1}{4}\left(\sum_{n=0}^\infty (-1)^nx^n\right)-\frac{3}{4}\left(\sum_{n=0}^\infty x^n\right)+\frac{3}{2}\left(\sum_{n=0}^\infty (n+1)x^n\right)$$
+Reading off the coefficients of $x^n$, the number of solutions of $a+b+c=n$ satisfying the properties specified is given by $$ a_n=\frac{(-1)^n}{4}-\frac{3}{4}+\frac{3(n+1)}{2}$$
+\section{Catalan numbers using generating functions}
+ We already have come across Catalan numbers in Week3 lectures and seen that $$C_n=\frac{1}{n+1}{2n \choose n }$$
+In this section we will derive this count using generating functions. Here we interpret Catalan Numbers $C_n$ as number of ways of forming well formed paranthesised expression with n pairs of brackets. In this example we will also see the notion of recurrence relation.
+\paragraph{Recurrence Relation for Catalan numbers}
+Basically, the recurrence relation for a sequence $(a_0,a_1,a_2,\dots,a_n,\dots)$, tries to figure out the relation between $a_n$ and the previous $a_i$'s.\\
+Let $(a_0,a_1,a_2,\dots)$ denote the sequence for the given counting problem, where we use $a_n$ to denote the number of ways of forming well formed paranthesised expression with $n$ pairs of brackets.\\
+To count $a_n$, we approach in the following steps:
+\begin{itemize}
+    \item[1] Place one pair of bracket $($ and $)$
+    \item[2] Place $k$ pairs of brackets inside the already placed pair of brackets
+    \item[3] Place the remaining $n-k-1$ pairs of brackets adjacent to this placed bracketing
+\end{itemize}
+With this conditioning on $k$, we can write 
+$$a_n=\sum_{k=0}^{n-1}a_k a_{n-k-1}$$
+So, generating function for $a_n$
+$$F(x)=\sum_{n=0}^\infty a_n x^n=a_0+\sum_{n=1}^\infty a_n x^n$$
+Here $a_0$ is the  number of ways of forming well formed paranthesised expression with 0 pairs of brackets, which is unique.
+\\ So, $$F(x)=1+\sum_{n=1}^\infty a_n x^n$$
+Substituting for $a_n$ using the recurrence relation obtained, we get
+\begin{align*}
+    F(x) & = 1+\sum_{n=1}^\infty\left(\sum_{k=0}^{n-1} (a_k a_{n-k-1})x^n\right)\\
+    &= 1+x\left(\sum_{n=0}^\infty\left(\sum_{k=0}^n (a_k a_{n-k-1})x^n\right)\right)\\
+    & =1+x(F(x)F(x))
+\end{align*}
+So, we get
+\begin{align}
+    F(x)&=1+x(F(x)^2) \nonumber \\
+    & \implies x(F(x))^2-F(x)+1=0
+\end{align}
+
+Solving the quadratic equation, we get
+$$F(x)=\frac{1-\sqrt{1-4x}}{2x}$$
+Now, to simplify  $F(x)$ into some known power series form, we need to simply the $\sqrt{1-4x}$ term in the function. For this we need a separate tool, informally the generalisation of the binomial theorem.
+
+\paragraph{Binomial Theorem :} For every $n,k \in \mathbb{N}$, we have 
+$$(1+x)^n=\sum_{k=0}^n {n \choose k}x^k= \sum_{k=0}^\infty {n \choose k}x^k $$
+
+Now, we will see the extended version of the Binomial Theorem, known as Newton's Binomial Theorem, where we consider any $n \in \mathbb{R}$
+\begin{theorem}\text{Newton's Binomial Theorem} \\ For all non-zero $n \in \mathbb{R}$, we have $$(1+x)^n= \sum_{k=0}^\infty {n \choose k}x^k$$
+Proof Omitted
+\end{theorem}
+
+\noindent So, for any $n \in \mathbb{R}, n \ne 0$, we can compute the value of ${n \choose k}$ by using the expression $${n \choose k}=\frac{n(n-1)\dots (n-k+1)}{k!}$$.
+
+\paragraph{Example:} Take $n=-7/2$ and $k=5$, so we have
+$${-7/2 \choose 5}=\frac{(-7/2)(-9/2)(-11/2)(-13/2)(-15/2)}{5!}=-\frac{9009}{256}$$
+
+\noindent Now, getting back to the generating function for the catalan numbers
+\begin{equation} \label{gen fn}
+    F(x)=\frac{1-\sqrt{1-4x}}{2x}=\frac{1-(1-4x)^{1/2}}{2x}
+\end{equation}
+Let us look at a lemma which will help us simplify the square root term.
+\begin{lemma} \label{Lemma1}
+For $ n \in \mathbb{N}$, we have $${1/2 \choose n}=(-1)^{n+1}{2n-2 \choose n-1}\frac{1}{2^{2n-1}}\cdot \frac{1}{n}$$
+\end{lemma}
+\begin{proof}
+Left as an exercise to the readers. \textit{Hint}: Use induction on $n$
+
+\end{proof}
+\noindent Applying \ref{Lemma1} to $\sqrt{1+x}=(1+x)^{1/2}$, we have
+\begin{align} \label{Simplifying Sqrt}
+    \sqrt{1+x} &=\sum_{n=0}^\infty {1/2 \choose k}x^n \nonumber \\
+    &= 1+ \sum_{n=1}^\infty (-2){2n-2 \choose n-1}\frac{1}{2^{2n}}\cdot \frac{1}{n}(-1)^{n+1}
+\end{align}
+
+Substituting \ref{Simplifying Sqrt} in \ref{gen fn} we get,
+\begin{align*}
+    F(x) &= \frac{1}{2x}\sum_{n=1}^\infty 2{2n-2 \choose n-1}\frac{(-1)^n(-4x)^n}{2^{2n}n} \\
+    & = \frac{1}{x}\sum_{n=1}^\infty {2n-2 \choose n-1}\frac{1}{n}x^n\\
+    & = \sum_{n=0}^\infty {2n \choose n}\frac{1}{n+1}x^n
+\end{align*}
+Hence the generating function for the catalan numbers is,
+$$F(x)=\sum_{n=0}^\infty {2n \choose n}\frac{1}{n+1}x^n$$
+and the coefficient $a_n={2n \choose n}\frac{1}{n+1}$ denotes the catalan numbers.
+
+\section{Live Discussion Session, Oct 8}
+
+Consider a standard dice with $(1,2,3,4,5,6)$ as the number on it's faces. Let us look at the sum values that can be obtained when two standard dice are rolled together and number of different ways in which the pair of standard  dice results to the sum value . Note that the minimum sum that can be obtained is $2$ (when  $1$ appears on each dice) and the maximum sum that a pair of standard dice can yeild is $12$ (when  $6$ appears on each dice).
+
+\begin{center}
+\begin{tabular}{c c c c c c c c c }
+ Sum Value & 2 & 3 & 4 & \dots & 12   \\ 
+ \# of pairs & 1 & 2 & 3 & \dots & 1  \\  
+\end{tabular}
+\end{center}
+
+Now, let's compute the value $\text{Pr[Sum value} = 8]$. We know that there are $36$ different pairs as an outcome when we two standard dice are rolled together. The pairs that result in $8$ are $(2,6),(3,5),(4,4),(5,3),(6,2)$. So we get
+$$\text{Pr[Sum value} = 8]=\frac{5}{36}$$
+\subsection{Crazy Dice Problem and Generating Functions}
+The question of interest here is can we find a pair of dice with
+$(a_1,a_2,a_3,a_4,a_5,a_6)$ and $(b_1,b_2,b_3,b_4,b_5,b_6)$ as their faces, such that throwing the two dice in sequence gives us the same sum distribution as a standard dice.
+Let's try to figure it out using the generating functions method.
+First, we try to relate a standard dice with $(1,2,3,4,5,6)$ as the number on it's faces to a sequence and then using the sequence we can figure out it's generating function. 
+\paragraph{Generating Function for a Standard Dice} Let $a_n$ denote the number of ways in which a dice when rolled can produce the number $n$. So for the standard dice ($1\le n \le 6$) we know there is a unique way to get each face $\{1,2,\dots,6\}$. So, the infinite sequence representing it is $(1,1,1,1,1,1,0,0,\dots)$ and the corresponding generating function is $$F(x)=x+x^2+x^3+x^4+x^5+x^6$$
+The generating function for the sum value when two dice are thrown in a sequence can be given by multiplying the respective generating function of each die. 
+
+So, for two standard dice thrown in a sequence, the generating function for the sum of the values appeared on each die is given by
+\begin{align} \label{Gen fnc: sum standard dice}
+    f(x)=(x+x^2+x^3+x^4+x^5+x^6)^2
+\end{align}
+\paragraph{Observation:} For two dice with  $(a_1,a_2,a_3,a_4,a_5,a_6)$ and $(b_1,b_2,b_3,b_4,b_5,b_6)$ as their faces such that they fit in the requirement of our question, the product of their generating functions must be equal to \ref{Gen fnc: sum standard dice} 
+
+Let $p(x)=x^{a_1}+x^{a_2}+\dots+x^{a_6}$ and $p(x)=x^{b_1}+x^{b_2}+\dots+x^{b_6}$ denote the generating function of the two dice considered respectively.
+
+So, from the observation we have that
+\begin{align} \label{Eq1}
+    p(x)q(x)=(x+x^2+x^3+x^4+x^5+x^6)^2
+\end{align}
+Using few algebraic manipulation we get $$x+x^2+x^3+x^4+x^5+x^6 = x(1+x)(1+x+x^2)(1-x+x^2)$$. Substituting this in \ref{Eq1}, we have 
+\begin{align} \label{Eq2}
+    p(x)q(x)&=(x(1+x)(1+x+x^2)(1-x+x^2))^2\nonumber\\
+    & = x^2(1+x)^2(1+x+x^2)^2(1-x+x^2)^2
+\end{align}
+An additional constraint on $p(x)$ and $q(x)$ is that $p(1)=q(1)=6$, since the sequence corresponding to both these must have 6 terms.
+
+Now our task is to distribute the factors of $x^2(1+x)^2(1+x+x^2)^2(1-x+x^2)^2$ to $p(x)$ and $q(x)$ such that the \ref{Eq2} and the constraint $p(1)=q(1)=6$ is satisfied.
+One such valid distribution of the factors is $p(x)=x(1+x)(1+x+x^2)$
+and $q(x)=x(1+x)(1+x+x^2)(1-x+x^2)^2$. Simplifying these gives us 
+\begin{align}\label{eqn 3}
+    p(x)=x + 2x^2 + 2x^3 + x^4
+\end{align}
+\begin{align}\label{eqn 4}
+    q(x)=x + x^3 + x^4 + x^5 + x^6 + x^8
+\end{align}
+Using \ref{eqn 3}, we get $(a_1,a_2,a_3,a_4,a_5,a_6)=(1,2,2,3,3,4)$ and from \ref{eqn 4}, we get $(b_1,b_2,b_3,b_4,b_5,b_6)=(1,3,4,5,6,8)$.
+
+So, we were able to get two dice with  faces $(1,2,2,3,3,4)$ and $(1,3,4,5,6,8)$ such that throwing these two dice in sequence gives us the same sum distribution as throwing a pair of standard dice.
+
+\Lecture{Jayalal Sarma}{Oct 5, 2020}{16}{Recurrence relation for Derangements}{K Sampreeth Prem}{$\alpha$}{JS}
+
+\section{Introduction}
+We were looking at the tool named generating functions and towards the end of last lecture we have seen recurrence relation for catalan numbers.The idea was to express the $n^th$ term of the sequence as a function of the previous terms and along with the generating functions obtain a closed form expression for the generating function, then use the series expansion to get the $n^th$ term of the infinite sequence.
+In this lecture we will focus on getting a recurrence relation for Derangements. 
+
+\section{Derangements}\label{Derangements}
+A Derangement is a permutation in which none of the objects appear in their "natural" (i.e., ordered) place.
+$$
+D_n = | \{\sigma ~\in~ S_n | \forall i ~\sigma(i)\neq i\}|
+$$
+We have already seen the expression for $D_n$ using P.I.E in \ref{subsec:derangements application}
+which is,
+$$
+(\sum_{k=0}^{n} \frac{(-1)^k}{k!})n!
+$$
+Now we will try to obtain this expression using recurrence relations. 
+\subsection{Recurrence relations for Derangements}
+Before we state the recurrence relations, let's fix the initial conditions. \\
+$D_0 = 1~$ because there are no elements out of their natural position so we take it as $1$  and $D_1=0~$ since, we cannot have a derangement on one element.
+\begin{recurrence relation} \label{rel:1}
+\begin{align}
+    D_n ~=~ (n-1)~(D_{n-1}~+~D_{n-2})
+\end{align}
+\end{recurrence relation}
+\begin{proof}
+We will use a double counting argument to prove this.\\
+On \textbf{L.H.S} it's the number of derangements on n elements. \\
+On \textbf{R.H.S}, let $\sigma\in S_n$ denote the derangement. So, $\sigma(n)~\neq~n$.\\
+Let $\sigma(n)=k$, now there are two cases, \\
+\textbf{Case 1:} $\sigma(k)=n$ \\
+So, we can remove  $n$ and $k$ from the set $\{1,...,n\}$ and by appropriate renaming the new $\sigma$($say~ \sigma'$) corresponds to a derangement $S_n-2$.Since there are $n-1$ ways of choosing $k$\\
+\textbf{Case 2:} $\sigma(k)\neq n$ \\
+Consider the following bijection to a derangement in $S_{n-1}$.\\
+Swap $\sigma(k)$ and $\sigma(n)$ in the permutation. In the resulting permutation($say~ \sigma'$) $\sigma'(n)=j (j \neq n)$ and $\sigma'(k)=k$. This isn't a derangement because $\sigma'(k)=k$. So remove $k$ and by appropriate renaming $\sigma'$ gives a derangement in $S_{n-1}$. \\
+So from \textbf{Case 1} and \textbf{Case 2} we conclude by fixing $k$ there are $(D_{n-1}~+~D_{n-2}~)$ derangements possible. Since, $k$ is arbitrary and there are $n-1$ ways of choosing $k$ we get number of derangements possible as,   $(n-1)~(D_{n-1}~+~D_{n-2})$.
+\end{proof}
+\begin{recurrence relation} \label{rel:2}
+\begin{align}
+    D_n ~=~ nD_{n-1}~+~(-1)^n  
+\end{align}
+\end{recurrence relation}
+\begin{proof}
+From \ref{rel:1}, 
+\begin{align}
+     D_n ~&=~ (n-1)~(D_{n-1}~+~D_{n-2}) \nonumber \\
+     D_n~-~nD_{n-1}~&=~-(D_{n-1}~-~(n-1)D_{n-2}) \nonumber
+     \end{align}
+     Substitute $A_n = D_n - nD_{n-1}$ \label{rpf:1},\\
+    \begin{align}
+     A_n~&=~-A_{n-1} \nonumber\\
+     A_n~&=~(-1)^n \nonumber\\ 
+     D_n~-~nD_{n-1}~&=~(-1)^n \nonumber
+\end{align}
+\end{proof}
+\begin{recurrence relation} \label{rel:3}
+\begin{align}
+    D_n ~=~ n! - \sum_{k=0}^{n-1} {n \choose k}~D_k   
+\end{align}
+\end{recurrence relation}
+\begin{proof}
+\begin{align}
+    D_n ~&=~ n! - \sum_{k=0}^{n-1} {n \choose k}~D_k \nonumber \\
+         n! ~&=~ D_n + \sum_{k=0}^{n-1} {n \choose k}~D_k \nonumber \\
+     n! ~&=~ \sum_{k=0}^{n} {n \choose k}~D_k \label{rpf:1} 
+\end{align}
+Now we will argue \ref{rpf:1} using double counting argument.\\
+On \textbf{L.H.S} it's the number of permutations on $n$ numbers. \\
+On \textbf{R.H.S}, observe that each permutation has some points which are in their natural position i.e., $\sigma(i)~=~i$ and others are derangements on the remaining elements.Now we condition on number of fixed points and there are ${n\choose k }$ ways of fixing $k$ points and remaining form derangements.Notice that we are not over counting across sums because once we fix the number of fixed points one permutation cannot have two different number of fixed points.   
+\end{proof}
+\noindent
+We have stated and proved the recurrence relations associated with derangements.
+Now, we will derive the formula for Derangements using the recurrence relations.\\
+Consider \ref{rel:2},  \\
+\begin{align}
+    D_n ~&=~ nD_{n-1}~+~(-1)^n \nonumber\\
+    D_n ~-~ nD_{n-1} ~&=~ (-1)^n \nonumber
+    \end{align}
+    Divide throughout by $n!$  
+    \begin{align}
+    \frac{D_n}{n!} ~-~ \frac{D_{n-1}}{{n-1}!}  ~&=~ \frac{(-1)^n}{n!} \nonumber\\
+      Substitute~B_n~&=~\frac{D_n}{n!} \nonumber \\
+    B_{n}~-~B_{n-1} ~&=~ \frac{(-1)^n}{n!} \nonumber 
+    \end{align}
+    \begin{align}
+    B_{n} ~&=~ B_{n-1}~+~\frac{(-1)^n}{n!} \nonumber \\
+    B_{n} ~&=~ B_{n-1}~+~\frac{(-1)^n}{n!} \nonumber \\
+     B_{n} ~&=~ B_{n-2}~+~\frac{(-1)^{n-1}}{{n-1}!}~+~\frac{(-1)^n}{n!} \nonumber 
+\end{align}
+By repeatedly expanding the terms on \textbf{R.H.S},we get
+\begin{align}
+    B_{n} ~&=~ \sum_{k=0}^{n}\frac{(-1)^k}{k!} \nonumber \\
+    D_{n} ~&=~ n!(\sum_{k=0}^{n} \frac{(-1)^k}{k!}) \nonumber
+\end{align}
