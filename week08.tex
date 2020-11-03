@@ -1,0 +1,102 @@
+\Lecture{Jayalal Sarma}{Oct 26, 2020}{23}{Extremal Problems In Graphs-Three Proofs,Mantels Theorem}{Praharsh Allada}{$\alpha$}{JS}
+\section{Introduction}
+This week we are going to look at some extremal problems in graphs.The techniques we use to Solve the problems are more important than the problems themselves.In fact we will look at multiple ways of proving the same statement using different techniques to prove.\\
+\textbf{Example 1:-}\\
+Suppose an Undirected Graph G ,does not have triangle(no $k_3$), what is the maximum number of edges the graph G can have?\\
+(OR)\\ 
+What is the minimum number of edges that a graph G with n vertices should have so that it always contains at least 1 triangle?\\
+\textbf{Solution:-}\\
+The graph can be divided Into 2 sets of vertices of size $\frac{n}{2}$ and from all the possible edges from one set to another.In this case we put in $\frac{n^2}{4}$ edges.(From a little thought and AM$ \geq $GM we can see that the highest number of edges are produced when each set contains $\frac{n}{2}$ vertices).The answer to the question is this the best we can do is yes,this is the best that we can do, we can not have more than $\frac{n^2}{4}$ edges with no triangle in the graph.
+\begin{theorem}
+\textbf{Mantel's theorem:-}\\
+Any graph G on n vertices having more than $\frac{n^2}{4}$ edges must contain a triangle
+\end{theorem}
+\begin{proof}
+Let us prove Mantel's theorem using three simple techniques and shifting argument.Let us look at the three different techniques in this lecture and then look at shifting argument in the next.Later let us also look at generalisation of Mantel's theorem.The three techniques  we will be using are double counting argument(we will be using cauchy schwarz inequality),Arithmetic Mean-Geometric Mean Inequality,An application of P.H.P.\\
+\textbf{Proof1:-Double Counting argument}\\
+We define a mathematical quantity and find its upper and lower bound using two different methods thus calculating an inequality for the parameters involved.\\
+Let m be the number of edges in a graph G that does not have any triangles we have to show that $m \le \frac{n^2}{4}$\\
+Let, x,y $\in$ V and G contains the edge between x and y the x and y cannot have an edge with a common vertex.(i.e, adjacent vertices can not have common neighbours).
+In other words d(x)+d(y)$\le$ n (Since,they cannot have any other common neighbours d(x)+d(y) $\leq$ n-2 without counting edge (x,y) and then we add 2 for the edge (x,y))\\
+Now the quantity we are going to double count is $\sum_{x \in V} d(x)^2$
+First let us find the Upper bound for this.Now the above quantity can be thought as d(x) being summed d(X) times\\
+$$\implies \sum_{x \in V}d(x)^2=\sum_{(x,y) \in E}(d(x)+d(y)) \leq m*n(Since,\sum_{(x,y)\in E} \leq n)$$
+Now we will calculate the lower bound on the above quantity in terms of m so that the upper and lower bounds to gather w=might give us a bound on m
+Now for this let us first take a look at cauchy schwarz inequality.\\
+\begin{theorem}
+\textbf{cauchy schwarz inequality:-}\\
+let u,v $\in R^n, $$< u,v >=\sum_{i=1}^n
+u_i*v_i$, $||u||=< u,u >=\sum_{i=1}^n u_i^2$\\
+$$|< u,v >|^2 \leq ||u||*||v||$$
+$$i.e,(\sum_{i=1}^n u_i*v_i)^2 \leq (\sum_{i=1}^n u_i^2)(\sum_{i=1}^n v_i^2)$$
+\begin{proof}
+let us assume $u \neq 0$ and $\lambda \in \mathbb{R}$\\
+$0\leq <\lambda u-v ,\lambda u-v >=\lambda^2 <u,u> -\lambda <u,v> -\lambda <v,u> +<v,v>\\
+=\lambda^2 <u,u> -2\lambda <u,v>+<v,v>$\\
+Choose $\lambda=\frac{<u,v>}{<u,u>} $ substituting in the equation yields 
+$$\frac{<u,v>^2}{<u,u>}-2\frac{<u,v>^2}{<u,u>}+<v,v> \geq 0$$
+$$\implies <u,v>^2 \leq <u,u><v,v>$$
+\end{proof}
+Now let us use the cauchy schwarz inequality to obtain the lower bound.
+Let $V={x_1,x_2,....x_n}$ now let us define $u=(d(x_1),d(x_2),.....d(x_n),v=(1,1,1,...,1)$\\
+$u_iv_i=d(x_i)\\
+\implies \sum (u_i*v_i)^2=(\sum d(x))^2 \implies \sum (d(x)^2) \geq \frac{(\sum d(x)^2)}{n}=\frac{(2m)^2}{n}=\frac{4m^2}{n} \implies \frac{4m^2}{n}\leq mn \implies m \leq \frac{n^2}{4}$
+\end{theorem}
+\newpage
+\textbf{Proof 2:- AM-GM Inequality}\\
+Neighbours of any vertex x $\in$ V can not have any edges among themselves.(i.e, they must form an independent set). Let A be the largest independent set in the graph, then we have $\forall x$
+d(x) $\leq |A|$ .If we consider B=V-A then every edge has at least one end point in B($\since$ we can not have edges between the vertices of A from definition).Sets such as B are vertex covers.If A is the largest Independent Set then B is the smallest vertex cover.Anyway, $|E| \leq \sum_{x \in B} d(x) \leq |B|*|A|\leq (\frac{|A|+|B|}{2})^2=\frac{n^2}{4}$\\
+\textbf{Proof 3:- Using P.H.P}\\
+Let us consider a graph with 2*n vertices and every such graph with more than $n^2+1$ edges must have a triangle.\\
+Let us prove by Induction on n,\\
+\textbf{Base case n=1}\\
+If 2 vertex graph has $1^2+1=2$ vertices has edges from A to B and B to A making it a triangle with a 0 edge as the 3rd side\\
+\textbf{Induction step}\\
+Assume it is true for n=k and try to prove for n=k+1,
+number of vertices =2*(k+1)=2k+2 and the number of edges =$(k+1)^2+1=k^2+2k+2$
+Now let us consider an edge (x,y) $\in$ E and call the remaining graph and the edges among themselves as H.\\
+\textbf{Case1:-}\\
+If H has more than $k^2+1$ edges then since we know that the statement is true for k by induction and now since H has a triangle G also has a triangle and hence the statement is true for n=k+1
+\textbf{Case1:-}\\
+If H has less than $k^2+1 $ edges therefore number of edges between the vertices x,y to H are 
+total edges-(edges in H)-edge (x,y)$\geq (k+1)^2+1-k^2-1=2k+1$.Now if we consider each of the vertex in H as a Hole and the number of pigeons in a given hole as number of edges it has with vertices x,y  now since there are 2n holes (2k vertices in H) and at least 2k+1 pigeons (each pigeon represents a distinct edge) there exists a hole with more than 1 pigeon which means there exists a vertex with more than one edge to x,y which makes it a common neighbour to both x and y  (making (x,z) $\in$ E and (y,z) $\in$ E)thus forming a triangle and hence the statement is true for k+1
+\textbf{conclusion} any graph with 2*n vertices and more than $n^2+1$ edges must have a triangle for all values of n.
+\end{proof}
+
+\Lecture{Jayalal Sarma}{Oct 28, 2020}{24}{The Shifting technique}{Praharsh Allada}{$\alpha$}{JS}
+
+\section{Introduction}
+In the last lecture we have seen 3 different techniques for mantel's theorem based on Double counting,AM-GM Inequality and Pigeon Hole principle.In this lecture we are going to look at a new technique to prove the existence of things in general.This technique is based on a principle called averaging principle which is like a cousin to pigeon hole principle.\\
+
+\section{ proving existence using shifting technique}
+\textbf{Averaging Principle}
+The averaging principle states that every set of numbers contain at least one number which is as large as the average and one number which is as small as the average .\\
+To Prove some Good object exist\\
+* Assign weights to objects such that Objects with large weights are good\\
+* Show that the average weight is large enough for it to be a good object 
+and hence there exists at least one object with as much weight as average and hence proved that at least one good object exists\\
+Shifting would be used in computing the sum and finding the average.
+
+\section{Some examples using Shifting technique}
+\textbf{Example 1:-}\\
+Let $n\leq m \leq 2n$ where m is the number of pigeons and n is number of hole.For any distribution where no hole is left empty there can be at most 2*(m-n) pigeons which are happy (Happy pigeons are not alone)\\
+\textbf{Proof}\\
+let us try to maximise the number of happy pigeon,consider any distribution of pigeons such that no hole is empty.if some hole contains grater than 2 pigeons then shift one of the pigeons from that hole to another hole with an unhappy pigeon.(thus increasing the number of happy pigeons by 1).Therefore the distribution which maximises the number of happy pigeons must necessarily have less than or equal to 2 pigeons in each hole.which  naturally gives the configuration which can be obtained bu putting one pigeon in each hole and then putting the remaining (m-n) pigeons in different holes thus making the total number of happy pigeons per filled hole as 2 and thus making the maximum number of happy pigeons as 2*(m-n)\\
+\textbf{Example2:-}\\
+\textbf{Graham and kleitman} Trail of a graph  is a walk in a graph without repeating edges.If the edges of a complete graph $k_n $ is labelled with distinct numbers ${1,2,3,....,{n\choose 2}}$,with no repetition then there is a trail of length n-1 with an increasing sequence of edge labels.\\
+For n=3, take a triangle ABC  let us try to label the edges to avoid a trail of length 2 (n-1=2). If AB=1, in both the cases of BC=2 and CA=2 we will clearly have a trail of increasing edge labels.\\
+For n=4, take a square ABCD with diagonals AC and BD and label the edges from 1 to 6 by trying to avoid 3 length trails of increasing length let us start with BD=1 and AC=2 to keep it disconnected then AD=3 because where ever we put 3 tail length will increase by 1 DC  cant be 4 because ADCA will form a trail of length 3 and also AB cant be 4 because in that case BCAB will from a trail of length 3 hence let us put BD=4.But now we cant get put CD=5 since CBDC will form a trail of length 3 with increasing labels  and also we cant put AB=5 since ACBA will form a trail of length 3 with increasing labels hence a trail of length 3 with  increasing labels is unavoidable.\\
+\textbf{Proof}\\
+We assign a weight to each vertex,x $\in$ v $->$ $W_x$ is it's weight.Where $W_x$ is the length of the longest increasing trail ending at x.Now, it suffices to argue $\exists x \in V,$such that $W_x\geq n-1$. Now we have to find argue the average weight,if we prove $\frac{1}{n}\sum_{x \in V} W_x \geq n-1$
+the by averaging principle we have show the existence.This is equivalent to proving $\sum_{x \in V} W_x \geq n*(n-1)$.Shifting algorithm is problem dependent so in this case let us consider building the graph by adding edges one after the other.Let us add the edges in the order of increasing labels which keeps modifying the weights of vertices.
+Initially $W_x = 0 \forall x$ we add edges in the increasing label order.\\
+At some later instant let us say (x,y) is the edge being added now.So already some edges have been added so let us say there is a path ending at x and y the length of which is the weight of x and y respectively. SO now we update $W_x and W_y$.
+\textbf{Case1:-} if
+$W_x=W_y$  and all the already existing edges have smaller labels since edges are added in that order. Increase both $W_x and W_y by 1$.$W'_x=W_x+1 and W'_y=W_y+1$
+\textbf{Case2:-}
+if $W_x<W_y$ since now edge (x,y) is present the trail previously ending at y plus the edge (x,y) forms a new trail of length $W_y+1 >W_x$  ending at x and hence $W'_x=W_y+1 and W'_y=W_y$
+\textbf{Case3:-}
+if $W_x>W_y$ since now edge (x,y) is present the trail previously ending at x plus the edge (x,y) forms a new trail of length  $W_x+1 >W_y$ ending at y and hence $W'_y=W_x+1$ and $W'_x=W_x$\\
+\newpage
+\textbf{Observation}\\
+The value of $W_x+W_y$ increase by 2 in case one and in case 2 it increased by $W_y-W_x+1$ and in case 3 it increased by  $W_x-W_y+1$ which are grater than or equal to 2 therefore for each edge added the value of $\sum_{x \in V} W_x$ increased by at least 2. Therefore by the time we add ${n \choose 2}$ edges the value of  $\sum_{x \in V} W_x \geq 2*{n \choose 2} \geq n*(n-1) $.Hence,Graham and kleitman has been proved
