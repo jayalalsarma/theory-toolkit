@@ -42,10 +42,11 @@ Let $V={x_1,x_2,....x_n}$ now let us define $u=(d(x_1),d(x_2),.....d(x_n),v=(1,1
 $u_iv_i=d(x_i)\\
 \implies \sum (u_i*v_i)^2=(\sum d(x))^2 \implies \sum (d(x)^2) \geq \frac{(\sum d(x)^2)}{n}=\frac{(2m)^2}{n}=\frac{4m^2}{n} \implies \frac{4m^2}{n}\leq mn \implies m \leq \frac{n^2}{4}$
 \end{theorem}
+
 \newpage
 \textbf{Proof 2:- AM-GM Inequality}\\
 Neighbours of any vertex x $\in$ V can not have any edges among themselves.(i.e, they must form an independent set). Let A be the largest independent set in the graph, then we have $\forall x$
-d(x) $\leq |A|$ .If we consider B=V-A then every edge has at least one end point in B($\since$ we can not have edges between the vertices of A from definition).Sets such as B are vertex covers.If A is the largest Independent Set then B is the smallest vertex cover.Anyway, $|E| \leq \sum_{x \in B} d(x) \leq |B|*|A|\leq (\frac{|A|+|B|}{2})^2=\frac{n^2}{4}$\\
+d(x) $\leq |A|$ .If we consider B=V-A then every edge has at least one end point in B(since we can not have edges between the vertices of A from definition).Sets such as B are vertex covers.If A is the largest Independent Set then B is the smallest vertex cover.Anyway, $|E| \leq \sum_{x \in B} d(x) \leq |B|*|A|\leq (\frac{|A|+|B|}{2})^2=\frac{n^2}{4}$\\
 \textbf{Proof 3:- Using P.H.P}\\
 Let us consider a graph with 2*n vertices and every such graph with more than $n^2+1$ edges must have a triangle.\\
 Let us prove by Induction on n,\\
