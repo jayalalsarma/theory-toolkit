@@ -1,58 +1,60 @@
 \Lecture{Jayalal Sarma}{Sept 29, 2020}{08}{PIE and three applications}{Sumanth Naik}{$\alpha$}{JS}
 
-\section{Introduction}
+%\section{Introduction}
 The journey so far has been that we have been doing counting by bijections and established certain ideas regarding double counting and the bijections behind the scenes. Then we came to Principle of Inclusion-Exclusion(PIE) as a consequence of a bijection argument. In this lecture, we will look at another proof (an algebraic proof) for PIE and then 3 interesting applications of PIE.
 
-\section{Principle of Inclusion - Exclusion(PIE)} \label{sec:Principle of Inclusion - Exclusion(PIE)}
-If there are $n$ subsets of a ground set $X$; $A_1$, $A_2$, $A_3$, ...., $A_n$ $\subseteq$ $X$, then PIE helps us to estimate the size of the set of union of all $n$ subsets of the ground set. Mathematically, PIE states that,
+\section{Principle of Inclusion Exclusion (PIE) - An Algebraic Proof} \label{sec:Principle of Inclusion - Exclusion(PIE)}
+If there are $n$ subsets of a ground set $X$; $A_1$, $A_2$, $A_3, \ldots A_n$ $\subseteq$ $X$, then PIE helps us to estimate the size of the set of union of all $n$ subsets of the ground set. Mathematically, PIE states that,
 \begin{align*}
-|\bigcup_{i=1}^{n} A_i| &= \sum_{1 \le i \le n} | A_i|
-\hspace{0.1cm}- \sum_{1 \le i < j \le n} | A_i \cap A_j| \\
+\left|\bigcup_{i=1}^{n} A_i\right| &= \sum_{1 \le i \le n} | A_i|
+\hspace{0.1cm}- \sum_{1 \le i < j \le n} \left| A_i \cap A_j \right| \\
 &\hspace{0.5cm}+ \sum_{1 \le i < j < k \le n} | A_i \cap A_j \cap A_k| \hspace{0.2cm}.\hspace{0.1cm}.\hspace{0.1cm}.\hspace{0.1cm}.\hspace{0.1cm}.\\
-|\bigcup_{i=1}^{n} A_i| &= \sum_{\emptyset \neq I \subseteq [n]} (-1)^{|I| +1} |\bigcap_{i \in I} A_i|\\
-&=\sum_{\emptyset \neq I \subseteq [n]} (-1)^{|I| +1} |A_I|
+\left|\bigcup_{i=1}^{n} A_i\right| &= \sum_{\emptyset \neq I \subseteq [n]} (-1)^{|I| +1} \left|\bigcap_{i \in I} A_i \right|\\
+&=\sum_{\emptyset \neq I \subseteq [n]} (-1)^{|I| +1} \left|A_I\right|
 \end{align*}
-where $[n] = \{1,2,3...n\} $ (short-hand notation for $1$ to $n$ elements) and $A_I = \bigcap_{i \in I} A_i$.\\
+where $[n] = \{1,2,3, \ldots, n\} $ (short-hand notation for $1$ to $n$ elements) and $A_I = \bigcap_{i \in I} A_i$.\\
 \\
-Note that the intuition behind understanding the formula in the second step from first is that, $ \emptyset \neq I \subseteq [n]$ captures all the combinations of $1,2,3...n$ sized sets from $n$ sized set of numbers, i.e., $1 \le i \le n$ (set of combinations of 1 sized set from n sized set), $1 \le i < j \le n$ (set of combinations of 2 sized set from n sized set) and so on up to set of combinations of $n$ sized set from n sized set. The alternating sign in first equation's term is captured by $(-1)^{|I| +1}$ in second equation. And finally, the intersection part of all the terms in first equation, i.e., $|A_i|, |A_i \cap A_j|,  |A_i \cap A_j \cap A_j|$...., is captured in $ \bigcap_{i \in I} A_i$ of the second equation.
+Note that the intuition behind understanding the formula in the second step from first is that, $ \emptyset \neq I \subseteq [n]$ captures all the combinations of $1,2,3, \ldots ,n$ sized sets from $n$ sized set of numbers, i.e., $1 \le i \le n$ (set of combinations of 1 sized set from n sized set), $1 \le i < j \le n$ (set of combinations of 2 sized set from n sized set) and so on up to set of combinations of $n$ sized set from n sized set. The alternating sign in first equation's term is captured by $(-1)^{|I| +1}$ in second equation. And finally, the intersection part of all the terms in first equation, i.e., $|A_i|, |A_i \cap A_j|,  |A_i \cap A_j \cap A_j| \ldots$ is captured in $ \bigcap_{i \in I} A_i$ of the second equation.
 \begin{proof}
-This algebraic proof is using characteristic functions of $A_1$, $A_2$, $A_3$, ...., $A_n$ (which are $f_1, f_2, f_3,....f_n $). \\
-$$f_i:X\longrightarrow\{0,1\}$$
-\[
-  \forall x \in X,\hspace{0.3cm} f_i(x) = 
+Define the characterestic function of the set $A_i$ as $f_i$ described as : $f_i:X\longrightarrow\{0,1\}$, where the images are defined as $$\forall x \in X,\hspace{0.3cm} f_i(x) = 
   \begin{cases}
     1&\mbox{if } x \in A_i \\
-    0& otherwise 
+    0& \textrm{otherwise }
   \end{cases}
-\]
-Note that $(1-f_i(x))$ is the characteristic function for the compliment of $A_i$ (i.e. $X\setminus A_i$ or $\overline A_i$). In other words; when you subtract the characteristic function of a set from $1$, the difference is the characteristic function of the compliment of the same set. It is also to be noted that $f_i(x)f_j(x)$ is the characteristic function of $A_i\cap A_j$. In other words; when you multiply the characteristic functions of two sets with each other, the product is the characteristic function of the intersection of the two sets. 
+$$
+
+By definition, $(1-f_i(x))$ is the characteristic function for the compliment of $A_i$ (i.e. $X\setminus A_i$ or $\overline A_i$). In other words, when you subtract the characteristic function of a set from $1$, the difference is the characteristic function of the compliment of the same set. It is also to be noted that $f_i(x)f_j(x)$ is the characteristic function of $A_i\cap A_j$. In other words; when you multiply the characteristic functions of two sets with each other, the product is the characteristic function of the intersection of the two sets. 
 \begin{align}
 \intertext{Consider a function defined as,} F(x) &= \prod_{i=1}^{n}(1-f_i(x))\nonumber \\
-&= (1-f_1(x))(1-f_2(x))....(1-f_n(x))\nonumber  \\
-&= \sum_{I\subseteq[n]}(-1)^{|I|}(\prod_{i \in I} f_i(x)) \label{eq:F_def_in_PIE}
+&= (1-f_1(x))(1-f_2(x)) \ldots (1-f_n(x))\nonumber  \\
+&= \sum_{I\subseteq[n]}(-1)^{|I|}\left(\prod_{i \in I} f_i(x)\right) \label{eq:F_def_in_PIE}
 \end{align}
 Note that the $F(x)$ represents the characteristic function of intersection of compliments (compliment of each $f_i$), hence by De-Morgan's Law, its mathematical equivalent is,
-\begin{align}
-\overline{(\bigcup_{i=1}^{n} A_i)}&= X \setminus \bigcup	_{i=1}^{n}A_i \nonumber \\
-\intertext{To get the size of the set in the $RHS$ of previous equation (it has all the elements which are not present in any of the $n$ subsets of $X$), we just need to count the number of $x$'s in $X$ for which $F(x)$ is 1 (as $F(x)$ will be 1 for any $x$ only if every $f_i(x)$ is 0, i.e., $\forall i,x \notin A_i$). Hence, }|X \setminus \bigcup_{i=1}^{n}A_i| &= \sum_{x \in X} F(x) \label{eq:sigma_F_1}
-\end{align}
+\[
+\overline{\left(\bigcup_{i=1}^{n} A_i\right)} = X \setminus \bigcup	_{i=1}^{n}A_i
+\]
+To get the size of the set in the $RHS$ of previous equation (it has all the elements which are not present in any of the $n$ subsets of $X$), we just need to count the number of $x$'s in $X$ for which $F(x)$ is 1 (as $F(x)$ will be 1 for any $x$ only if every $f_i(x)$ is 0, i.e., $\forall i,x \notin A_i$). Hence:
+\begin{equation}
+\label{eq:sigma_F_1}
+|X \setminus \bigcup_{i=1}^{n}A_i| = \sum_{x \in X} F(x) 
+\end{equation}
+
 Also from (\ref{eq:F_def_in_PIE}),
 \begin{align}
-\sum_{x \in X} F(x)&= \sum_{x} \sum_{I \subseteq [n]} (-1)^{|I|} (\prod_{i \in I} f_i(x))\nonumber \\
-&= \sum_{I \subseteq [n]} (-1)^{|I|} (\sum_{x} (\prod_{i \in I} f_i(x)))\nonumber \\
-&=\sum_{I \subseteq [n]} (-1)^{|I|} |\bigcap_{i \in I}A_i|\label{eq:sigma_F_2}
+\sum_{x \in X} F(x)&= \sum_{x} \sum_{I \subseteq [n]} (-1)^{|I|} \left(\prod_{i \in I} f_i(x)\right)\nonumber \\
+&= \sum_{I \subseteq [n]} (-1)^{|I|} \left(\sum_{x} \left(\prod_{i \in I} f_i(x)\right)\right)\nonumber \\
+&=\sum_{I \subseteq [n]} (-1)^{|I|} \left|\bigcap_{i \in I}A_i\right|\label{eq:sigma_F_2}
 \end{align}
-The last step is because $(\prod_{i \in I} f_i(x))$ is the characteristic function of intersection of $n$ subsets, i.e., $\bigcap_{i \in I}A_i$. And its summation over $x$, $(\sum_{x} (\prod_{i \in I} f_i(x)))$ will give us the size of the intersection, $|\bigcap_{i \in I}A_i|$.\\
-Also, note that the convention when $I=\emptyset$ is,
-\begin{equation}
-|\bigcap_{i \in I}A_i| = |X| \label{eq:convention}
-\end{equation} which can be reasoned as when $I$ is empty, $(\prod_{i \in I} f_i(x))$ is $1$ for any $x$. And its summation over $x$, $(\sum_{x} (\prod_{i \in I} f_i(x)))$ gives $|X|$.
+The last step is because $(\prod_{i \in I} f_i(x))$ is the characteristic function of intersection of $n$ subsets, i.e., $\bigcap_{i \in I}A_i$. And its summation over $x$, $(\sum_{x} (\prod_{i \in I} f_i(x)))$ will give us the size of the intersection, $\left|\bigcap_{i \in I}A_i\right|$. Also, note that the convention when $I=\emptyset$ is,
+%\begin{equation}
+$\left|\bigcap_{i \in I}A_i\right| = |X|$.
+which can be reasoned as when $I$ is empty, $\left(\prod_{i \in I} f_i(x)\right)$ is $1$ for any $x$. And its summation over $x$, $\sum_{x} \left(\prod_{i \in I} f_i(x)\right)$ gives $|X|$.
 \begin{align*}
 \intertext{By (\ref{eq:sigma_F_1}) and (\ref{eq:sigma_F_2}),}
-|X \setminus \bigcup_{i=1}^{n}A_i| &= \sum_{I \subseteq [n]} (-1)^{|I|} |\bigcap_{i \in I}A_i|\\
-|X | - | \bigcup_{i=1}^{n}A_i| &= \sum_{I \subseteq [n]} (-1)^{|I|} |\bigcap_{i \in I}A_i|\\
-| \bigcup_{i=1}^{n}A_i| &= |X| - \sum_{I \subseteq [n]} (-1)^{|I|} |\bigcap_{i \in I}A_i|\\ 
-&=\sum_{\emptyset \neq I \subseteq [n]} (-1)^{|I|+1} |\bigcap_{i \in I}A_i| \tag{Using (\ref{eq:convention})}\\
+\left|X \setminus \bigcup_{i=1}^{n}A_i\right| &= \sum_{I \subseteq [n]} (-1)^{|I|} \left|\bigcap_{i \in I}A_i\right|\\
+|X | - \left| \bigcup_{i=1}^{n}A_i\right| &= \sum_{I \subseteq [n]} (-1)^{|I|} \left|\bigcap_{i \in I}A_i \right|\\
+\left| \bigcup_{i=1}^{n}A_i \right| &= |X| - \sum_{I \subseteq [n]} (-1)^{|I|} \left|\bigcap_{i \in I}A_i\right|\\ 
+&=\sum_{\emptyset \neq I \subseteq [n]} (-1)^{|I|+1} \left|\bigcap_{i \in I}A_i \right| \\
 \end{align*}
 This completes the algebraic proof for PIE.
 \end{proof}
@@ -60,90 +62,98 @@ This completes the algebraic proof for PIE.
 
 \section{Applications of PIE} \label{sec:Applications of PIE - lec1}
 
+We now see three different applications of PIE which exposes some interesting features of the tool.
+
 \subsection{Counting the number of derangements on $n$ elements.} \label{subsec:derangements application}
 Consider a scenario where, $n$ people go to a theatre to watch a movie, they keep their hats outside with the gatekeeper. On return, in a rush, the gatekeeper panicked and gave back the hats randomly.\\
-Question: What is the chance that nobody got their own hat for a very large $n$?\\
-Answer (surprisingly): $1/e = 0.3678$.
+\textbf{Question:} What is the chance that nobody got their own hat for a very large $n$?\\
+\textbf{Answer (surprisingly high)}: roughly 36\% ! (more precisely, the probability is $1/e = 0.3678$).
+
+Formally, if we view the rearrangement as a permutation on $n$ elements, the property that we are looking for can be expressed mathematically as follows : A permutation $\sigma \in S_n$ is said to be a derangement if $\forall i \in [n], \sigma(i) \ne i$.
+Now we prove the following theorem.
+
 \begin{theorem}
-Number of derangements on $n$ elements is $$(\sum_{k=0}^{n} \frac{(-1)^k}{k!})n! $$
+Number of derangements on $n$ elements is $$\left(\sum_{k=0}^{n} \frac{(-1)^k}{k!}\right)n!$$
 \end{theorem}
-\noindent
-(We know that the total number of ways for the $n$ people to pick $n$ hats is $n!$ (factorial of $n$) and hence the chance of derangement is $(\sum_{k=0}^{n} \frac{(-1)^k}{k!})$. As $n\rightarrow\infty$, $(\sum_{k=0}^{n} \frac{(-1)^k}{k!}) \rightarrow 1/e \thicksim 0.3678$.)\\
+
+Before we proceed, let us demonstrate why this implies our surprising answer. We know that the total number of ways for the $n$ people to pick $n$ hats is $n!$ (factorial of $n$) and hence the chance of derangement is $\left(\sum_{k=0}^{n} \frac{(-1)^k}{k!}\right)$. As $n\rightarrow\infty$, $\left(\sum_{k=0}^{n} \frac{(-1)^k}{k!}\right) \rightarrow 1/e \thicksim 0.3678$.). We now proceed with the proof of the above theorem, which is a nice application of PIE.
+
 \begin{proof}
-Let $S_n$ be the set of permutations on $n$ elements. $\sigma \in S_n$ is a permutation function on $n$  elements ($\sigma : [n] \rightarrow [n]$). $\forall_{i=1}^{n},~ \sigma(i)$ is defined as the person to whom $i^{\text{th}}$ person's hat was given. If $\sigma(i) = i$, then it means that the $i^{\text{th}}$ person got the correct hat - this is called a fix-point. What we are looking for is to count the number of fix-point free permutations in $S_n$. 
-\noindent\\
+Let $S_n$ be the set of permutations on $n$ elements. $\sigma \in S_n$ is a permutation function on $n$  elements ($\sigma : [n] \rightarrow [n]$). $\forall_{i=1}^{n},~ \sigma(i)$ is defined as the person to whom $i^{\text{th}}$ person's hat was given. If $\sigma(i) = i$, then it means that the $i^{\text{th}}$ person got the correct hat - in terms of formal language of permutations, this is called a \textit{fix-point} of the permutation. What we are looking for is to count the number of fix-point-free permutations in $S_n$. 
+
+
 The strategy is to count the number of non-derangements and subtract from $n!$.
-Mathematically, non-derangement is captured as $$\exists i,\hspace{0.2cm} \sigma(i) = i$$ 
-Define $A_i$ as, $$\forall i \in \{1,2,...n\},\hspace{0.2cm} A_i = \{\sigma \in S_n\hspace{0.1cm} |\hspace{0.1cm} \sigma(i) = i\}$$ 
-So, $A_i$ represents the set of $n$ elements whose $i^{\text{th}}$ element is fixed to i, other elements can be any non repeating value of 1 to $n$ (except $i$ as it is taken).
-\\
-Set of non-derangement can be represented as $$\bigcup_{i=1}^{n} A_i$$\\
-Hence, we are interested in finding the number of non-derangements $$|\bigcup_{i=1}^{n} A_i|$$\\
-From PIE's statement,
+Mathematically, non-derangement is captured as $\exists i,\hspace{0.2cm} \sigma(i) = i$. Now we set up the application of PIE in this context, by defining the $A_i$s first. Define $A_i$ as, 
+$$\forall i \in \{1,2,...n\},\hspace{0.2cm} A_i = \{\sigma \in S_n\hspace{0.1cm} |\hspace{0.1cm} \sigma(i) = i\}$$ 
+So, $A_i$ represents the set of $n$ elements whose $i^{\text{th}}$ element is fixed to $i$, other elements can be any non repeating value of $1$ to $n$ (except $i$ as it is taken).
+
+The set that we want to estimate the size of - the set of non-derangement can be represented as $\bigcup_{i=1}^{n} A_i$.
+Hence, we are interested in finding the number of non-derangements $|\bigcup_{i=1}^{n} A_i|$.
+
+We want to apply PIE - which is about intersection of these $A_i$. Can $A_i$ and $A_j$ really intersect? Indeed, they can, and we can even estimate the size of the intersection: indeed, for a permutation to be in the intersection it has to be fixing the element $i$ and $j$ and it has the freedom to choose any permutation for the remaining values. Hence,
+$$|A_i \cap A_j| = (n-2)!$$
+
+Now we generalize this estimate to arbitrary size intersections since they appear in the RHS of PIE. For a shorthand notation, define, $A_I = \bigcap_{i \in I} A_i$. Now, from the statement of $PIE$, we need to estimate sizes of $\left| A_I \right|$ for different $I \subseteq [n]$. Observe that,
 \begin{align}
-A_I &= \bigcap_{i \in I} A_i \nonumber \\
 |A_I| &= (n-|I|)! \label{eq:size_of_A_I_derangement_problem}
 \end{align}
-The previous step can be arrived at as follows : In $A_I$, $\forall i \in I$, $\sigma(i)$ is fixed to $i$ by definition. For the remaining $n-|I|$ values, $\sigma$ can take any random permutation of the same $n-|I|$ values, hence $(n-|I|)!$.\\
+Indeed, in $A_I$, $\forall i \in I$, $\sigma(i)$ is fixed to $i$ by definition. For the remaining $n-|I|$ values, $\sigma$ can take any arbitrary permutation of the same $n-|I|$ values, hence $(n-|I|)!$ gives the number of possibilities.\\
+
 Using PIE and using the idea of fixing size of $I$ and sum over each size in next step,
 \begin{align}
 |\bigcup_{i=1}^{n} A_i| &= \sum_{\emptyset \neq I \subseteq [n]} (-1)^{|I|+1} |A_I|\nonumber \\
-&= \sum_{k=1}^{n} (-1)^{k+1} (\sum_{I\subseteq [n],|I|=k} |A_I|)\nonumber \\
-&= \sum_{k=1}^{n} (-1)^{k+1} (\sum_{I\subseteq [n],|I|=k} (n-k)!)\nonumber \tag{By (\ref{eq:size_of_A_I_derangement_problem})}\\
+&= \sum_{k=1}^{n} (-1)^{k+1} \left(\sum_{I\subseteq [n],|I|=k} |A_I|\right)\nonumber \\
+&= \sum_{k=1}^{n} (-1)^{k+1} \left(\sum_{I\subseteq [n],|I|=k} (n-k)!\right)\nonumber \tag{By (\ref{eq:size_of_A_I_derangement_problem})}\\
 &= \sum_{k=1}^{n} (-1)^{k+1} (n-k)! {n \choose k}\nonumber \\
 &= \sum_{k=1}^{n} (-1)^{k+1} \frac{n!} {k!}\nonumber \\
-&=  (\sum_{k=1}^{n}  \frac{(-1)^{k+1}} {k!})n! \label{eq:non_derangements}
+&=  \left(\sum_{k=1}^{n}  \frac{(-1)^{k+1}} {k!}\right)n! \label{eq:non_derangements}
 \end{align}
 Now, to get number of derangements, subtract (\ref{eq:non_derangements}) from $n!$, which is 
 \begin{align*}
-n! - (\sum_{k=1}^{n}  \frac{(-1)^{k+1}} {k!})n! &= (\sum_{k=0}^{n} \frac{(-1)^k}{k!})n!
+n! - \left(\sum_{k=1}^{n}  \frac{(-1)^{k+1}} {k!}\right)n! &= \left(\sum_{k=0}^{n} \frac{(-1)^k}{k!}\right)n!
 \end{align*}
 \end{proof}
 
-\subsection{Euler's $\varnothing$ function.} \label{subsec:euler's function application}
+\subsection{Euler's $\Phi$ function.} \label{subsec:euler's function application}
 \begin{theorem}
-Let $n \in N$, $\varnothing (n)$ = number of numbers $\leq n$, which are relatively prime to $n$. If $$n=\prod_{i=1}^{k}p_i^{\alpha_i}$$ where $p_i$ are distinct primes and $\forall i,~ \alpha_i \geq 1$, then $$\varnothing(n) = n(\prod_{i=1}^{k}(1-\frac{1}{p_i}))$$
+Let $n \in N$, $\Phi (n)$ = number of numbers $\leq n$, which are relatively prime to $n$. If $$n=\prod_{i=1}^{k}p_i^{\alpha_i}$$ where $p_i$ are distinct primes and $\forall i,~ \alpha_i \geq 1$, then $$\Phi(n) = n \left(\prod_{i=1}^{k}\left(1-\frac{1}{p_i}\right) \right)$$
 \end{theorem}
 \begin{proof}
 Let $X=\{1,2,3,...,n\}$. Then,
 \[
-\forall 1 \leq i \leq k, A_i = \{m\in X \hspace{0.2cm}|\hspace{0.2cm} p_i \hspace{0.1cm}divides \hspace{0.1cm}m\}
+\forall 1 \leq i \leq k, A_i = \{m\in X ~|~p_i \textrm{ divides } m\}
 \]
-So, $A_i$ represents the set of multiples of $p_i$ less than $n$.\\
-Number of numbers which are not relatively prime to $n$ is given by (as every number in any of $A_i$ will have $p_i$ as common factor)
-$$(\bigcup_{i=1}^{k} A_i)$$
-Hence, 
+Thus, $A_i$ represents the set of multiples of $p_i$ less than $n$.
+Number of numbers which are not relatively prime to $n$ is given by (as every number in any of $A_i$ will have $p_i$ as common factor) - is given by exactly the set : $\bigcup_{i=1}^{k} A_i$.  Thus we have the ground set for application for PIE. We need to be able to estimate the sizes of the intersections. More precisely:
 \begin{align}
-\varnothing (n) &= n - |\bigcup_{i=1}^{k}A_i| \tag{apply PIE}
+\Phi (n) &= n - |\bigcup_{i=1}^{k}A_i| \tag{apply PIE}
 \nonumber \\
 &=n- \sum_{I \subseteq [k], I \neq \emptyset} (-1)^{|I|+1}|A_I| \label{eq:mobius_with_PIE}
 \end{align}
-Here, 
-\begin{align}
-|A_I| = |\bigcap_{i \in I}A_i| = \frac{n}{\prod_{i \in I}p_i} \label{eq:size_of_A_I_euler_function}
-\end{align}
-The previous step can be reasoned as follows : In $\bigcap_{i \in I}A_i$, there will be those numbers which are multiples of all the $p_i$'s. The same set can be obtained by including the product of every $p_i$, i.e., $\prod_{i \in I}p_i$, and all the numbers less than $n$ which are multiples of that product. The number of such numbers can be captured by $\frac{n}{\prod_{i \in I}p_i}$.\\
-By (\ref{eq:mobius_with_PIE}), (\ref{eq:size_of_A_I_euler_function}) and using the convention of $\prod_{i \in I}p_i$ is 1 when $I=\emptyset$, 
+where
+%\begin{align}
+To esteimate $|A_I|$. We claim that $|A_I| = |\bigcap_{i \in I}A_i| = \frac{n}{\prod_{i \in I}p_i}$. This can be reasoned as follows : in $\bigcap_{i \in I}A_i$, there will be those numbers which are multiples of all the $p_i$'s. The same set can be obtained by including the product of every $p_i$, i.e., $\prod_{i \in I}p_i$, and all the numbers less than $n$ which are multiples of that product. The number of such numbers can be captured by $\frac{n}{\prod_{i \in I}p_i}$.\\
+By Equation~\ref{eq:mobius_with_PIE} and using the convention of $\prod_{i \in I}p_i$ is 1 when $I=\emptyset$, 
 \begin{align*}
-\varnothing (n) &= n - \sum_{I \subseteq [k], I \neq \emptyset} (-1)^{|I|+1}\frac{n}{(\prod_{i \in I}p_i)}\\
+\Phi (n) &= n - \sum_{I \subseteq [k], I \neq \emptyset} (-1)^{|I|+1}\frac{n}{\left(\prod_{i \in I}p_i\right)}\\
 &= \sum_{I \subseteq [k]} (-1)^{|I|}\frac{n}{(\prod_{i \in I}p_i)}\\
-&= n\sum_{I \subseteq [k]} (-1)^{|I|}\frac{1}{(\prod_{i \in I}p_i)}\\
-&=n(\prod_{i=1}^{k}(1-\frac{1}{p_i}))
+&= n\sum_{I \subseteq [k]} (-1)^{|I|}\frac{1}{\left(\prod_{i \in I}p_i\right()}\\
+&=n\left(\prod_{i=1}^{k}\left(1-\frac{1}{p_i}\right)\right)
 \end{align*}
 Note that the last step is done similar to  (\ref{eq:F_def_in_PIE}) in PIE (section \ref{sec:Principle of Inclusion - Exclusion(PIE)}) derivation : $f_i$ there is equivalent to $\frac{1}{p_i}$ here. This completes the proof for the theorem.
 \end{proof}
 \vspace{.5cm}
 \noindent
-\begin{corollary}$\varnothing$ is multiplicative when numbers are co-primes. i.e., if $n_1, n_2$ are co-primes, then $\varnothing(n_1 n_2) = \varnothing(n_1) \varnothing(n_2)$.
+\begin{corollary}$\Phi$ is multiplicative when numbers are co-primes. i.e., if $n_1, n_2$ are co-primes, then $\Phi(n_1 n_2) = \Phi(n_1) \Phi(n_2)$.
 \end{corollary}
 \begin{proof}
 Let $A$ be the set of prime factors of $n_1n_2$. Since $n_1n_2$ is the product of two numbers $n_1$ and $n_2$, any prime $p \in A$ should divide at least one of $n_1$ and $n_2$. If $n_1$ and $n_2$ are co-primes, then the do not have any common prime factor. Therefore, any prime $p \in A$ should divide exactly one of $n_1$ and $n_2$. So, we can partition the set $A$ into two sets $X$ and $Y$ where $X$ is the set of prime factors of $n_1$ and $Y$ is that of $n_2$.
 \begin{align*}
-    \varnothing(n_1n_2) &= n_1 n_2  (\prod_{p \in A}(1-\frac{1}{p}))\\
+    \Phi(n_1n_2) &= n_1 n_2  (\prod_{p \in A}(1-\frac{1}{p}))\\
     &= n_1 (\prod_{p\in X}(1-\frac{1}{p})). n_2 (\prod_{p\in Y}(1-\frac{1}{p}))\\
-    &= \varnothing(n_1) \varnothing(n_2)
+    &= \Phi(n_1) \Phi(n_2)
 \end{align*}
-Thus, if $n_1$, $n_2$ are co-primes, then $\varnothing(n_1 n_2) = \varnothing(n_1) \varnothing(n_2)$. \end{proof}
+Thus, if $n_1$, $n_2$ are co-primes, then $\Phi(n_1 n_2) = \Phi(n_1) \Phi(n_2)$. \end{proof}
 
 
 \subsection{Probability that two natural numbers are co-primes} \label{subsec:co-primes application}
