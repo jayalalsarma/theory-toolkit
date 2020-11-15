@@ -48,7 +48,7 @@ Hence \# of different colorings with $2$ colors $=\frac{1}{6}\left(2^3+3*2^2+2*2
 
 \begin{tabular}{|l|l|}
     \hline
-\thead{\textbf{Permutation}} & \thead{\textbf{Corresponding Monomial}} \\\hline
+\textbf{Permutation} & \textbf{Corresponding Monomial} \\\hline
 Identity $(e)$ & $x_1^6$\\
 $180^0$ rotation wrt axis through centers of opposite faces ($3$ of them) &  $3x_1^{2}x_2^{2}$\\
 $180^0$ rotation wrt axis through centers of opposite edges ($6$ of them) &  $6x_2^3$\\
@@ -73,7 +73,7 @@ Suppose we have a group of symmetry as (considering $n$ to be even): $$G=\{e,g,g
 Groups of type $G$ are called as cyclic groups . The monomials corresponding to each permutations are as follows:\\
 \begin{tabular}{|l|l|}
     \hline
-\thead{\textbf{Permutation}} & \thead{\textbf{Corresponding Monomial}} \\\hline
+\textbf{Permutation} & \textbf{Corresponding Monomial} \\\hline
 $e$ & $x_1^n$\\
 $g$ & $x_n$\\
 $g^2$ & $x_{\frac{n}{2}}^2$\\
@@ -151,9 +151,10 @@ Hence , $g$ fixes square with $4$ corners coloured Black , $4$ corners colored W
 \begin{theorem}
 If the colors $\alpha_1,\alpha_2,\dots,\alpha_k$ are used , then 
 $$\textrm{\# of inequivalent colorings expressed as generating function } = P_G(\sum_{i=1}^{k}\alpha_i,\sum_{i=1}^{k}\alpha_i^2,\dots)$$
-\end{theorem}\\
+\end{theorem}
+
 \textbf{Example 1:-} Consider the necklace with $3$-half beads colored with Black and White . The group of symmetry is $G=\{e,R_{120},R_{240}\}$ . Then generating function is :
-$$P_G(x_1,x_2,x_3) &= \frac{1}{3}\left(x_1^3+2x_3\right)$$
+$$P_G(x_1,x_2,x_3) = \frac{1}{3}\left(x_1^3+2x_3\right)$$
 Substitute $x_1$ with $(b+w)$ , $x_2$ with $(b^2+w^2)$ and $x_3$ with $(b^3+w^3)$ . Then the generating function using Polya's theorem is:
 \begin{align*}
     P_G(b+w,B62+w^2,b^3+w^3) &= \frac{1}{3}\left((b+w)^3+2(b^3+w^3)\right)\\
@@ -196,12 +197,14 @@ The graphs that represents these posets are called as \textbf{Hasse diagram}. So
 Every poset $P(X,\leq)$ can be partitioned into height($P$) many antichains(and not less).
 \begin{proof}
 We know that every element in anti-chain are incomparable. Now take the set of the elements in the longest chain. The length of the chain is height($P$). We know every element in the chain are comparable. So every element in the longest chain must belong to different anti-chain. So there must be atleast height($P$) many anti-chains.
-\\\\
-Now, let's look at alternate proof using induction.\\\\
-\textbf{Claim:} For any max chain $C$ of poset $P$, min($P$) $\cap ~ C ~\neq~ \phi$\\
-We will do induction on height($P$). Now consider the longest chain C and remove min($P$) from $P$ to get $P^'$, so height of $P^'$ is height($P$) $ - 1$. We assume that the theorem is true for $P^'$.\\
-Applying induction hypothesis,\\
-Now add min($P$) to $P^'$, the height will be increased by $1$ that is height($P$) $=$ height($P^'$) $+ 1$ and adding min(P) will result in increasing number of anti-chains by $1$ to get full partition of $P$.
+
+Now, let's look at alternate proof using induction.
+
+\textbf{Claim:} For any max chain $C$ of poset $P$, min($P$) $\cap ~ C ~\neq~ \phi$
+
+We will do induction on height($P$). Now consider the longest chain C and remove min($P$) from $P$ to get $P'$, so height of $P'$ is height($P$) $ - 1$. We assume that the theorem is true for $P'$.
+
+Applying induction hypothesis, now add min($P$) to $P'$, the height will be increased by $1$ that is height($P$) $=$ height($P'$) $+ 1$ and adding min(P) will result in increasing number of anti-chains by $1$ to get full partition of $P$.
 \end{proof}
 \end{theorem}
 \begin{theorem}
@@ -217,22 +220,22 @@ Now $x_1$ becomes comparable to $x_2$. But $x_1, x_2 \in A$ which is anti-chain.
 $\Rightarrow x_1 = x_2 = y$\\
 $\Rightarrow y \in A$\\
 Suppose $|X_1| < |X| \And |X_2| < |X|$
-We can apply induction hypothesis on $P_1$ and $P_2$ to get chains $C_1, C_2, C_3, \ldots C_w$ and ${C^'}_1, {C^'}_2, {C^'}_3, \ldots {C^'}_w$ each of length $w$.\\
+We can apply induction hypothesis on $P_1$ and $P_2$ to get chains $C_1, C_2, C_3, \ldots C_w$ and ${C'}_1, {C'}_2, {C'}_3, \ldots {C'}_w$ each of length $w$.\\
 We know,\\
 $$A = min(P_1) = max(P_2)$$
 We can join the corresponding chains to get chains of poset $P$. Let the elements of set $A = \{a_1,a_2,a_3,\ldots,a_w\}$.\\
-Without loss of generality, let's assume that $C_1$ ends at $a_1$, $C_2$ ends at $a_2$ and so on upto $C_w$ ends at $a_w$. Similarly $C_1^'$ starts as $a_1$, $C_2^'$ starts at $a_2$ and so on upto $C_w^'$ starts at $a_w$. Now partition of $X$ for $P$ can be $C_1 \cdot {C_1^'}, ~C_2 \cdot {C_2^'}$ and so on upto $C_w \cdot {C_w^'}$.\\\\
+Without loss of generality, let's assume that $C_1$ ends at $a_1$, $C_2$ ends at $a_2$ and so on upto $C_w$ ends at $a_w$. Similarly $C_1'$ starts as $a_1$, $C_2'$ starts at $a_2$ and so on upto $C_w'$ starts at $a_w$. Now partition of $X$ for $P$ can be $C_1 \cdot {C_1'}, ~C_2 \cdot {C_2'}$ and so on upto $C_w \cdot {C_w'}$.\\\\
 We need to handle the case when $|X_1| = |X|$ or $|X_2| = |X|$.\\
 If $|X_1| = |X|$ that means $X_1 = X$, which in turn means $A = min(P)$. Similarly if we choose $A = max(P)$ then $X_2 = X$ and $|X_2| = |X|$. If there are anti-chains of size $w$ which are not min($P$) and max($P$), then we can do the same like above.\\\\
 But if it is the case that the only max sized anti-chains are max($P$) or min($P$) or both, we should look for alternate approach.\\\\
-Now consider any max chain in P, and remove that chain $C$ from $P$ to get $P^'$. So now,\\
+Now consider any max chain in P, and remove that chain $C$ from $P$ to get $P'$. So now,\\
 $$max(P) \cap C \neq \phi \And min(P) \cap C \neq \phi$$
-We can apply induction hypothesis to get a decomposition of $P^'$ in less than $w$ many chains. Now put the $C$ back to get decomposition into $w$ many chains which partition $X$.
+We can apply induction hypothesis to get a decomposition of $P'$ in less than $w$ many chains. Now put the $C$ back to get decomposition into $w$ many chains which partition $X$.
 
 \end{proof}
 \end{theorem}
 
-\section{Applications of partial order}
+\section{Applications of Dilworth's Theorem}
 \textbf{Application 1:} Proof of Erdős–Szekeres theorem\\
 \begin{theorem}
 Every sequence of $rs+1$ distinct integers, there must exist an increasing sequence of length $r+1$ or decreasing sequence of length $s+1$.
@@ -252,8 +255,8 @@ By Dilworth's theorem there is a decomposition of $P$ into atmost $s$ many chain
 We know there is a bijection between example $6$ and example $7$ in section $30.1$ i.e., between the sets\\
 $\Rightarrow$ subset poset of subsets of [n] $\rightarrow$ Boolean strings poset of length $n$.\\
 The max length of the chain is $n+1$. Intutively we can say that maximum size of the anti-chain is $n \choose \frac{n}{2}$. Let's look how to prove it in the next lecture by Sperner's theorem.
-\Lecture{Jayalal Sarma}{Nov 13, 2020}{31}{Sperner's Theorem}{Prasannasai Babu}{$\alpha$}{JS}
-\section{{Sperner's theorem}}
+%\Lecture{Jayalal Sarma}{Nov 13, 2020}{31}{Sperner's Theorem}{Prasannasai Babu}{$\alpha$}{JS}
+%\section{{Sperner's theorem}}
 \begin{theorem}
 \textbf The maximum size of any anti-chain in the subset poset(Example $6$ of $30.1$) is $n \choose \frac{n}{2}$.
 \begin{proof}
