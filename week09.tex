@@ -50,7 +50,7 @@ $(G,\circ)$ is a group if it satisfies closure, associativity and it has identit
 \end{definition} 
 \textbf{Example1} : Let's consider $\mathbb{Z}_p=\{0,1,...,p-1\} $ where $p$ is a prime number. Define the operation to be $+ \  mod \ p $. Let's verify whether $(\mathbb{Z}_p,+ \ mod \ p) $ is a group or not:
 \begin{itemize}
-\item \emph{Closure} : $\forall a, b\in \mathbb{Z}_p; a+ \ mod \ p\in \mathbb{Z}_p$. So, $\mathb{Z}_p$ is closed under the operation $+ \ mod \ p$
+\item \emph{Closure} : $\forall a, b\in \mathbb{Z}_p; a+ \ mod \ p\in \mathbb{Z}_p$. So, $\mathbb{Z}_p$ is closed under the operation $+ \ mod \ p$
 \item \emph{Associativity} : As modulo arithmetic is associative, $\mathbb{Z}_p$ is associative under $+ \ mod \ p$
 \item \emph{Identity} : $0$ is the identity element for all elements in $\mathbb{Z}_p$. 
 \item \emph{Inverse} : For any element $a\in \mathbb{Z}_p$, $(p-a)$ will be the inverse of $a$.
@@ -59,7 +59,7 @@ Hence, $(\mathbb{Z}_p,+ \ mod \ p) $ is a group.
 \paragraph{}
 Let's check whether $(\mathbb{Z}_p,\times \ mod  \ p) $ is group or not:
 \begin{itemize}
-\item \emph{Closure} : $\forall a, b\in \mathbb{Z}_p; a\times \ mod \ p\in \mathbb{Z}_p$. So, $\mathb{Z}_p$ is closed under the operation $\times \ mod \ p$
+\item \emph{Closure} : $\forall a, b\in \mathbb{Z}_p; a\times \ mod \ p\in \mathbb{Z}_p$. So, $\mathbb{Z}_p$ is closed under the operation $\times \ mod \ p$
 \item \emph{Associativity} : As modulo arithmetic is associative, $\mathbb{Z}_p$ is associative under $\times \ mod \ p$
 \item \emph{Identity} : $1$ is the identity element for all elements in $\mathbb{Z}_p$
 \item \emph{Inverse} : The element $0$ does not have any inverse.
@@ -141,7 +141,8 @@ Lagrange's Theorem : The size of a subgroup $|H$ must divide the size of a group
 
 \Lecture{Jayalal Sarma}{Nov 4, 2020}{25}{A step towards Polya's Theory }{Sampriti Roy}{$\alpha$}{JS}
 \section{A quick recap}
- In last lecture, we started with a problem of counting number of distinct colourings when the corner of a square are coloured with $2$ colours. We defined a set $G={R_0,R_{90},R_{180},R_{270},H,V,D,D'\} $ that acts on set of all possible $2$-coloured squares and some of them are equivalent under these operations. We have also talked about the definition of subgroup $(H)$ of a group $(G)$ and defined that for $g\in G\setminus H$, $Hg=\{hg: h\in H \}$. This $Hg$ is called \emph{coset} of $H$ in $G$. We have also seen that if any two cosets overlap, they have to be same. We have also talked about \amph{Lagrange's Theorem}. In this chapter the plan is to understand \emph{Polya's Theory}. We will complete it only in next lecture but we will do a step towards it. The step is known to be \emph{Burnside's Lemma}. 
+ In last lecture, we started with a problem of counting number of distinct colourings when the corner of a square are coloured with $2$ colours. We defined a set $G=\{R_0,R_{90},R_{180},R_{270},H,V,D,D'\} $ that acts on set of all possible $2$-coloured squares and some of them are equivalent under these operations. We have also talked about the definition of subgroup $(H)$ of a group $(G)$ and defined that for $g\in G\setminus H$, $Hg=\{hg: h\in H \}$. This $Hg$ is called \emph{coset} of $H$ in $G$. 
+We have also seen that if any two cosets overlap, they have to be same. We have also talked about \emph{Lagrange's Theorem}. In this chapter the plan is to understand \emph{Polya's Theory}. We will complete it only in next lecture but we will do a step towards it. The step is known to be \emph{Burnside's Lemma}. 
 \section{The abstract problem of counting distinct 2-coloured squares}
  $\Omega$ be the set of all $2$-coloured squares. There $|\Omega|=2^4=16$ possibilities. Our task is to count to number of distinct colourings among $\Omega$. Let's define the equivalence between two coloured squares formally:
  \begin{definition}
@@ -199,7 +200,7 @@ Where $k$ is the number of cosets $H$ in $G$. So, it is sufficient to prove that
 \paragraph{}
 Consider any $\beta\in Orbit(\alpha)$; it means $\exists g\in G $ s.t. $\alpha^g=\beta $. Now, coset corresponding to $g$ is $Hg$. We required to show the following:
 \begin{itemize}
-\item \emph{Well definedness} : There could be many $g\in G$ which makes $\alpha$ to $\beta$. We need to argue that no matter which $g\inG$ we choose, we will end up by getting the coset $Hg$.
+\item \emph{Well definedness} : There could be many $g\in G$ which makes $\alpha$ to $\beta$. We need to argue that no matter which $g\in G$ we choose, we will end up by getting the coset $Hg$.
 \item \emph{Injection} : For $\beta\neq \beta'\in Orbit(\alpha)$; there is $g,g'\in G$ where $\alpha^g=\beta,\alpha^{g'}=\beta'$; we will end up by getting two different cosets, i.e., $Hg\neq Hg' $.
 \item \emph{Surjection} : To show that for any coset we have corresponding element in the orbit of $\alpha$.
 \end{itemize}
@@ -280,7 +281,7 @@ Next we define the set of 'operations', $G$ which can act on elements on $\Omega
 \\
 Here is the labelled cube for reference:
 \\
-\includegraphics[]{cube.png}
+\includegraphics[]{./images/cube.png}
 \\
 The different operations are:
 \begin{itemize}
@@ -311,11 +312,11 @@ Consider the vertex $b$. If we flip the cube along $b$ by $120^{\circ}$, then th
 \\
 By symmetry, this is the opposite/complementary operation of the previous one, i.e. flip by $240^{\circ}$ = flip by $120^{\circ}$ in the other direction. Thus, $|fix(g)| = 4$.
 \end{itemize}
-\\
+
 Thus totally there are $1 + 3*3 + 6 + 4*2 = 24$ operations in $G$.
-\\
+
 Now, if we apply the formula to calculate the number of orbits, we get:
-$$\#of \ orbits \ in \ \Omega&=\frac{1}{24}(64 + 3*16 + 3*8 + 3*8 + 6*8 + 4*4 + 4*4) = 10$$
+$$\#of \ orbits \ in \ \Omega =\frac{1}{24}(64 + 3*16 + 3*8 + 3*8 + 6*8 + 4*4 + 4*4) = 10$$
 
 Therefore, we observe that out of the $64$ colorings, $10$ of them are in-equivalent.
 
@@ -328,9 +329,9 @@ Similarly, the identity permutation, $1, 2, 3, 4, 5$ would be written as $(1)(2)
 \begin{definition}
 \textbf{Type of permutation $\pi$} : A permuatation $\pi$ is said to be of type $(b_1, b_2, \ldots b_m)$ if $b_i$ represents the number of $i$ length cycles in the cycle representation of $\pi$.
 \end{definition}
-\\
+
 For example if $\pi = (1, 2, 3)\ (4, 5)$ then it is of type $(0, 1, 1, 0, 0)$, because there are no $1$ length cycles, $\implies b_1 = 0$, one $2$ length cycle, i.e. $4 \rightarrow 5 \rightarrow 4 \implies b_2 = 1$, and one $3$ length cycle.
-\\
+
 Now, corresponding to type $(b_1, b_2, \ldots b_m)$ consider the monomial $x_1^{b_1}\ x_2^{b_2} \ldots x_m^{b_m}$. Using these terms we define a polynomial as follows:
 \begin{definition}
 Cycle index polynomial of $G$:
@@ -386,7 +387,7 @@ Let us revisit the cube example. We list the different elements of $G$ as before
 \\
 Here is the labelled cube for reference:
 \\
-\includegraphics[]{cube.png}
+\includegraphics[]{./images/cube.png}
 \\
 \begin{itemize}
 \item $R_0$ : Rotation by $0^{\circ}$, i.e. identity. The cycle index of this permutation has $6$ cycles of length $1$, thus the number of colorings contributed will be $\boxed{x_1^6}$.
