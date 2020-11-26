@@ -1,33 +1,34 @@
 
 \Lecture{Jayalal Sarma}{Nov 23, 2020}{34}{Extremal Set Theory}{Mohit Singla}{$\alpha$}{JS}
 \section{Recall Sperner Theorem}
+\begin{theorem}
 Let $F$ be the family of subsets of $[n]$ $|$ $\forall$ $A,B \in F$, $A \nsubseteq B$.
 $$|F| \le {n\choose{n/2}}$$
-
-The size is the width of subset boolean poset.\\\\
+The size is the width of subset boolean poset.
+\begin{proof}
 \textbf{Tightness:-} The bound is tight as we have example $F=\{A\subseteq [n] \mid \left |A\right |=n/2\}$\\\\
-\textbf{Proof:-} 
-A permutation $\pi \in S_n$ is said to meet $A \subseteq \{1,2,\ldots,n\}$ if $A$ forms prefix of $\pi$. This statement meaning is, Let's say $|A| = k$ then $\pi$ said to meet $A$ if $A = \{\pi(1),\pi(2),\ldots,\pi(k)\}$.\\\\
-Consider each subset in $F$ and consider permutations meeting them, As we are taking subsets from $F$, they are incomparable. Hence a single permutation can't meet both $A$ and $B$.Now let's count the size of
-$$\sum_{A\in F} \bigg|\{\pi | \pi ~meets~ A\}\bigg|$$\\
-As single permutation can meet only one subset of F,
+ A permutation $\pi \in S_n$ is said to meet $A \subseteq \{1,2,\ldots,n\}$ if $A$ forms prefix of $\pi$. Let's say $|A| = k$ then $\pi$ said to meet $A$ if $A = \{\pi(1),\pi(2),\ldots,\pi(k)\}$.\\\\
+Consider each subset in $F$ and consider permutations meeting them, As we are taking subsets from $F$, they are incomparable. Hence a single permutation can't meet both $A$ and $B$. So,
 $$\sum_{A\in F} \bigg|\{\pi | \pi ~meets~ A\}\bigg| \leq n!$$\\
 Now number of permutations that can meet set $A$ of size $k$ is $k! \times (n-k)!$.So,
-$$\sum_{A\in F} |A|! \times (n-|A|)! ~~~\leq~~~ n!$$\\
-Bring that RHS term to LHS, now 
-$$\sum_{A\in F} \frac{1}{\frac{n!}{|A|! \times (n-|A|)!}} ~~~\leq~~~ 1$$
+$$\sum_{A\in F} |A|! \times (n-|A|)! ~~~\leq~~~ n!$$
 $$\boxed{\sum_{A\in F} \frac{1}{{n \choose {|A|}}} ~~~ \leq ~~~ 1}$$\\
 The above inequality is known as \textbf{LYM Inequality -  Lubell–Yamamoto–Meshalkin Inequality,}\\\\
 We can substitute $n \choose \frac{n}{2}$ in place of $|A|$ and the inequality still holds.
 $$\sum_{A\in F} \frac{1}{{n \choose \frac{n}{2}}} ~~~ \leq ~~~ 1$$
 $$\sum_{A\in F} 1  ~~~ \leq ~~~ {n \choose \frac{n}{2}}$$
 $$|F| ~~~\leq~~~ {n \choose \frac{n}{2}}$$\\
+\end{proof}
+\end{theorem}
 \section{Disussing family of subsets with certain intersection properties}
 The \textbf{Sperner theorem} we did is sample of family of subsets with intersection properties : for any pair $A,B \subseteq F ~|~ A\cap B \neq A$\\\\
 \textbf{Question:-} Consider  family of subsets of $[n]$ such that for any pair $A,B \subseteq [n]$, $A \cap B \neq \phi$. How large can $F$ be?\\\\
-\textbf{Building up:-} The size can be as large a $2^n$ but won't be equal to $2^n$ as if we take all singleton sets, their pairwise intersection is empty.\\ The size can be $2^{n-1}$, $F = \{ B \cup \{n\}~ | ~B\subseteq[n-1] \}$. Example for $n=3$ : $F=\{\{3\},\{1,3\},\{2,3\},\{1,2,3\}\}$. Can it be larger than $2^{n-1}$ ?\\\\
-\textbf{Claim:-} The size of family is atmost $2^{n-1}$. And this bound is tight as we already have an example for any $n$.\\\\
-\textbf{Proof:-} By the property of family of subsets, its clear that if any subset $A \in F \implies {A}^\complement \notin F$. If both $A$ and $A^\complement$ are present then their intersection is empty. So for every subset in $F$ there is subset not present in $F$. Hence $|F| \le 2^{n-1}$.\\\\
+\textbf{Building up:-} The size can be as large a $2^n$ but won't be equal to $2^n$ as if we take all singleton sets, their pairwise intersection is empty.\\ The size can be $2^{n-1}$, $F = \{ B \cup \{n\}~ | ~B\subseteq[n-1] \}$. Example for $n=3$ : $F=\{\{3\},\{1,3\},\{2,3\},\{1,2,3\}\}$. Can it be larger than $2^{n-1}$ ?
+\begin{theorem} The size of intersection family is atmost $2^{n-1}$. And this bound is tight as we already have an example for any $n$.
+\begin{proof}
+By the property of family of subsets, its clear that if any subset $A \in F \implies {A}^\complement \notin F$. If both $A$ and $A^\complement$ are present then their intersection is empty. So for every subset in $F$ there is subset not present in $F$. Hence $|F| \le 2^{n-1}$.
+\end{proof}
+\end{theorem}
 \textbf{Special cases of above family:-}
 \begin{enumerate}
 \item The intersection size is always $\lambda$ i.e. $A,B \subseteq F ~ \mid ~ |A \cap B|=\lambda$. Claim : $|F|\le n$.
@@ -41,9 +42,10 @@ We will answer above two cases using \textbf{Linear Algebra} techniques. Before 
     \item Each club has an odd number of members.
     \item Each pair of clubs have an even number of common members.
     \item No two clubs have same set of members.
-\end{itemize}\\\\
-\textbf{Claim:-} $m \le n$\\\\
-\textbf{Proof:-} Associate a $n$-sized 0-1 vector $v_i$ to each club $C_i$, such that $v_i[j]=1$ if $j$ is member of club $C_i$ else 0. It is now sufficient to prove that we cannot have more than $n$ different vectors. Theses vectors are defined over field $\mathbb{F}_2^n$. The field $\mathbb{F}_2^n$ can be considered as structure where both addition and multiplication is modulo 2 and every element is either 0 or 1.\\\\
+\end{itemize}
+\begin{theorem}In Odd Town problem $m \le n$.
+\begin{proof}
+Associate a $n$-sized 0-1 vector $v_i$ to each club $C_i$, such that $v_i[j]=1$ if $j$ is member of club $C_i$ else 0. It is now sufficient to prove that we cannot have more than $n$ different vectors. Theses vectors are defined over field $\mathbb{F}_2^n$. The field $\mathbb{F}_2^n$ can be considered as structure where both addition and multiplication is modulo 2 and every element is either 0 or 1.\\\\
 If we can show that the set of vectors $v_1, v_2, \hdots, v_m$ are linearly independent over $\mathbb{F}_2^n$, then it's implied that $m \le n$ as number of independent vectors are always less than or equal to dimension.\\\\
 Consider the inner product $\langle v_i,v_j\rangle$. In $\mathbb{F}_2^n$, $\langle a,b\rangle = (\sum_{1}^{n} a_ib_i)\%2$.\\
 
@@ -57,7 +59,9 @@ $$  \sum \left \langle \lambda_i v_i,v_j\right\rangle = 0$$
 $$  \sum \lambda_i \left \langle  v_i,v_j\right\rangle = 0$$\\
 As we saw earlier, when $i\neq j$ $\langle v_i,v_j\rangle=0$. And when $i= j$, $\langle v_i,v_j\rangle=1$. So the above equation can be written as:
 $$  \lambda_j \left \langle  v_j,v_j\right\rangle = 0$$
-For above equation to satisfy $\lambda_j=0$, this can be shown for all $\lambda$s. Hence proved $m\le n$.\\\\
+For above equation to satisfy $\lambda_j=0$, this can be shown for all $\lambda$s. Hence proved $m\le n$.
+\end{proof}
+\end{theorem}
 In next lecture we will analyse the special cases of intersection family.
 
 
@@ -67,20 +71,21 @@ The family $F$ such that for any two subsets $A,B\subseteq F ~|~ A\cap B \neq \p
 \begin{enumerate}
     \item The intersection size is always $\lambda$ i.e. $A,B \subseteq F ~ \mid ~ |A \cap B|=\lambda$. Claim : $\boxed{|F|\le n}$. This inequality is knows as \textbf{Fisher's Inequality}.
     \item The family is $k$-uniform $\lambda$ i.e. $A \subseteq F ~ \mid ~ |A|=k$. Claim : $\boxed{|F|\le {{n-1}\choose{k-1}}}$. This is knows as \textbf{Edr{\"o}s Ko-Rado Theorem}.
-\end{enumerate}\\
+\end{enumerate}
 We saw \textbf{Odd-Town Theorem} which states that if:
 \begin{itemize}
     \item $n$ people in an odd town form $m$ clubs $C_1, C_2, \hdots, C_m$.
     \item Each club has an odd number of members.
     \item Each pair of clubs have an even number of common members.
     \item No two clubs have same set of members.
-\end{itemize}\\\\ Then $m\le n$. We proved this inequality using \textbf{Linear Algebra}. We associated one vector with each club and showed that all the vectors are linearly independent. As the dimension is $n$, there can't be more that $n$ linearly independent vectors.
+\end{itemize}
+Then $m\le n$. We proved this inequality using \textbf{Linear Algebra}. We associated one vector with each club and showed that all the vectors are linearly independent. As the dimension is $n$, there can't be more that $n$ linearly independent vectors.
 
 \section{Fisher's Inequality (1940s)}
-We will look at proof by \textbf{Babai Frankl} in 1992.\\\\
-The family $F$ such that intersection size is always $\lambda$ i.e. $A,B \subseteq F ~ \mid ~ |A \cap B|=k $.\\\\
-\textbf{Claim :} $|F|\le n$.\\\\
-\textbf{Proof :} Associate a $n$-sized 0-1 vector $v_i$ to each club $C_i$, such that $v_i[j]=1$ if $j$ is member of club $C_i$ else 0. Each $v_i\in \mathbb{R}^n$.\\\\
+We will look at proof by \textbf{Babai Frankl} in 1992.
+\begin{theorem}
+The family $F$ such that intersection size is always $\lambda$ i.e. $A,B \subseteq F ~ \mid ~ |A \cap B|=k $. then $|F|\le n$.
+\begin{proof}Associate a $n$-sized 0-1 vector $v_i$ to each club $C_i$, such that $v_i[j]=1$ if $j$ is member of club $C_i$ else 0. Each $v_i\in \mathbb{R}^n$.\\\\
 Consider the inner product $\langle v_i,v_j\rangle$. In $\mathbb{R}^n$, $\langle a,b\rangle = (\sum_{1}^{n} a_ib_i)$.\\
 
 ~\textbf{Case 1:} $i\neq j$, $\langle v_i,v_j\rangle = \sum_{k=1}^{n} v_i[k]v_j[k] = | C_i \cap C_j | = k$. As the size of intersection is always k.\\
@@ -97,6 +102,8 @@ Suppose there exist a $C_i$ such that $|C_i|=k$, then no other club size can be 
 So in the expression $\sum_1^m \lambda_i^2 (|C_i|-k) +(\sum_1^m \lambda_i)^2k$, both the parts in summation are non-negative. For right part to be zero, $\sum_1^m \lambda_i =0$. Not all $\lambda$s are zero but their summation is, so there are atleast 2 $\lambda$s which are non-zero.\\\\
 Now lets focus on left part. Each term $\lambda_i^2 (|C_i|-k)$ is non-negative.  There are atleast 2 $\lambda$s which are non-zero but atmost one $(|C_i|-k)$ can be zero. So the summation is always positive. So if there are non-zero $\lambda$s then summation can't be equated to zero. This leads to contradiction in assumption that there exists non-zero $\lambda$s which satisfy above equation.\\\\
 Hence proved that vectors $v_1, v_2, \hdots, v_m$ are linearly independent. So $m\le n$.
+\end{proof}
+\end{theorem}
 
 \section{Application of Fisher Inequality and Odd Town Theorem}
 \subsection{Ramsey Number}
@@ -104,13 +111,17 @@ Hence proved that vectors $v_1, v_2, \hdots, v_m$ are linearly independent. So $
 Earlier we have proved $R(t,t)>2^t$ i.e. there exist a 2-edge coloring of $K_{2^t}$ such that there is no red $K_t$ or blue $K_t$. We proved this using probabilistic method. We chose color of each edge uniformly at random and observed that the probability of graph having either red $K_t$ or blue $K_t$ is strictly less than 1. So there exist a graph with neither has red $K_t$ nor blue $K_t$, we did not explicitly drew thew the graph. This proof was \textbf{non-constructive}.\\\\
 If we want a constructive example for lower-bound, we have much weaker lower bound.
 \subsection{Constructive lower bound for diagonal Ramsey number}
-\textbf{Claim:} $R(t+1,t+1)> {t\choose 3}$\\\\
-We will be able to show a construction to prove this claim.\\\\
-\textbf{Proof:} We need to show there exist a 2-edge coloring of $K_{t\choose 3}$ such that there is no red $K_{t+1}$ or blue $K_{t+1}$.\\\\
+\begin{claim}
+$R(t+1,t+1)> {t\choose 3}$\\\\
+We will be able to show a construction to prove this claim.
+\begin{proof}
+We need to show there exist a 2-edge coloring of $K_{t\choose 3}$ such that there is no red $K_{t+1}$ or blue $K_{t+1}$.\\\\
 $n={t\choose 3}$. Interpret each vertex as 3-sized subset of set $\{1, 2, \hdots, t\}$. Let $A,B \in V$, then $A,B \subseteq [t]$ and $|A|=|B|=3$. Color edge $AB$ red if $|A\cap B| =0$ or $2$. As size of each subset is 3 and all are pairwise distinct, the intersection size can only be 0, 1 or 2. Color edge $AB$ blue if $|A\cap B| =1$.\\\\
 Lets look for blue $K_{t+1}$. Consider $F$ as family consisting 3-sized subsets of $[t]$ such that intersection size is 1. These subsets in $F$ will represent the vertices corresponding to blue edges as described earlier. By Fishers theorem we know $|F|\le t$. There are atmost $t$ vertices available so there can't be $K_{t+1}$.\\\\
 Lets look for red $K_{t+1}$. Consider $F$ as family consisting 3-sized subsets of $[t]$ such that intersection size is even. These subsets in $F$ will represent the vertices corresponding to red edges as described earlier. Now we have all subsets of odd size and intersection size even. All conditions required in Odd Town theorem are satisfied, so by the theorem $|F|\le t$. There are atmost $t$ vertices available so there can't be $K_{t+1}$.\\\\
 Hence proved.
+\end{proof}
+\end{claim}
 
 \section{Edr{\"o}s Ko-Rado Theorem (Discovered-1938, Presented-1962)}
 \begin{lemma} Let $C$ be a cycle of length $n$ ($n$ edges and $n$ vertices). Let $H$ be family of paths in $C$ of fixed length $k$ where $k\le \frac{n}{2}$. Assume any paths in $H$ have an common edge. Then $|H|\le k$.
@@ -121,8 +132,8 @@ Hence proved.
 \begin{theorem}
 $F$ is $k$-uniform where $k\le \frac{n}{2}$, family of subsets of $[n]$ such that for every $A,B \subseteq F$, $A\cap B \neq \phi$. Note if $k> \frac{n}{2}$, then every pair of subsets trivially has non-empty intersection. Then $|F|\le {{n-1}\choose{k-1}}$
 
-\begin{proof}\\
-\textbf{Tightness:} $F_k=\{\{n\}\cup B ~|~ B\subseteq [n-1] ,|B|=k-1\}$. $|F_k|={{n-1}\choose{k-1}}$ The claim is tight as we have an example for any $k$.\\
+\begin{proof}
+\textbf{Tightness:} $F_k=\{\{n\}\cup B ~|~ B\subseteq [n-1] ,|B|=k-1\}$. $|F_k|={{n-1}\choose{k-1}}$ The claim is tight as we have an example for any $k$.
 The case when $n$ is even and $k=n/2$, we can take $F_k$ such that for every $\frac{n}{2}$-sized subset of $[n]$, we take either that subset or its complement in $F$. $|F_k|={{{n}\choose{n/2}}* \frac{1}{2}}=\frac{n}{n/2}* {{n-1}\choose n/2-1}* \frac{1}{2} = {{n-1}\choose{n/2-1}}$.\\\\
 We will discuss the proof by \textbf{Katona, 1972} using cycle permutation argument.\\\\
 Assume someone invited $n$ people to a party. These $n$ people are members of clubs $C_1, C_2, \hdots, C_m$ where each club is of size $k$ and every pair of intersection is non-empty. The party has round table with $n$ labelled chairs. Host wants to seat the club members contiguously. He decided to try all $n!$ permutations. Lets define a Matrix $H$ with $n!$ rows indexing the permutation number which represents seating arrangement. The columns are indexed by club $C_1, C_2, \hdots, C_m$, so total $m$ columns. A entry $H[i][j]$ is 1 if members of club $C_j$ are contiguous in permutation number $i$ else its 0. Let $c$ be the number of ones in matrix $H$. we will count $c$ in 2 ways\\\\
