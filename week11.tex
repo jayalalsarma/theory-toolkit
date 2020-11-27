@@ -223,14 +223,14 @@ $$=> \boxed{\mu(x,y) = -\sum_{x \le z < y} \mu(x,z)}$$
 
 Hence, Mobius Function is defined as
 
-\begin{center}
-    \doublebox{ $\mu (x, y) =  
+\begin{equation}
+\mu (x, y) =  
     \begin{cases}
     &-\sum\limits_{x \le z < y} \mu(x,z) ~~~~~~~~~~~~~~~~~~~~~\textrm{if} ~~x < y \\
     &1 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\textrm{if} ~~ x=y \\
     &0 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\textrm{if x and y are incomparable i.e.} ~~ x ~||~ y\\
-    \end{cases}$ }
-\end{center}
+    \end{cases}
+\end{equation}
 
 
 \noindent Now, Let's consider an example of Divisibility Poset and apply the mobius function on it, 
@@ -296,11 +296,7 @@ Hence, Mobius Function is defined as
 
 Thus, In general for a prime number $p$,
 
-\begin{center}
-    \doublebox{
-    $\mu(1,p) = -1$
-    }
-\end{center}
+$$\mu(1,p) = -1$$
 
 Now,
 \begin{align*}
@@ -316,12 +312,10 @@ Now,
 \end{align*}
 
 Thus, In general for prime numbers $p$ and $q$ ,
-\begin{center}
-    $\mu(1,p q) = -(\mu(1,1) + \mu(1,p) + \mu(1,q))$\\
-    $=>$\doublebox{
-    $\mu(1,p q) = 1$
-    }
-\end{center}
+\begin{eqnarray*}
+\mu(1,p q) & = & -(\mu(1,1) + \mu(1,p) + \mu(1,q)) \\
+\implies \mu(1,p q) & = & 1  
+\end{eqnarray*}
 
 \noindent Now,
 \begin{align*}
@@ -333,12 +327,7 @@ Thus, In general for prime numbers $p$ and $q$ ,
 \end{align*}
 
 Thus, In general for a prime number $p$,
-
-\begin{center}
-    \doublebox{
-    $\mu(1,p^2) = 0$
-    }
-\end{center}
+$$\mu(1,p^2) = 0$$
 
 \noindent Now,
 \begin{align*}
@@ -353,13 +342,10 @@ Thus, In general for a prime number $p$,
 
 Thus, In general for prime numbers $p$ and $q$,
 
-\begin{center}
-    $\mu(1,p^2 q) = -(\mu(1,1) + \mu(1,p) + \mu(1,q) + \mu(1,p q) + \mu(1,p^2) )$
-    \\
-    $=>$\doublebox{
-    $\mu(1,p^2 q) = 0$
-    }
-\end{center}
+\begin{eqnarray*}
+\mu(1,p^2 q) & = & -(\mu(1,1) + \mu(1,p) + \mu(1,q) + \mu(1,p q) + \mu(1,p^2) ) \\
+\implies \mu(1,p^2 q) & = & 0
+\end{eqnarray*}
 
 \noindent Now,
 \begin{align*}
@@ -372,26 +358,21 @@ Thus, In general for prime numbers $p$ and $q$,
 
 Thus, In general for prime numbers $p$, $q$ and $r$,
 
-\begin{center}
-    $\mu(1,p q r) = -(\mu(1,1) + \mu(1,p) + \mu(1,q) + \mu(1,p q) + \mu(1,q r) + \mu (1, p r) )$
-    \\
-    \doublebox{
-    $\mu(1,p q r) = 1$
-    }
-\end{center}
+\begin{eqnarray*}
+\mu(1,p q r) & = & -(\mu(1,1) + \mu(1,p) + \mu(1,q) + \mu(1,p q) + \mu(1,q r) + \mu (1, p r) ) \\
+\implies \mu(1,p q r) & = & 1
+\end{eqnarray*}
 
-Therefore In general, The mobius function for the divisibility poset turns out to be,
+Therefore, in general, The mobius function for the divisibility poset turns out to be,
 
-\begin{center}
-    \doublebox{ $\mu (d)
+\begin{eqnarray*}
+\mu (d)
     \begin{cases}
         &= +1 ~~~~~~~~~~~~\textrm{If $d$ is a product of even number of primes}\\
         &= -1 ~~~~~~~~~~~~\textrm{If $d$ is a product of odd number of primes}\\
         &= 0 ~~~~~~~~~~~~~\textrm{Otherwise}\\
     \end{cases}
-    $
-    }
-\end{center}
+\end{eqnarray*}
 
 \section{Mobius Inversion theorem over Posets}
 
@@ -418,22 +399,20 @@ $$\forall a \in X, ~~g(a) = \sum\limits_{x \le a} f(x)  ~~~~~~~~~(1)$$
 
 \noindent Now, we define two functions $F(x,y)$ and $G(x,y)$ such that,
 
-\begin{Parallel}[v]{0.48\textwidth}{0.48\textwidth}
-\ParallelLText{
+\begin{minipage}{0.48\linewidth}
 \begin{align*}
    & \forall a \in X ,\\
    & F(m,a) = f(a)\\
    & G(m,a) = g(a)\\
-\end{align*}}
-\ParallelRText{
+\end{align*}
+\end{minipage}
+\begin{minipage}{0.48\linewidth}
 \begin{align*}
    & \textrm{For all other}~ x ~\textrm{and} ~ y ~ \textrm{where} ~ x \ne m,\\
    & F(x,y) = 0\\
    & G(x,y) = 0\\
 \end{align*}
-}
-  \ParallelPar
-\end{Parallel}
+\end{minipage}
 
 \noindent Thus, By Incidence Algebra $F,G \in A(P)$ for $P(X,\le)$.\\
 
@@ -475,11 +454,9 @@ $$\boxed{F = G \star \mu}$$
 \end{align*}
 
 \noindent Thus,
-\begin{center}
-    \doublebox{$\forall a \in X, ~~~~~~~~f(a)  = \sum\limits_{x \le a} \mu(x,a) g(x)$}
-\end{center}
+$$\forall a \in X, ~~~~~~~~f(a)  = \sum\limits_{x \le a} \mu(x,a) g(x)$$
 
-Hence Proved.\\
+Hence Proved.
 
 \end{proof}
 
@@ -534,11 +511,7 @@ $$=> \boxed{\mu (X,Y) = - \sum_{X \subseteq Z \subseteq Y} (-1)^{|Z|-|X|} + (-1)
 \end{align*}
 Therefore, Equation (1) becomes,\\
 
-\begin{center}
-    \doublebox{
-$\mu (X,Y) = (-1)^{|Y|-|X|}$
-}
-\end{center}
+$$\mu (X,Y) = (-1)^{|Y|-|X|}$$
 
 Hence Proved.\\
 
@@ -548,20 +521,7 @@ Hence Proved.\\
 $f: 2^{[n]} \rightarrow \R$ , $g: 2^{[n]} \rightarrow \R $ ) such that
 $$\forall A \subseteq [n], ~~~~~ g(A) = \sum_{S \subseteq A} f(S) $$
 then
-\begin{center}
-    \doublebox{
-    $\forall A \subseteq [n], ~~~~~ f(A) = \sum\limits_{S \subseteq A} (-1)^{|A|- |S|}g(S) $
-    }
-\end{center}
-
-
-
-
-
-
-
-
-
+$$\forall A \subseteq [n], ~~~~~ f(A) = \sum\limits_{S \subseteq A} (-1)^{|A|- |S|}g(S)$$
 
 
 \Lecture{Jayalal Sarma}{ 19 November, 2020}{34}{More Applications of Structure of Partial Orders, Fixed Point Theorems}{Kaushik Arcot, Abhishek Aladahalli}{$\alpha$}{JS}
@@ -756,7 +716,7 @@ Now, for $x \in \bar{f(H)}$. We know,
 
 And that $g^{-1}(x)$ is defined $\forall x \in \bar H$ (already proved). Since $g^{-1}$ is obviously injective ( if $x \ne y$ and  $g^{-1}(x) = g^{-1}(y) = a$, then $g(a)$ is not defined), we can apply $g^{-1}$ on both sides of \ref{eqn:1}, to get 
 
-$$ g^{-1}(\ba   r H) \subseteq \bar{f(H)}$$
+$$ g^{-1}(\bar{H}) \subseteq \bar{f(H)}$$
 
 As $g{-1}$ is injective, and we know that $|\bar H| = g(\bar{f(H)})$, both the sets are of the same size, thus,
 $$ g^{-1}(\bar H) = \bar{f(H)}$$.

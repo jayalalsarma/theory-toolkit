@@ -8,7 +8,7 @@ The size is the width of subset boolean poset.
 \begin{proof}
 \textbf{Tightness:-} The bound is tight as we have example $F=\{A\subseteq [n] \mid \left |A\right |=n/2\}$\\\\
  A permutation $\pi \in S_n$ is said to meet $A \subseteq \{1,2,\ldots,n\}$ if $A$ forms prefix of $\pi$. Let's say $|A| = k$ then $\pi$ said to meet $A$ if $A = \{\pi(1),\pi(2),\ldots,\pi(k)\}$.\\\\
-Consider each subset in $F$ and consider permutations meeting them, As we are taking subsets from $F$, they are incomparable. Hence a single permutation can't meet both $A$ and $B$. So,
+Consider each subset in $F$ and consider permutations meeting them, As we are taking subsets from $F$, they are incomparable. Hence a single permutation can not meet both $A$ and $B$. So,
 $$\sum_{A\in F} \bigg|\{\pi | \pi ~meets~ A\}\bigg| \leq n!$$\\
 Now number of permutations that can meet set $A$ of size $k$ is $k! \times (n-k)!$.So,
 $$\sum_{A\in F} |A|! \times (n-|A|)! ~~~\leq~~~ n!$$
@@ -23,7 +23,7 @@ $$|F| ~~~\leq~~~ {n \choose \frac{n}{2}}$$\\
 \section{Disussing family of subsets with certain intersection properties}
 The \textbf{Sperner theorem} we did is sample of family of subsets with intersection properties : for any pair $A,B \subseteq F ~|~ A\cap B \neq A$\\\\
 \textbf{Question:-} Consider  family of subsets of $[n]$ such that for any pair $A,B \subseteq [n]$, $A \cap B \neq \phi$. How large can $F$ be?\\\\
-\textbf{Building up:-} The size can be as large a $2^n$ but won't be equal to $2^n$ as if we take all singleton sets, their pairwise intersection is empty.\\ The size can be $2^{n-1}$, $F = \{ B \cup \{n\}~ | ~B\subseteq[n-1] \}$. Example for $n=3$ : $F=\{\{3\},\{1,3\},\{2,3\},\{1,2,3\}\}$. Can it be larger than $2^{n-1}$ ?
+\textbf{Building up:-} The size can be as large a $2^n$ but will not be equal to $2^n$ as if we take all singleton sets, their pairwise intersection is empty.\\ The size can be $2^{n-1}$, $F = \{ B \cup \{n\}~ | ~B\subseteq[n-1] \}$. Example for $n=3$ : $F=\{\{3\},\{1,3\},\{2,3\},\{1,2,3\}\}$. Can it be larger than $2^{n-1}$ ?
 \begin{theorem} The size of intersection family is atmost $2^{n-1}$. And this bound is tight as we already have an example for any $n$.
 \begin{proof}
 By the property of family of subsets, its clear that if any subset $A \in F \implies {A}^\complement \notin F$. If both $A$ and $A^\complement$ are present then their intersection is empty. So for every subset in $F$ there is subset not present in $F$. Hence $|F| \le 2^{n-1}$.
@@ -79,7 +79,7 @@ We saw \textbf{Odd-Town Theorem} which states that if:
     \item Each pair of clubs have an even number of common members.
     \item No two clubs have same set of members.
 \end{itemize}
-Then $m\le n$. We proved this inequality using \textbf{Linear Algebra}. We associated one vector with each club and showed that all the vectors are linearly independent. As the dimension is $n$, there can't be more that $n$ linearly independent vectors.
+Then $m\le n$. We proved this inequality using \textbf{Linear Algebra}. We associated one vector with each club and showed that all the vectors are linearly independent. As the dimension is $n$, there can not be more that $n$ linearly independent vectors.
 
 \section{Fisher's Inequality (1940s)}
 We will look at proof by \textbf{Babai Frankl} in 1992.
@@ -100,7 +100,7 @@ $$\implies ~~ \sum_1^m \lambda_i^2 (|C_i|-k) +(\sum_1^m \lambda_i)^2k = 0$$\\\\
 
 Suppose there exist a $C_i$ such that $|C_i|=k$, then no other club size can be $k$. If there are two clubs with size $k$ and their intersection is also of size $k$, then both the clubs have to be equal. so at-most one club can have size $k$. Now as the intersection size is always $k$, for all $j$, $C_i \subseteq C_j$ must hold as the size of $C_i$ is $k$ and $|C_i \cap C_j |=k$. Note for all $C_i$, $|C_i|\ge k$ as the intersection size with any other club is of size $k$.\\\\
 So in the expression $\sum_1^m \lambda_i^2 (|C_i|-k) +(\sum_1^m \lambda_i)^2k$, both the parts in summation are non-negative. For right part to be zero, $\sum_1^m \lambda_i =0$. Not all $\lambda$s are zero but their summation is, so there are atleast 2 $\lambda$s which are non-zero.\\\\
-Now lets focus on left part. Each term $\lambda_i^2 (|C_i|-k)$ is non-negative.  There are atleast 2 $\lambda$s which are non-zero but atmost one $(|C_i|-k)$ can be zero. So the summation is always positive. So if there are non-zero $\lambda$s then summation can't be equated to zero. This leads to contradiction in assumption that there exists non-zero $\lambda$s which satisfy above equation.\\\\
+Now lets focus on left part. Each term $\lambda_i^2 (|C_i|-k)$ is non-negative.  There are atleast 2 $\lambda$s which are non-zero but atmost one $(|C_i|-k)$ can be zero. So the summation is always positive. So if there are non-zero $\lambda$s then summation cannot be equated to zero. This leads to contradiction in assumption that there exists non-zero $\lambda$s which satisfy above equation.\\\\
 Hence proved that vectors $v_1, v_2, \hdots, v_m$ are linearly independent. So $m\le n$.
 \end{proof}
 \end{theorem}
@@ -117,29 +117,58 @@ We will be able to show a construction to prove this claim.
 \begin{proof}
 We need to show there exist a 2-edge coloring of $K_{t\choose 3}$ such that there is no red $K_{t+1}$ or blue $K_{t+1}$.\\\\
 $n={t\choose 3}$. Interpret each vertex as 3-sized subset of set $\{1, 2, \hdots, t\}$. Let $A,B \in V$, then $A,B \subseteq [t]$ and $|A|=|B|=3$. Color edge $AB$ red if $|A\cap B| =0$ or $2$. As size of each subset is 3 and all are pairwise distinct, the intersection size can only be 0, 1 or 2. Color edge $AB$ blue if $|A\cap B| =1$.\\\\
-Lets look for blue $K_{t+1}$. Consider $F$ as family consisting 3-sized subsets of $[t]$ such that intersection size is 1. These subsets in $F$ will represent the vertices corresponding to blue edges as described earlier. By Fishers theorem we know $|F|\le t$. There are atmost $t$ vertices available so there can't be $K_{t+1}$.\\\\
-Lets look for red $K_{t+1}$. Consider $F$ as family consisting 3-sized subsets of $[t]$ such that intersection size is even. These subsets in $F$ will represent the vertices corresponding to red edges as described earlier. Now we have all subsets of odd size and intersection size even. All conditions required in Odd Town theorem are satisfied, so by the theorem $|F|\le t$. There are atmost $t$ vertices available so there can't be $K_{t+1}$.\\\\
+Lets look for blue $K_{t+1}$. Consider $F$ as family consisting 3-sized subsets of $[t]$ such that intersection size is 1. These subsets in $F$ will represent the vertices corresponding to blue edges as described earlier. By Fishers theorem we know $|F|\le t$. There are atmost $t$ vertices available so there cannot be $K_{t+1}$.\\\\
+Lets look for red $K_{t+1}$. Consider $F$ as family consisting 3-sized subsets of $[t]$ such that intersection size is even. These subsets in $F$ will represent the vertices corresponding to red edges as described earlier. Now we have all subsets of odd size and intersection size even. All conditions required in Odd Town theorem are satisfied, so by the theorem $|F|\le t$. There are atmost $t$ vertices available so there cannot be $K_{t+1}$.\\\\
 Hence proved.
 \end{proof}
 \end{claim}
 
 \section{Edr{\"o}s Ko-Rado Theorem (Discovered-1938, Presented-1962)}
 \begin{lemma} Let $C$ be a cycle of length $n$ ($n$ edges and $n$ vertices). Let $H$ be family of paths in $C$ of fixed length $k$ where $k\le \frac{n}{2}$. Assume any paths in $H$ have an common edge. Then $|H|\le k$.
-\begin{proof}Pick a path $p = (v_1, v_2, \hdots v_{k+1})$. All other paths have to intersect with this path. A path here is contiguous set of edges in cycle. Lets analyse how other paths look like. No other path can start from $v_1$, as it will end up being the same path $p$. No path can start at $v_{k+1}$, as $k\le \frac{n}{2}$ and path starting at $v_{k+1}$ will not have any edge common with $p$. Similarly no path can end at $v_1$ and $v_{k+1}$. So paths can start or end at $v_2, v_3 \hdots v_{k}$. Note if there is a path that starts at $v_j$, we can't include path ending at $v_j$ as these two paths won't have any common edge. So there can at-most be $k-1$ other paths. Hence $|H|\le k$.
+\begin{proof}Pick a path $p = (v_1, v_2, \hdots v_{k+1})$. All other paths have to intersect with this path. A path here is contiguous set of edges in cycle. Lets analyse how other paths look like. No other path can start from $v_1$, as it will end up being the same path $p$. No path can start at $v_{k+1}$, as $k\le \frac{n}{2}$ and path starting at $v_{k+1}$ will not have any edge common with $p$. Similarly no path can end at $v_1$ and $v_{k+1}$. So paths can start or end at $v_2, v_3 \hdots v_{k}$. Note if there is a path that starts at $v_j$, we cannot include path ending at $v_j$ as these two paths will not have any common edge. So there can at-most be $k-1$ other paths. Hence $|H|\le k$.
 \end{proof}
 \end{lemma}
 
-\begin{theorem}
+\begin{theorem}[{\bf Erd{\"o}s-Ko-Rado Theorem}]
 $F$ is $k$-uniform where $k\le \frac{n}{2}$, family of subsets of $[n]$ such that for every $A,B \subseteq F$, $A\cap B \neq \phi$. Note if $k> \frac{n}{2}$, then every pair of subsets trivially has non-empty intersection. Then $|F|\le {{n-1}\choose{k-1}}$
 
 \begin{proof}
-\textbf{Tightness:} $F_k=\{\{n\}\cup B ~|~ B\subseteq [n-1] ,|B|=k-1\}$. $|F_k|={{n-1}\choose{k-1}}$ The claim is tight as we have an example for any $k$.
-The case when $n$ is even and $k=n/2$, we can take $F_k$ such that for every $\frac{n}{2}$-sized subset of $[n]$, we take either that subset or its complement in $F$. $|F_k|={{{n}\choose{n/2}}* \frac{1}{2}}=\frac{n}{n/2}* {{n-1}\choose n/2-1}* \frac{1}{2} = {{n-1}\choose{n/2-1}}$.\\\\
-We will discuss the proof by \textbf{Katona, 1972} using cycle permutation argument.\\\\
-Assume someone invited $n$ people to a party. These $n$ people are members of clubs $C_1, C_2, \hdots, C_m$ where each club is of size $k$ and every pair of intersection is non-empty. The party has round table with $n$ labelled chairs. Host wants to seat the club members contiguously. He decided to try all $n!$ permutations. Lets define a Matrix $H$ with $n!$ rows indexing the permutation number which represents seating arrangement. The columns are indexed by club $C_1, C_2, \hdots, C_m$, so total $m$ columns. A entry $H[i][j]$ is 1 if members of club $C_j$ are contiguous in permutation number $i$ else its 0. Let $c$ be the number of ones in matrix $H$. we will count $c$ in 2 ways\\\\
-\textbf{Count 1:} For a given permutation, each club seated contiguously is a path in the cycle. The guests correspond to edges. As the family of clubs is an intersecting family, by above lemma we know that in each row there can be atmost $k$ ones. so $c \le k*n!$\\\\
-\textbf{Count 2:}As we are considering all the permutations possible, the number of times each club appears contiguously will be the same. In fact a club will appear contiguously in $nk!(n-k)!$ permutations. First choose the starting index from n positions, then permute the members inside group, and then permute the members outside group. There are $m$ columns, so $c=mnk!(n-k)!$.\\\\
-Using the above two counts, $mnk!(n-k)! \le k*n! \implies m \le {{n-1}\choose{k-1}}$.
+Before we prove the theorem, to get a feel, we construct an example first. And this example also will prove that the above theorem is tight.
+
+\paragraph{Tightness:} 
+Consider the family.
+$$F_k=\{\{n\}\cup B ~|~ B\subseteq [n-1] ,|B|=k-1\}$$
+
+Since $n$ is there in every set in the family, the family is an intersecting family. All sets have size $k$ and hence it is $k$-uniform. By definition, $|F_k|={{n-1}\choose{k-1}}$. Thus the claim is tight as we have an example for any $k$. It turns out that these are the only tight examples when $k < \frac{n}{2}$.
+
+When $n$ is even and $k=n/2$, there is one more tight example. We can take $F_k$ such that for every $\frac{n}{2}$-sized subset of $[n]$, we take either that subset or its complement in $F$. 
+$$|F_k|={{{n}\choose{n/2}}* \frac{1}{2}}=\frac{n}{n/2}* {{n-1}\choose n/2-1}* \frac{1}{2} = {{n-1}\choose{n/2-1}}$$
+
+\paragraph{Proof of the {\bf Erd{\"o}s-Ko-Rado Theorem}:} We will discuss the proof by \textbf{Katona (1972)} using cycle permutation argument. 
+
+Assume someone invited all of the $n$ people from the town to a party. These $n$ people are members of clubs $C_1, C_2, \hdots, C_m$ where each club is of size $k$ and every pair of intersection is non-empty. The party has round table with $n$ labelled chairs. Host wants to seat the club members contiguously. But of course he may not be able to since there may be contradictory requirements across clubs since members can be common. 
+
+However, in an attempt to maximise the seating satisfaction of the club members, he decided to try all $n!$ permutations. Lets define a Matrix $H$ with $n!$ rows indexing the permutation number which represents seating arrangement. The columns are indexed by club $C_1, C_2, \hdots, C_m$, so total $m$ columns. The entries of the matrix defined as follows. For $\sigma \in S_n, j \in [m]$:
+
+$$H(\sigma,j) = 
+\begin{cases}
+1 & \textrm{~if $\sigma$ seats members of club $C_j$ contiguously} \\
+0 & \textrm{otherwise} \\
+\end{cases}
+$$
+
+Let $c$ be the number of ones in matrix $H$. we will count $c$ in two different ways.
+
+\begin{description}
+\item{\textbf{Count 1 - Row-wise first:}} For a given permutation, each club seated contiguously is a path in the cycle. The guests correspond to edges. As the family of clubs is an intersecting family, by above lemma we know that in each row there can be atmost $k$ ones. so $c \le k*n!$
+\item{\textbf{Count 2 : Column-wise first:}} As we are considering all the permutations possible, the number of times each club appears contiguously will be the same. In fact a club will appear contiguously in $nk!(n-k)!$ permutations. First choose the starting index from n positions, then permute the members inside group, and then permute the members outside group. There are $m$ columns, so $c=mnk!(n-k)!$.
+\end{description}
+Using the above two counts, 
+\begin{eqnarray*}
+m~n~k!~(n-k)! & \le & k~n! \\ 
+m & \le & \frac{kn!}{nk!(n-k)!} \le \frac{(n-1)!}{(k-1)!(n-k)!} \le {n-1 \choose k-1}
+\end{eqnarray*}
+
 
 \end{proof}
 \end{theorem}
