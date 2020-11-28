@@ -1,5 +1,5 @@
 
-\Lecture{Jayalal Sarma}{Nov 23, 2020}{34}{Extremal Set Theory}{Mohit Singla}{$\alpha$}{JS}
+\Lecture{Jayalal Sarma}{Nov 23, 2020}{35}{Extremal Set Theory}{Mohit Singla}{$\alpha$}{JS}
 \section{Recall Sperner Theorem}
 \begin{theorem}
 Let $F$ be the family of subsets of $[n]$ $|$ $\forall$ $A,B \in F$, $A \nsubseteq B$.
@@ -65,7 +65,7 @@ For above equation to satisfy $\lambda_j=0$, this can be shown for all $\lambda$
 In next lecture we will analyse the special cases of intersection family.
 
 
-\Lecture{Jayalal Sarma}{Nov 25, 2020}{35}{More on Linear Algebra Techniques}{Mohit Singla}{$\alpha$}{JS}
+\Lecture{Jayalal Sarma}{Nov 25, 2020}{36}{More on Linear Algebra Techniques}{Mohit Singla}{$\alpha$}{JS}
 \section{Recall some intersection families}
 The family $F$ such that for any two subsets $A,B\subseteq F ~|~ A\cap B \neq \phi$, then $|F| \le 2^{n-1}$. Then we questioned two special cases of this intersection family.
 \begin{enumerate}
@@ -172,3 +172,142 @@ m & \le & \frac{kn!}{nk!(n-k)!} \le \frac{(n-1)!}{(k-1)!(n-k)!} \le {n-1 \choose
 
 \end{proof}
 \end{theorem}
+
+\Lecture{Jayalal Sarma}{Nov 27, 2020}{37}{Generalization of linear algebraic method }{Banavath Tarun}{$\alpha$}{JS}
+
+\section {Running problems}
+
+\begin{enumerate}
+    \item \underline{\textbf{Intersecting family}} : Let $\mathcal{F}$ be family of subsets of $\{1,2,3,...,n\}$ and is called Intersecting family, if every two subsets in these family intersect (i.e. $\forall A, B \in \mathcal{F}$, ~~$A \cap B \ne \phi$), and we have seen that $|\mathcal{F}|\le 2^{n-1}$.
+    
+    \item \underline{\textbf{Intersecting family with fixed size $\lambda$ (Fisher's Inequality)}} : Similarly, when $\mathcal{F}$ is a family of subsets of $\{1,2,3,....,n\}$ such that $\forall A, B \in \mathcal{F}$, $~~~|A\cap B| = \lambda$, then size of family is not too large and is given as $|\mathcal{F}|\le n$
+    \subitem \textbf{techniques used in Fisher's inequality :} Odd town problem, linear algebra method. 
+\end{enumerate}
+
+In this lecture, we discuss the theorems involving polynomial methods (or) function space methods.
+\\
+
+\underline{proof techniques for polynomial method (or) function space methods includes 3 steps:}
+
+\begin{enumerate}
+     \item Associate a polynomial in $n$-variables with each element 
+     \item prove that polynomials are linearly independent
+     \item Bound the dimensions of space of polynomials
+\end{enumerate}
+
+
+
+
+\section{Independence criterion Tool and Two-distance set}
+
+\begin{lemma}
+(\textbf{Independence criterion Tool}) $\forall ~1 \le i \le m$, let $f_i : \Omega \longrightarrow \mathbb{F}$ be a function, $v_i \in \Omega$ such that it satisfies the following two conditions : 
+\begin{enumerate}
+    \item $f_i(v_i) \ne 0, ~\forall ~i$
+    \item $f_i(v_j) = 0, ~\forall ~1 \le i<j \le m $
+\end{enumerate}
+then $\{f_1, f_2, f_3,....,f_m\}$ are linearly independent in $\mathbb{F}^{\Omega}$. (Here each function $f_i$ is a element in $\mathbb{F}^{\Omega}$ i.e. a vector)
+\begin{proof}
+Suppose $\exists \lambda_1, \lambda_2, \lambda_3,...,\lambda_m \in \mathbb{F}$ such that $F = \sum_{i =1}^{m} \lambda_i f_i = 0$ and suppose there are dependent, where not all $\lambda_i = 0$, then there is a contradiction. 
+Let $j$ be the largest index (rightmost) such that $\lambda_j \ne 0.$ Substitute $v_j$ to the above function $F$.
+We then have $F(v_j) = \sum_{i=1}^{m} \lambda_i f_i(v_j) = \lambda_j f_j(v_j)$ (because $\forall i > j $ $\lambda_i = 0$ by choice of $j$ and $\forall i< j$ the term $f_i(v_j) = 0$ by second condition) then $\lambda_j f_j(v_j) = 0$. Since $f_j(v_j) \ne 0$, $\lambda_j$ should be zero, but $\lambda_j \ne 0$ from above assumption. Thus it contradicts the fact that $\exists~ \lambda_1, \lambda_2, \lambda_3,...,\lambda_m \in \mathbb{F}$ that are dependent. 
+\end{proof}
+\end{lemma}
+
+\begin{claim}
+Let $a_1,a_2,....,a_m$ be $m$ points in $\mathbb{R}^{n}$, such that all pair-wise distances are unique, them relation between $m$ and $n$ is given as : $m \le n+1$ 
+\end{claim}
+What if we relax the condition in above claim and require that there are two possible distances c, d, so that any pairwise distance is either c or d? Such a set is called a two-distance set.
+\\
+Below theorem is an example of demonstration of a polynomial method (or) function space method.
+\\
+\begin{theorem}(\textbf{Two-distance set}) Consider a two-distance set, a set $S = \{a_1,a_2,a_3,...,a_m\}$ is said to two-distance set, if $\exists$ $d_1, d_2$ (two fixed distances) such that $\forall a_i, a_j \in S$, satisfy the relation $dist(a_i, a_j) = d_1$ or $dist(a_i, a_j) = d_2$ (where $dist(a_i, a_j)$ is the distance between the two points $a_i,a_j$ in $\mathbb{R}^{n}$).
+Then the relation between $m$ (size of two-distance set) and $n$ (dimension of elements in two-distance set) is given as : $m \le {n \choose 2} + 3n +2$.
+\end{theorem}
+\begin{proof}
+We Solve it using polynomial method (or) function space methods that follows the three steps as already mentioned.
+\\
+
+\underline{\textbf{step1 (Associate a polynomial)}} : 
+Associate a polynomial $P_i(x_1,x_2,x_3,....,x_n)$ for each element $a_i$ in $S=\{a_1,a_2,a_3,....,a_m\}$ with some properties, so that we can prove independence in these polynomials. As seen in above lemma the functions $f_i$'s are polynomial $P_i$'s here and $\Omega = \mathbb{R}^{n}$ in this case (since $\forall i,~a_i \in \mathbb{R}^{n}$). Let $x=(x_1,x_2,x_3,...,x_n)$ be a $n$-vector then polynomial : 
+$\forall ~1 \le i \le m ~P_i(x) = \big({||x-a_i||}^2-{d_1}^2\big)\big({||x-a_i||}^2-{d_2}^2\big)$.
+\\
+
+\underline{\textbf{step2 (prove that polynomials are linearly independent)}} : 
+The above polynomials defined satisfies the two conditions of independent criterion tool. i.e.
+\begin{enumerate}
+    \item $P_i(a_i) \ne 0,~ \forall i$. $P_i$ satisfy the first condition because $P_i(a_i)= \big({||a_i-a_i||}^2-{d_1}^2\big)\big({||a_i-a_i||}^2-{d_2}^2\big) = {{d_1}^2}{{d_2}^2} \ne 0$ (since $d_1,d_2 \ne 0$), So  $P_i(a_i) \ne 0,~ \forall i$
+    \item $P_i(a_j) = 0, \forall 1 \le i <j \le m$. $P_i$ also satisfy the second condition because $P_i(a_j) = \big({||a_j-a_i||}^2-{d_1}^2\big)\big({||a_j-a_i||}^2-{d_2}^2\big)$ and also ${||a_j - a_i||}^2 = {{d_1}^2}$ (or) ${||a_j - a_i||}^2 = {{d_2}^2}$ from definition of two-distance set. So $P_i(a_j) = \big({||a_j-a_i||}^2-{d_1}^2\big)\big({||a_j-a_i||}^2-{d_2}^2\big) = 0, \forall 1 \le i <j \le m$
+\end{enumerate}
+
+
+\underline{\textbf{step3 (Bound the dimension of space of polynomials)}} :  
+The polynomial that we have constructed has a property that we wanted and all these polynomials are now independent by independent criteria. Also after expanding the polynomial $P_i(x=(x_1,x_2,...x_n)) = \big({||x-a_i||}^2-{d_1}^2\big)\big({||x-a_i||}^2-{d_2}^2\big)$, we can see that the polynomial have only following type of terms:
+$$(\sum_{i=1}^{n}{x_i}^{2})^2, {\sum_{i}{x_i}^{2}} x_j, {\sum_{1 \le i\le j \le n}x_ix_j}, \sum_{i=1}^{n}x_i ,1$$.
+i.e. 
+\begin{itemize}
+    \item Number of terms of form $(\sum_{i=1}^{n}{x_i}^{2})^2$ are $1$. 
+    \item Number of terms of form ${\sum_{i}{x_i}^{2}} x_j$ are $n$. 
+    \item Number of terms of form ${\sum_{1 \le i\le j \le n}x_ix_j}$ are ${n \choose 2} + n$. 
+    \item Number of terms of form $\sum_{i=1}^{n}x_i$ are $n$. 
+    \item Number of constant terms are $1$. 
+\end{itemize}
+So in total we have $1+n+{n \choose 2} + n + n +1  = {n \choose 2} + 3n + 2$ number of terms i.e. any polynomial in our family can be expressed as a linear combination in ${n \choose 2} + 3n + 2$ number of terms, which means that dimensions of set of polynomials that we are looking cannot be greater than ${n \choose 2} + 3n + 2$ because these are the simplified polynomials using which we can express all the polynomials in our family. So, the dimension of underline space is bounded by ${n \choose 2} + 3n + 2$ and hence 
+$$m \le {n \choose 2} + 3n + 2$$ because there cannot be more than ${n \choose 2} + 3n + 2$ number of independent polynomials (or) vectors.
+\end{proof}
+
+\section{Frankl-Wilson Theorem}
+\begin{theorem}
+Let $\mathcal{F}$ be family of subsets of $[n]$ and let $L$ be subset of $[n]$ ($L \subseteq \{1,2,3,...,n\}$) such that $\forall A,B \in \mathcal{F}$,  $~~|A\cap B| \in L$, then $|\mathcal{F}| \le \sum_{i=1}^{|L|} {n \choose i}$. This theorem is also known as \textbf{Frankl-Wilson Theorem}, which is a Generalization of \textbf{Fisher's theorem}.
+\end{theorem}
+
+\begin{proof}
+Let $\mathcal{F} = \{A_1,A_2,....,A_m\}$ be family of subsets of $[n]$, $L={l_1,l_2,....,l_s}$ be a subset of $[n]$ such that $\forall i,j ~(1 \le i,j \le n)$ $\exists~ k~(1 \le k \le s)$ such that $|A_i\cap A_j| = l_k$. Let $v_i$ be the characteristic vector of $A_i$, $v_i \in \Omega = \mathbb{R}^n$ \big(where $<v_i,v_i> = |A_i|$ and $<v_i,v_j> = |A_i\cap A_j|\big)$ and we can assume that $A_1$ to $A_m$ is ordered such that sizes are non-decreasing order (or) rename them accordingly. We then have
+$$|A_1| \le |A_2|  \le |A_3|..... \le |A_m|.$$ 
+Now We Solve the proof using polynomial method (or) function space methods that follows the three steps as already mentioned.
+\\
+
+\underline{\textbf{step1 (Associate a polynomial)}} : 
+Associate a polynomial $P_i(x_1,x_2,....,x_n)$ for each element $A_i$. So the polynomial that we are going to define is as follows:
+$$P_i\big(x = (x_1,x_2,....,x_n)\big) = \prod_{k ~: ~l_k < |A_i|}\big(<v_i,x>-l_k\big)$$
+where $x=(x_1,x_2,....,x_n)$ is a $n$-vector.
+\\
+
+
+\underline{\textbf{step2 (prove that polynomials are linearly independent}} : The above polynomials defined satisfies the two conditions of independent criterion tool.
+\begin{enumerate}
+    \item 
+    when $x=v_i$, we have:
+$$P_i(v_i) = \prod_{k ~: ~l_k < |A_i|}\big(<v_i,v_i>-l_k\big) = \prod_{k:l_k < |A_i|}\bigg(|A_i|-l_k\bigg) \ne 0$$
+so, $P_i(v_i) \ne 0,~ \forall i$
+    \item
+    when $x=v_j$ and $i < j$, we have:
+$$P_i(v_j) = \prod_{k ~: ~l_k < |A_i|}\big(<v_i,v_j>-l_k\big) = \prod_{k:l_k < |A_i|}\big(|A_i\cap A_j|-l_k\big)=0$$
+Since $|A_i \cap A_j| $ must be one of the $l_p \in L$ and this $p$ must satisfy $l_p < |A_i|$, because the intersection size $|A_i \cap A_j|$ cannot be more than $A_i$.
+So, $P_i(v_j) = 0, \forall 1 \le i <j \le m$
+Now we have this polynomial $P_i\big(x = (x_1,x_2,....,x_n)\big) = \prod_{k ~: ~l_k < |A_i|}\big(<v_i,x>-l_k\big)$ that satisfies the two conditions of Independent criteria and hence $P_1,P_2,....,P_n$ are linearly independent as polynomials (or) as coefficients of vectors.
+\end{enumerate}
+
+\underline{\textbf{step3 (Bound the dimension of space of polynomials)}} : 
+Estimating the underlying dimensions (here, space of polynomials):
+We need to compute the dimension of space containing all these polynomials. Since we are using only 0/1 vectors here we can reduce the dimension by replacing the higher powers ${x_i}^k$ with $x_i$, this process does not change the linear dependence property and we still get same conditions. Now each term monomial looks like $x_1x_2x_3....$. Polynomials with these properties (i.e. each monomial with every individual variable degree to be at most one) are called as multilinear polynomials. So the polynomials under consideration lives in the space of multilinear polynomials of degree at most $s$.
+\\
+Let us look at the example on multilinear polynomials when $n=3$ and degree=2, the only terms correspond to these multilinear polynomials looks like:
+$$x_1 x_2, ~x_2 x_3, ~x_1 x_3, ~x_1, ~x_2, ~x_3, ~1$$ there are 7 terms and an example of these multilinear polynomial with real coefficients looks like:
+$5x_1 x_2 + 6x_1 x_3 + 5x_2 x_3 + 3x_1 + 2x_2 + x_3 + 6$
+and dimension of this multilinear polynomial example is $7$. The number of monomials we can have with that much degree is the bound for dimension. So in general when degree=$k$ and number of variables is $n$, then number of monomials in this multilinear polynomial is $n \choose k$ (i.e. select $k$ elements from $\{1,2,3,....,n\}$ and associate a monomial with corresponding variables). But now we have that degree is at most $s$, so we need to sum the result $n \choose k$ overall values of $k$ (i.e. $1 \le k \le s$). So,
+$$Dimension ~of ~space = \# ~of~ subsets~ of ~\{1,2,3,...,n\} ~of~ size ~\le s = \sum_{k=1}^{s}{n\choose k}$$
+and hence
+$$m \le Dimension \le \sum_{k=1}^{|L|}{n \choose k}$$
+\end{proof}
+
+
+\begin{theorem}
+Let $\mathcal{F}$ be family of subsets of $[n]$, $p$ be a prime and $L$ be subset of $\{0,1,2,3,...,p-1\}$, ($L \in \{0,1,2,3,...,p-1\}$) such that $\forall A, B \in F$, $~~|A \cap B| \in L (mod~p)$ and $|A| \notin L (mod~p)$, then $|\mathcal{F}| \le \sum_{i=1}^{|L|} {n \choose i}$. This theorem is proved by \textbf{Ray-choudhuri Wilson}, which is a Generalization of \textbf{odd-town problem}. 
+\end{theorem}
+
+\begin{theorem}
+Let $\mathcal{F}$ be a k-Uniform family of subsets of $[n]$ and let $L$ be subset of $[n]$,  ($L \subseteq \{1,2,3,...,n\}$) such that $\mathcal{F}$ is $L-$intersecting (i.e. $\forall A, B \in F$, $~~|A \cap B| \in L$), then the size of $\mathcal{F}$ is given as : $|\mathcal{F}|\le {n \choose |L|}$. This theorem is proved by \textbf{Ray-choudhuri Wilson}  
+\end{theorem}
+
+The above two theorems are also applications of polynomial method and process involved in proving them is similar to that we have done before.
